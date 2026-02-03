@@ -1,4 +1,4 @@
-# C4: Cognitive Coordinate System
+# C4: Complete Cognitive Coordinate System
 
 [![License: Triple](https://img.shields.io/badge/License-Apache--2.0--NC%20%7C%20AGPL--3.0%20%7C%20Commercial-orange)](./LICENSE)
 [![Agda Verified](https://img.shields.io/badge/Agda_Verified-10%2F11_theorems-green)](./formal-proofs/)
