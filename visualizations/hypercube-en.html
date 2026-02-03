@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>C4: Complete Cognitive Coordinate System - 3D Interactive Visualization</title>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+ background: #000;
+ overflow: hidden;
+ color: #fff;
+ position: relative;
+ }
+
+ /* Animated background */
+ .bg-canvas {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 0;
+ background: linear-gradient(125deg, #000428 0%, #004e92 100%);
+ }
+
+ .stars {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ pointer-events: none;
+ }
+
+ .star {
+ position: absolute;
+ width: 2px;
+ height: 2px;
+ background: white;
+ border-radius: 50%;
+ animation: twinkle 3s infinite;
+ }
+
+ @keyframes twinkle {
+ 0%, 100% { opacity: 0; }
+ 50% { opacity: 1; }
+ }
+
+ /* Credits banner */
+ .credits-banner {
+ position: absolute;
+ top: 10px;
+ left: 50%;
+ transform: translateX(-50%);
+ z-index: 101;
+ background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+ padding: 15px 30px;
+ border-radius: 12px;
+ border: 1px solid rgba(139, 92, 246, 0.3);
+ backdrop-filter: blur(10px);
+ text-align: center;
+ animation: slideInDown 0.8s ease;
+ box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+ }
+
+ .model-title {
+ font-size: 20px;
+ font-weight: bold;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ margin-bottom: 8px;
+ letter-spacing: 2px;
+ }
+
+ .authors {
+ font-size: 14px;
+ color: #cbd5e1;
+ margin-bottom: 4px;
+ }
+
+ .location-date {
+ font-size: 13px;
+ color: #94a3b8;
+ }
+
+ @keyframes slideInDown {
+ from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+ to { transform: translateX(-50%) translateY(0); opacity: 1; }
+ }
+
+ /* Main container */
+ .container {
+ position: relative;
+ z-index: 1;
+ display: flex;
+ height: 100vh;
+ backdrop-filter: blur(10px);
+ }
+
+ /* Left panel - State Explorer */
+ .state-panel {
+ width: 360px;
+ background: rgba(15, 23, 42, 0.95);
+ border-right: 1px solid rgba(59, 130, 246, 0.3);
+ overflow-y: auto;
+ padding: 20px;
+ animation: slideInLeft 0.6s ease;
+ }
+
+ @keyframes slideInLeft {
+ from { transform: translateX(-100%); opacity: 0; }
+ to { transform: translateX(0); opacity: 1; }
+ }
+
+ .panel-header {
+ font-size: 22px;
+ font-weight: bold;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ margin-bottom: 20px;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+
+ .state-card {
+ background: rgba(30, 41, 59, 0.8);
+ border: 1px solid rgba(59, 130, 246, 0.2);
+ border-radius: 12px;
+ padding: 15px;
+ margin-bottom: 12px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .state-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: -100%;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+ transition: left 0.5s ease;
+ }
+
+ .state-card:hover {
+ transform: translateX(8px);
+ border-color: rgba(139, 92, 246, 0.6);
+ box-shadow: 0 5px 25px rgba(139, 92, 246, 0.3);
+ }
+
+ .state-card:hover::before {
+ left: 100%;
+ }
+
+ .state-card.selected {
+ background: rgba(59, 130, 246, 0.2);
+ border-color: rgba(139, 92, 246, 0.8);
+ box-shadow: 0 5px 30px rgba(139, 92, 246, 0.4);
+ }
+
+ .state-id {
+ display: inline-block;
+ background: linear-gradient(135deg, #667eea, #764ba2);
+ color: white;
+ padding: 4px 12px;
+ border-radius: 20px;
+ font-size: 12px;
+ font-weight: bold;
+ margin-bottom: 8px;
+ }
+
+ .state-name {
+ font-size: 16px;
+ font-weight: 600;
+ color: #e2e8f0;
+ margin-bottom: 6px;
+ font-family: 'Courier New', monospace;
+ }
+
+ .state-description {
+ font-size: 13px;
+ color: #cbd5e1;
+ line-height: 1.5;
+ }
+
+ .state-dimensions {
+ display: flex;
+ gap: 6px;
+ margin-top: 8px;
+ flex-wrap: wrap;
+ }
+
+ .dimension-tag {
+ font-size: 11px;
+ padding: 3px 8px;
+ border-radius: 4px;
+ font-weight: 500;
+ }
+
+ .dim-time {
+ background: rgba(239, 68, 68, 0.2);
+ color: #fca5a5;
+ border: 1px solid rgba(239, 68, 68, 0.3);
+ }
+
+ .dim-scale {
+ background: rgba(59, 130, 246, 0.2);
+ color: #93c5fd;
+ border: 1px solid rgba(59, 130, 246, 0.3);
+ }
+
+ .dim-agency {
+ background: rgba(34, 197, 94, 0.2);
+ color: #86efac;
+ border: 1px solid rgba(34, 197, 94, 0.3);
+ }
+
+ /* Center - 3D Canvas */
+ .canvas-container {
+ flex: 1;
+ position: relative;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+
+ #cube-canvas {
+ width: 100%;
+ height: 100%;
+ cursor: grab;
+ }
+
+ #cube-canvas:active {
+ cursor: grabbing;
+ }
+
+ /* Axes labels */
+ .axis-label {
+ position: absolute;
+ font-size: 16px;
+ font-weight: 600;
+ color: #e2e8f0;
+ background: rgba(15, 23, 42, 0.9);
+ padding: 8px 16px;
+ border-radius: 8px;
+ border: 1px solid rgba(59, 130, 246, 0.3);
+ z-index: 10;
+ pointer-events: none;
+ backdrop-filter: blur(10px);
+ }
+
+ .axis-x { bottom: 50px; left: 50%; transform: translateX(-50%); }
+ .axis-y { top: 50%; right: 30px; transform: translateY(-50%); }
+ .axis-z { top: 30px; left: 50%; transform: translateX(-50%); }
+
+ .axis-values {
+ font-size: 12px;
+ color: #94a3b8;
+ margin-top: 4px;
+ }
+
+ /* Right panel - Detail View */
+ .detail-panel {
+ width: 400px;
+ background: rgba(15, 23, 42, 0.95);
+ border-left: 1px solid rgba(59, 130, 246, 0.3);
+ overflow-y: auto;
+ padding: 25px;
+ animation: slideInRight 0.6s ease;
+ }
+
+ @keyframes slideInRight {
+ from { transform: translateX(100%); opacity: 0; }
+ to { transform: translateX(0); opacity: 1; }
+ }
+
+ .detail-header {
+ font-size: 24px;
+ font-weight: bold;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ margin-bottom: 20px;
+ }
+
+ .detail-section {
+ margin-bottom: 25px;
+ }
+
+ .section-title {
+ font-size: 14px;
+ font-weight: 600;
+ color: #94a3b8;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ margin-bottom: 10px;
+ }
+
+ .section-content {
+ font-size: 15px;
+ line-height: 1.7;
+ color: #e2e8f0;
+ }
+
+ .example-item {
+ background: rgba(30, 41, 59, 0.6);
+ padding: 12px;
+ border-radius: 8px;
+ margin-bottom: 8px;
+ border-left: 3px solid rgba(139, 92, 246, 0.5);
+ }
+
+ .keyword-tag {
+ display: inline-block;
+ background: rgba(59, 130, 246, 0.2);
+ color: #93c5fd;
+ padding: 4px 10px;
+ border-radius: 6px;
+ font-size: 12px;
+ margin-right: 6px;
+ margin-bottom: 6px;
+ }
+
+ .emotion-tag {
+ display: inline-block;
+ background: rgba(236, 72, 153, 0.2);
+ color: #f9a8d4;
+ padding: 4px 10px;
+ border-radius: 6px;
+ font-size: 12px;
+ margin-right: 6px;
+ margin-bottom: 6px;
+ }
+
+ /* Bottom controls */
+ .controls {
+ position: absolute;
+ bottom: 20px;
+ left: 50%;
+ transform: translateX(-50%);
+ z-index: 10;
+ display: flex;
+ gap: 12px;
+ background: rgba(15, 23, 42, 0.95);
+ padding: 12px 20px;
+ border-radius: 12px;
+ border: 1px solid rgba(59, 130, 246, 0.3);
+ backdrop-filter: blur(10px);
+ }
+
+ .control-btn {
+ background: linear-gradient(135deg, #667eea, #764ba2);
+ color: white;
+ border: none;
+ padding: 10px 20px;
+ border-radius: 8px;
+ font-size: 14px;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+ }
+
+ .control-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+ }
+
+ .control-btn:active {
+ transform: translateY(0);
+ }
+
+ /* Scrollbar styling */
+ ::-webkit-scrollbar {
+ width: 8px;
+ }
+
+ ::-webkit-scrollbar-track {
+ background: rgba(15, 23, 42, 0.5);
+ }
+
+ ::-webkit-scrollbar-thumb {
+ background: rgba(139, 92, 246, 0.5);
+ border-radius: 4px;
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+ background: rgba(139, 92, 246, 0.7);
+ }
+
+ /* Footer credits */
+ .footer-credits {
+ position: absolute;
+ bottom: 10px;
+ right: 20px;
+ z-index: 10;
+ font-size: 12px;
+ color: #64748b;
+ }
+
+ .footer-credits a {
+ color: #8b5cf6;
+ text-decoration: none;
+ transition: color 0.3s ease;
+ }
+
+ .footer-credits a:hover {
+ color: #a78bfa;
+ }
+ </style>
+</head>
+<body>
+ <!-- Animated starfield background -->
+ <div class="bg-canvas"></div>
+ <div class="stars" id="stars"></div>
+
+ <!-- Credits banner -->
+ <div class="credits-banner">
+ <div class="model-title">C4: COMPLETE COGNITIVE COORDINATE SYSTEM</div>
+ <div class="authors">Ilya Selyutin & Nikolai Kovalev</div>
+ <div class="location-date">Formally Verified • January 2025</div>
+ </div>
+
+ <!-- Main container -->
+ <div class="container">
+ <!-- Left panel: State list -->
+ <div class="state-panel">
+ <div class="panel-header">
+ <span></span> 27 Cognitive Basis States
+ </div>
+ <div id="state-list"></div>
+ </div>
+
+ <!-- Center: 3D visualization -->
+ <div class="canvas-container">
+ <canvas id="cube-canvas"></canvas>
+
+ <!-- Axis labels -->
+ <div class="axis-label axis-x">
+ <div>TIME ORIENTATION</div>
+ <div class="axis-values">Past → Present → Future</div>
+ </div>
+ <div class="axis-label axis-y">
+ <div>SCALE LEVEL</div>
+ <div class="axis-values">Concrete → Abstract → Meta</div>
+ </div>
+ <div class="axis-label axis-z">
+ <div>AGENCY POSITION</div>
+ <div class="axis-values">Self → Other → System</div>
+ </div>
+
+ <!-- Controls -->
+ <div class="controls">
+ <button class="control-btn" onclick="resetRotation()">Reset View</button>
+ <button class="control-btn" onclick="toggleAutoRotate()">Auto-Rotate</button>
+ <button class="control-btn" onclick="randomState()">Random State</button>
+ </div>
+ </div>
+
+ <!-- Right panel: Detailed info -->
+ <div class="detail-panel">
+ <div class="detail-header" id="detail-header">Select a state</div>
+ <div id="detail-content">
+ <div class="section-content" style="color: #94a3b8; text-align: center; padding: 40px 20px;">
+ Click on any state from the left panel or on the 3D cube to see detailed information.
+ <br><br>
+ <strong style="color: #e2e8f0;">C4 Theory:</strong> A formally verified mathematical framework for modeling cognitive states and transformations. Built on group theory (ℤ₃³), category theory, and mechanically proven in Agda.
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Footer -->
+ <div class="footer-credits">
+ <a href="https://github.com/cognitive-functors/adaptive-topology" target="_blank">GitHub</a> •
+ Built by Cognitive Functors •
+ <a href="https://github.com/cognitive-functors/adaptive-topology/blob/main/preprint/en/C4-PREPRINT-V3-FINAL.md" target="_blank">Read Paper</a>
+ </div>
+
+ <script>
+ // ==================== DATA ====================
+
+ const c4States = [
+ // ========== PAST (9 states) ==========
+ {
+ id: 0,
+ name: "F⟨Past,Concrete,Self⟩",
+ dimensions: { time: "Past", scale: "Concrete", agency: "Self" },
+ description: "Focus on specific past actions of the self",
+ examples: [
+ "I made a mistake yesterday",
+ "I successfully completed that project last month",
+ "I said something stupid in the meeting"
+ ],
+ keywords: ["I did", "I made", "I said", "yesterday", "last week", "my past action"],
+ emotions: ["regret", "nostalgia", "pride", "shame"],
+ useCases: ["reflection", "learning from mistakes", "gratitude practice"],
+ position: [0, 0, 0] // Past, Concrete, Self
+ },
+ {
+ id: 1,
+ name: "F⟨Past,Concrete,Other⟩",
+ dimensions: { time: "Past", scale: "Concrete", agency: "Other" },
+ description: "Focus on specific past actions of others",
+ examples: [
+ "He betrayed me last year",
+ "She helped me when I needed it",
+ "They made a bad decision"
+ ],
+ keywords: ["he did", "she said", "they made", "blame", "credit to others"],
+ emotions: ["resentment", "gratitude", "disappointment"],
+ useCases: ["blame attribution", "acknowledging help", "analyzing others' behavior"],
+ position: [0, 0, 1]
+ },
+ {
+ id: 2,
+ name: "F⟨Past,Concrete,System⟩",
+ dimensions: { time: "Past", scale: "Concrete", agency: "System" },
+ description: "Focus on specific past systemic events",
+ examples: [
+ "The company launched the product in 2020",
+ "The law was changed last year",
+ "The market crashed in 2008"
+ ],
+ keywords: ["the system", "the organization", "the market", "policy change", "historical event"],
+ emotions: ["neutrality", "analytical distance"],
+ useCases: ["historical analysis", "case studies", "post-mortems"],
+ position: [0, 0, 2]
+ },
+ {
+ id: 3,
+ name: "F⟨Past,Abstract,Self⟩",
+ dimensions: { time: "Past", scale: "Abstract", agency: "Self" },
+ description: "Focus on patterns of self's past behavior",
+ examples: [
+ "I tend to procrastinate on difficult tasks",
+ "I usually avoid conflict",
+ "I've always been good at math"
+ ],
+ keywords: ["I tend to", "I usually", "I've always", "my pattern", "my habit"],
+ emotions: ["self-awareness", "acceptance", "frustration with patterns"],
+ useCases: ["therapy", "self-improvement", "identifying habits"],
+ position: [0, 1, 0]
+ },
+ {
+ id: 4,
+ name: "F⟨Past,Abstract,Other⟩",
+ dimensions: { time: "Past", scale: "Abstract", agency: "Other" },
+ description: "Focus on patterns of others' past behavior",
+ examples: [
+ "He always makes excuses",
+ "She tends to be late",
+ "They never listen to feedback"
+ ],
+ keywords: ["he always", "she tends to", "they never", "pattern in others"],
+ emotions: ["judgment", "frustration", "understanding"],
+ useCases: ["personality assessment", "team dynamics analysis"],
+ position: [0, 1, 1]
+ },
+ {
+ id: 5,
+ name: "F⟨Past,Abstract,System⟩",
+ dimensions: { time: "Past", scale: "Abstract", agency: "System" },
+ description: "Focus on historical patterns and trends",
+ examples: [
+ "Empires tend to decline after reaching peak complexity",
+ "Markets cycle between boom and bust",
+ "Revolutions follow similar patterns"
+ ],
+ keywords: ["historical pattern", "trend", "cycle", "systemic behavior"],
+ emotions: ["intellectual curiosity", "detachment"],
+ useCases: ["history", "economics", "sociology"],
+ position: [0, 1, 2]
+ },
+ {
+ id: 6,
+ name: "F⟨Past,Meta,Self⟩",
+ dimensions: { time: "Past", scale: "Meta", agency: "Self" },
+ description: "Reflection on how one used to think about thinking",
+ examples: [
+ "I used to believe my thoughts were facts",
+ "I didn't realize I was making assumptions",
+ "I've changed my mind about how to approach problems"
+ ],
+ keywords: ["I used to think", "I didn't realize", "my mental model changed"],
+ emotions: ["growth", "humility", "intellectual maturity"],
+ useCases: ["metacognitive development", "paradigm shifts", "wisdom"],
+ position: [0, 2, 0]
+ },
+ {
+ id: 7,
+ name: "F⟨Past,Meta,Other⟩",
+ dimensions: { time: "Past", scale: "Meta", agency: "Other" },
+ description: "Analysis of how others used to think",
+ examples: [
+ "He didn't understand the framework back then",
+ "She was operating from a different paradigm",
+ "They were blind to their own biases"
+ ],
+ keywords: ["their mental model", "their assumptions", "how they thought"],
+ emotions: ["compassion", "superiority", "understanding"],
+ useCases: ["teaching", "conflict resolution", "intellectual history"],
+ position: [0, 2, 1]
+ },
+ {
+ id: 8,
+ name: "F⟨Past,Meta,System⟩",
+ dimensions: { time: "Past", scale: "Meta", agency: "System" },
+ description: "History of ideas and paradigms",
+ examples: [
+ "Science used to operate under a Newtonian paradigm",
+ "Society believed in the divine right of kings",
+ "The field shifted from behaviorism to cognitivism"
+ ],
+ keywords: ["paradigm shift", "intellectual history", "evolution of ideas"],
+ emotions: ["awe", "intellectual appreciation"],
+ useCases: ["philosophy of science", "cultural evolution", "academic historiography"],
+ position: [0, 2, 2]
+ },
+
+ // ========== PRESENT (9 states) ==========
+ {
+ id: 9,
+ name: "F⟨Present,Concrete,Self⟩",
+ dimensions: { time: "Present", scale: "Concrete", agency: "Self" },
+ description: "Focus on current specific actions of the self",
+ examples: [
+ "I am writing this email right now",
+ "I feel anxious about this meeting",
+ "I'm working on the Jenkins pipeline"
+ ],
+ keywords: ["I am", "right now", "currently", "at this moment", "my current task"],
+ emotions: ["presence", "focus", "stress", "flow"],
+ useCases: ["task execution", "mindfulness", "immediate problem-solving"],
+ position: [1, 0, 0]
+ },
+ {
+ id: 10,
+ name: "F⟨Present,Concrete,Other⟩",
+ dimensions: { time: "Present", scale: "Concrete", agency: "Other" },
+ description: "Focus on current specific actions of others",
+ examples: [
+ "She is ignoring my messages",
+ "He's working on the backend code",
+ "They are blocking the deployment"
+ ],
+ keywords: ["he is", "she's doing", "they are", "right now (about others)"],
+ emotions: ["observation", "concern", "coordination"],
+ useCases: ["team coordination", "social awareness", "immediate feedback"],
+ position: [1, 0, 1]
+ },
+ {
+ id: 11,
+ name: "F⟨Present,Concrete,System⟩",
+ dimensions: { time: "Present", scale: "Concrete", agency: "System" },
+ description: "Focus on current systemic state or events",
+ examples: [
+ "The server is down",
+ "The market is volatile today",
+ "The build is failing on line 47"
+ ],
+ keywords: ["the system is", "current state", "status", "monitoring"],
+ emotions: ["alertness", "urgency", "troubleshooting mode"],
+ useCases: ["operations", "monitoring", "incident response"],
+ position: [1, 0, 2]
+ },
+ {
+ id: 12,
+ name: "F⟨Present,Abstract,Self⟩",
+ dimensions: { time: "Present", scale: "Abstract", agency: "Self" },
+ description: "Awareness of current patterns in self's behavior",
+ examples: [
+ "I notice I'm avoiding this task",
+ "I'm in a flow state right now",
+ "I keep getting distracted"
+ ],
+ keywords: ["I notice", "I'm being", "I keep", "self-awareness now"],
+ emotions: ["mindfulness", "self-compassion", "insight"],
+ useCases: ["meditation", "therapy", "performance optimization"],
+ position: [1, 1, 0]
+ },
+ {
+ id: 13,
+ name: "F⟨Present,Abstract,Other⟩",
+ dimensions: { time: "Present", scale: "Abstract", agency: "Other" },
+ description: "Awareness of patterns in others' current behavior",
+ examples: [
+ "He seems defensive whenever I bring this up",
+ "She's being unusually quiet",
+ "The team keeps missing deadlines"
+ ],
+ keywords: ["he seems", "she's being", "they keep", "pattern I'm noticing"],
+ emotions: ["empathy", "concern", "strategic thinking"],
+ useCases: ["coaching", "negotiation", "leadership"],
+ position: [1, 1, 1]
+ },
+ {
+ id: 14,
+ name: "F⟨Present,Abstract,System⟩",
+ dimensions: { time: "Present", scale: "Abstract", agency: "System" },
+ description: "Awareness of current systemic patterns",
+ examples: [
+ "The organization is stuck in bureaucracy",
+ "This feedback loop is amplifying the problem",
+ "The culture is becoming more hierarchical"
+ ],
+ keywords: ["the system is", "feedback loop", "emergent pattern", "dynamics"],
+ emotions: ["systems thinking", "concern", "analytical"],
+ useCases: ["organizational design", "complex problem-solving", "intervention design"],
+ position: [1, 1, 2]
+ },
+ {
+ id: 15,
+ name: "F⟨Present,Meta,Self⟩",
+ dimensions: { time: "Present", scale: "Meta", agency: "Self" },
+ description: "Real-time awareness of own thinking process",
+ examples: [
+ "I'm thinking about how I'm thinking right now",
+ "I notice I'm using a particular mental model",
+ "I'm aware of my biases in this moment"
+ ],
+ keywords: ["I'm thinking about thinking", "metacognition", "observing my mind"],
+ emotions: ["clarity", "self-observation", "meta-awareness"],
+ useCases: ["advanced meditation", "cognitive therapy", "debugging mental models"],
+ position: [1, 2, 0]
+ },
+ {
+ id: 16,
+ name: "F⟨Present,Meta,Other⟩",
+ dimensions: { time: "Present", scale: "Meta", agency: "Other" },
+ description: "Real-time analysis of others' thinking processes",
+ examples: [
+ "I wonder why he's approaching it that way",
+ "She's using a different framework than I am",
+ "They're not seeing the meta-level pattern"
+ ],
+ keywords: ["how they're thinking", "their framework", "theory of mind"],
+ emotions: ["curiosity", "strategic empathy", "teaching mode"],
+ useCases: ["negotiation", "pedagogy", "conflict mediation"],
+ position: [1, 2, 1]
+ },
+ {
+ id: 17,
+ name: "F⟨Present,Meta,System⟩",
+ dimensions: { time: "Present", scale: "Meta", agency: "System" },
+ description: "Real-time analysis of systemic cognition",
+ examples: [
+ "This organization doesn't know what it doesn't know",
+ "The field is stuck in a particular paradigm",
+ "Society is unable to think about this problem clearly"
+ ],
+ keywords: ["collective cognition", "paradigm", "systemic blindness"],
+ emotions: ["frustration", "visionary insight", "mission"],
+ useCases: ["innovation", "paradigm shifts", "social change"],
+ position: [1, 2, 2]
+ },
+
+ // ========== FUTURE (9 states) ==========
+ {
+ id: 18,
+ name: "F⟨Future,Concrete,Self⟩",
+ dimensions: { time: "Future", scale: "Concrete", agency: "Self" },
+ description: "Planning specific future actions of the self",
+ examples: [
+ "I will send the email tomorrow",
+ "I'm going to finish this feature by Friday",
+ "I'll call her next week"
+ ],
+ keywords: ["I will", "I'm going to", "tomorrow", "next week", "my plan"],
+ emotions: ["determination", "anxiety", "anticipation"],
+ useCases: ["task planning", "commitment", "goal-setting"],
+ position: [2, 0, 0]
+ },
+ {
+ id: 19,
+ name: "F⟨Future,Concrete,Other⟩",
+ dimensions: { time: "Future", scale: "Concrete", agency: "Other" },
+ description: "Predicting specific future actions of others",
+ examples: [
+ "He will probably reject the proposal",
+ "She's going to be upset when she finds out",
+ "They will launch the product next month"
+ ],
+ keywords: ["he will", "she's going to", "prediction about others"],
+ emotions: ["anticipation", "strategy", "concern"],
+ useCases: ["strategic planning", "risk assessment", "coordination"],
+ position: [2, 0, 1]
+ },
+ {
+ id: 20,
+ name: "F⟨Future,Concrete,System⟩",
+ dimensions: { time: "Future", scale: "Concrete", agency: "System" },
+ description: "Predicting specific future systemic events",
+ examples: [
+ "The release will happen on Tuesday",
+ "The market will react to the announcement",
+ "The new policy takes effect in January"
+ ],
+ keywords: ["the system will", "scheduled event", "concrete prediction"],
+ emotions: ["planning", "preparation", "scenario analysis"],
+ useCases: ["project management", "operations", "forecasting"],
+ position: [2, 0, 2]
+ },
+ {
+ id: 21,
+ name: "F⟨Future,Abstract,Self⟩",
+ dimensions: { time: "Future", scale: "Abstract", agency: "Self" },
+ description: "Envisioning future patterns of self's behavior",
+ examples: [
+ "I want to become more patient",
+ "I hope to develop better habits",
+ "I aspire to be a better leader"
+ ],
+ keywords: ["I want to become", "I hope to", "my aspiration", "self-development"],
+ emotions: ["hope", "aspiration", "self-directed growth"],
+ useCases: ["personal development", "therapy goals", "identity evolution"],
+ position: [2, 1, 0]
+ },
+ {
+ id: 22,
+ name: "F⟨Future,Abstract,Other⟩",
+ dimensions: { time: "Future", scale: "Abstract", agency: "Other" },
+ description: "Predicting future patterns in others' behavior",
+ examples: [
+ "He will continue to resist change",
+ "She'll probably adapt to the new role",
+ "They will eventually see the value"
+ ],
+ keywords: ["he will continue", "she'll probably", "future pattern in others"],
+ emotions: ["prediction", "hope", "resignation"],
+ useCases: ["change management", "talent development", "relationship forecasting"],
+ position: [2, 1, 1]
+ },
+ {
+ id: 23,
+ name: "F⟨Future,Abstract,System⟩",
+ dimensions: { time: "Future", scale: "Abstract", agency: "System" },
+ description: "Forecasting future systemic trends",
+ examples: [
+ "AI will transform the job market",
+ "Climate change will reshape geopolitics",
+ "Remote work will become the norm"
+ ],
+ keywords: ["trend", "will transform", "future of", "long-term forecast"],
+ emotions: ["visionary thinking", "concern", "excitement"],
+ useCases: ["strategic planning", "futurism", "policy design"],
+ position: [2, 1, 2]
+ },
+ {
+ id: 24,
+ name: "F⟨Future,Meta,Self⟩",
+ dimensions: { time: "Future", scale: "Meta", agency: "Self" },
+ description: "Envisioning evolution of own thinking",
+ examples: [
+ "I want to develop a more sophisticated mental model",
+ "I hope to transcend this limiting belief",
+ "I aspire to think more clearly about complex problems"
+ ],
+ keywords: ["I want to think differently", "evolve my mindset", "meta-development"],
+ emotions: ["intellectual aspiration", "humility", "growth mindset"],
+ useCases: ["wisdom cultivation", "paradigm shifting", "intellectual growth"],
+ position: [2, 2, 0]
+ },
+ {
+ id: 25,
+ name: "F⟨Future,Meta,Other⟩",
+ dimensions: { time: "Future", scale: "Meta", agency: "Other" },
+ description: "Predicting evolution of others' thinking",
+ examples: [
+ "She will eventually understand this framework",
+ "He'll come around to a different perspective",
+ "They will shift their paradigm over time"
+ ],
+ keywords: ["will understand", "come around", "shift perspective"],
+ emotions: ["patience", "teaching intent", "hope"],
+ useCases: ["education", "mentoring", "change leadership"],
+ position: [2, 2, 1]
+ },
+ {
+ id: 26,
+ name: "F⟨Future,Meta,System⟩",
+ dimensions: { time: "Future", scale: "Meta", agency: "System" },
+ description: "Envisioning paradigm shifts and civilizational evolution",
+ examples: [
+ "Humanity will need to develop planetary-scale thinking",
+ "Science will undergo a paradigm shift with AGI",
+ "Society will evolve new ways of knowing"
+ ],
+ keywords: ["paradigm shift", "civilizational evolution", "new ways of thinking"],
+ emotions: ["awe", "mission", "visionary excitement"],
+ useCases: ["philosophy", "futurism", "transformative research"],
+ position: [2, 2, 2]
+ }
+ ];
+
+ // ==================== UI RENDERING ====================
+
+ let selectedStateId = null;
+
+ // Render state list
+ function renderStateList() {
+ const listContainer = document.getElementById('state-list');
+ listContainer.innerHTML = '';
+
+ c4States.forEach(state => {
+ const card = document.createElement('div');
+ card.className = 'state-card';
+ card.id = `state-card-${state.id}`;
+ card.onclick = () => selectState(state.id);
+
+ card.innerHTML = `
+ <div class="state-id">State ${state.id}</div>
+ <div class="state-name">${state.name}</div>
+ <div class="state-description">${state.description}</div>
+ <div class="state-dimensions">
+ <span class="dimension-tag dim-time">${state.dimensions.time}</span>
+ <span class="dimension-tag dim-scale">${state.dimensions.scale}</span>
+ <span class="dimension-tag dim-agency">${state.dimensions.agency}</span>
+ </div>
+ `;
+
+ listContainer.appendChild(card);
+ });
+ }
+
+ // Select and display state details
+ function selectState(id) {
+ selectedStateId = id;
+ const state = c4States.find(s => s.id === id);
+
+ // Update card selection
+ document.querySelectorAll('.state-card').forEach(card => {
+ card.classList.remove('selected');
+ });
+ document.getElementById(`state-card-${id}`).classList.add('selected');
+
+ // Update detail panel
+ document.getElementById('detail-header').textContent = state.name;
+
+ const detailContent = document.getElementById('detail-content');
+ detailContent.innerHTML = `
+ <div class="detail-section">
+ <div class="section-title">Description</div>
+ <div class="section-content">${state.description}</div>
+ </div>
+
+ <div class="detail-section">
+ <div class="section-title">Dimensions</div>
+ <div class="section-content">
+ <strong>Time:</strong> ${state.dimensions.time}<br>
+ <strong>Scale:</strong> ${state.dimensions.scale}<br>
+ <strong>Agency:</strong> ${state.dimensions.agency}
+ </div>
+ </div>
+
+ <div class="detail-section">
+ <div class="section-title">Examples</div>
+ ${state.examples.map(ex => `<div class="example-item">"${ex}"</div>`).join('')}
+ </div>
+
+ <div class="detail-section">
+ <div class="section-title">Keywords</div>
+ <div class="section-content">
+ ${state.keywords.map(kw => `<span class="keyword-tag">${kw}</span>`).join('')}
+ </div>
+ </div>
+
+ <div class="detail-section">
+ <div class="section-title">Typical Emotions</div>
+ <div class="section-content">
+ ${state.emotions.map(em => `<span class="emotion-tag">${em}</span>`).join('')}
+ </div>
+ </div>
+
+ <div class="detail-section">
+ <div class="section-title">Use Cases</div>
+ <div class="section-content">
+ ${state.useCases.map(uc => `• ${uc}<br>`).join('')}
+ </div>
+ </div>
+ `;
+
+ // Highlight in 3D visualization
+ highlightStateIn3D(id);
+ }
+
+ // ==================== 3D VISUALIZATION ====================
+
+ const canvas = document.getElementById('cube-canvas');
+ const ctx = canvas.getContext('2d');
+
+ let width, height;
+ let rotationX = 0.3;
+ let rotationY = 0.4;
+ let isDragging = false;
+ let lastMouseX = 0;
+ let lastMouseY = 0;
+ let autoRotate = true;
+
+ function resizeCanvas() {
+ width = canvas.clientWidth;
+ height = canvas.clientHeight;
+ canvas.width = width;
+ canvas.height = height;
+ }
+
+ window.addEventListener('resize', resizeCanvas);
+ resizeCanvas();
+
+ // 3D projection
+ function project(x, y, z) {
+ const scale = 80;
+ const offsetX = width / 2;
+ const offsetY = height / 2;
+
+ // Rotation around X axis
+ let y1 = y * Math.cos(rotationX) - z * Math.sin(rotationX);
+ let z1 = y * Math.sin(rotationX) + z * Math.cos(rotationX);
+
+ // Rotation around Y axis
+ let x1 = x * Math.cos(rotationY) + z1 * Math.sin(rotationY);
+ let z2 = -x * Math.sin(rotationY) + z1 * Math.cos(rotationY);
+
+ // Perspective
+ const distance = 400;
+ const perspective = distance / (distance + z2);
+
+ return {
+ x: x1 * scale * perspective + offsetX,
+ y: y1 * scale * perspective + offsetY,
+ z: z2
+ };
+ }
+
+ // Draw cube frame
+ function drawCubeFrame() {
+ const size = 3;
+ const edges = [
+ // Bottom face (z=0)
+ [[0,0,0], [size,0,0]], [[size,0,0], [size,size,0]], [[size,size,0], [0,size,0]], [[0,size,0], [0,0,0]],
+ // Top face (z=size)
+ [[0,0,size], [size,0,size]], [[size,0,size], [size,size,size]], [[size,size,size], [0,size,size]], [[0,size,size], [0,0,size]],
+ // Vertical edges
+ [[0,0,0], [0,0,size]], [[size,0,0], [size,0,size]], [[size,size,0], [size,size,size]], [[0,size,0], [0,size,size]]
+ ];
+
+ ctx.strokeStyle = 'rgba(139, 92, 246, 0.3)';
+ ctx.lineWidth = 2;
+
+ edges.forEach(([start, end]) => {
+ const p1 = project(start[0] - 1.5, start[1] - 1.5, start[2] - 1.5);
+ const p2 = project(end[0] - 1.5, end[1] - 1.5, end[2] - 1.5);
+
+ ctx.beginPath();
+ ctx.moveTo(p1.x, p1.y);
+ ctx.lineTo(p2.x, p2.y);
+ ctx.stroke();
+ });
+ }
+
+ // Draw state nodes
+ function drawStates() {
+ // Sort by z-depth for proper layering
+ const sortedStates = [...c4States].sort((a, b) => {
+ const pa = project(a.position[0] - 1, a.position[1] - 1, a.position[2] - 1);
+ const pb = project(b.position[0] - 1, b.position[1] - 1, b.position[2] - 1);
+ return pb.z - pa.z;
+ });
+
+ sortedStates.forEach(state => {
+ const pos = project(state.position[0] - 1, state.position[1] - 1, state.position[2] - 1);
+
+ const isSelected = state.id === selectedStateId;
+ const radius = isSelected ? 12 : 8;
+ const alpha = Math.max(0.4, (pos.z + 200) / 400);
+
+ // Draw node
+ ctx.beginPath();
+ ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+
+ if (isSelected) {
+ ctx.fillStyle = `rgba(139, 92, 246, ${alpha})`;
+ ctx.shadowColor = 'rgba(139, 92, 246, 0.8)';
+ ctx.shadowBlur = 20;
+ } else {
+ ctx.fillStyle = `rgba(59, 130, 246, ${alpha * 0.7})`;
+ ctx.shadowBlur = 0;
+ }
+
+ ctx.fill();
+ ctx.shadowBlur = 0;
+
+ // Draw label
+ ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+ ctx.font = '12px monospace';
+ ctx.textAlign = 'center';
+ ctx.fillText(state.id, pos.x, pos.y - radius - 8);
+ });
+ }
+
+ function highlightStateIn3D(id) {
+ // This is called when a state is selected
+ // The actual highlighting is done in drawStates() via selectedStateId
+ }
+
+ // Animation loop
+ function animate() {
+ ctx.clearRect(0, 0, width, height);
+
+ if (autoRotate) {
+ rotationY += 0.005;
+ }
+
+ drawCubeFrame();
+ drawStates();
+
+ requestAnimationFrame(animate);
+ }
+
+ // Mouse interactions
+ canvas.addEventListener('mousedown', (e) => {
+ isDragging = true;
+ lastMouseX = e.clientX;
+ lastMouseY = e.clientY;
+ autoRotate = false;
+ });
+
+ canvas.addEventListener('mousemove', (e) => {
+ if (isDragging) {
+ const deltaX = e.clientX - lastMouseX;
+ const deltaY = e.clientY - lastMouseY;
+
+ rotationY += deltaX * 0.005;
+ rotationX += deltaY * 0.005;
+
+ lastMouseX = e.clientX;
+ lastMouseY = e.clientY;
+ }
+ });
+
+ canvas.addEventListener('mouseup', () => {
+ isDragging = false;
+ });
+
+ canvas.addEventListener('mouseleave', () => {
+ isDragging = false;
+ });
+
+ // Click to select state
+ canvas.addEventListener('click', (e) => {
+ if (isDragging) return;
+
+ const rect = canvas.getBoundingClientRect();
+ const mouseX = e.clientX - rect.left;
+ const mouseY = e.clientY - rect.top;
+
+ // Find closest state
+ let closestState = null;
+ let closestDist = Infinity;
+
+ c4States.forEach(state => {
+ const pos = project(state.position[0] - 1, state.position[1] - 1, state.position[2] - 1);
+ const dist = Math.sqrt((pos.x - mouseX) ** 2 + (pos.y - mouseY) ** 2);
+
+ if (dist < 15 && dist < closestDist) {
+ closestDist = dist;
+ closestState = state;
+ }
+ });
+
+ if (closestState) {
+ selectState(closestState.id);
+ }
+ });
+
+ // ==================== CONTROLS ====================
+
+ function resetRotation() {
+ rotationX = 0.3;
+ rotationY = 0.4;
+ autoRotate = true;
+ }
+
+ function toggleAutoRotate() {
+ autoRotate = !autoRotate;
+ }
+
+ function randomState() {
+ const randomId = Math.floor(Math.random() * 27);
+ selectState(randomId);
+
+ // Scroll to the selected card
+ const card = document.getElementById(`state-card-${randomId}`);
+ card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+ }
+
+ // ==================== BACKGROUND STARS ====================
+
+ function createStars() {
+ const starsContainer = document.getElementById('stars');
+ const numStars = 200;
+
+ for (let i = 0; i < numStars; i++) {
+ const star = document.createElement('div');
+ star.className = 'star';
+ star.style.left = `${Math.random() * 100}%`;
+ star.style.top = `${Math.random() * 100}%`;
+ star.style.animationDelay = `${Math.random() * 3}s`;
+ starsContainer.appendChild(star);
+ }
+ }
+
+ // ==================== INITIALIZATION ====================
+
+ createStars();
+ renderStateList();
+ animate();
+
+ // Auto-select first state
+ setTimeout(() => selectState(0), 500);
+ </script>
+</body>
+</html>

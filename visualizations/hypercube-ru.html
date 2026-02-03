@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>C4 v3.6 — Интерактивный Когнитивный Гиперкуб (ULTIMATE)</title>
+ <style>
+ :root {
+ --primary: #00d4ff;
+ --secondary: #ff00ff;
+ --accent: #00ff88;
+ --danger: #ff6464;
+ --bg-dark: #0a0a0a;
+ --bg-darker: #050505;
+ --bg-card: rgba(20, 20, 40, 0.85);
+ --text-primary: #e0e0e0;
+ --text-secondary: #999;
+ --border: rgba(255, 255, 255, 0.1);
+ --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+ --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+ background: var(--bg-dark);
+ color: var(--text-primary);
+ overflow-x: hidden;
+ line-height: 1.7;
+ font-size: 16px;
+ margin: 0;
+ padding: 0;
+ }
+
+ /* Starfield */
+ #starfield {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: -1;
+ }
+
+ /* Header - sticky */
+ .header {
+ position: sticky;
+ top: 0;
+ z-index: 1000;
+ background: rgba(10, 10, 10, 0.95);
+ backdrop-filter: blur(20px);
+ border-bottom: 1px solid var(--border);
+ padding: 1rem 2rem;
+ box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+ }
+
+ .header-content {
+ max-width: 1600px;
+ margin: 0 auto;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 1rem;
+ }
+
+ .logo {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ }
+
+ .logo h1 {
+ font-size: clamp(1.5rem, 3vw, 2.2rem);
+ background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-weight: 700;
+ letter-spacing: -0.5px;
+ }
+
+ .version-badge {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ padding: 0.4rem 1rem;
+ border-radius: 20px;
+ font-size: 0.75rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+ }
+
+ .header-nav {
+ display: flex;
+ gap: 1rem;
+ align-items: center;
+ }
+
+ .nav-btn {
+ padding: 0.5rem 1rem;
+ background: rgba(255, 255, 255, 0.05);
+ border: 1px solid var(--border);
+ border-radius: 8px;
+ color: var(--text-primary);
+ cursor: pointer;
+ transition: var(--transition);
+ font-size: 0.9rem;
+ white-space: nowrap;
+ }
+
+ .nav-btn:hover {
+ background: rgba(255, 255, 255, 0.1);
+ border-color: var(--primary);
+ transform: translateY(-1px);
+ }
+
+ .nav-btn.active {
+ background: var(--primary);
+ color: var(--bg-dark);
+ border-color: var(--primary);
+ }
+
+ /* Main layout */
+ .main-container {
+ max-width: 1600px;
+ margin: 2rem auto;
+ padding: 0 2rem;
+ display: grid;
+ grid-template-columns: 1fr 400px;
+ gap: 2rem;
+ min-height: calc(100vh - 200px);
+ }
+
+ @media (max-width: 1400px) {
+ .main-container {
+ grid-template-columns: 1fr 350px;
+ }
+ }
+
+ @media (max-width: 1024px) {
+ .main-container {
+ grid-template-columns: 1fr;
+ padding: 0 1rem;
+ }
+ }
+
+ /* Cube section */
+ .cube-section {
+ background: var(--bg-card);
+ border-radius: 20px;
+ padding: 2rem;
+ backdrop-filter: blur(20px);
+ border: 1px solid var(--border);
+ box-shadow: var(--shadow);
+ display: flex;
+ flex-direction: column;
+ }
+
+ .cube-header {
+ margin-bottom: 1.5rem;
+ }
+
+ .cube-header h2 {
+ font-size: 1.8rem;
+ color: var(--primary);
+ margin-bottom: 0.5rem;
+ }
+
+ .cube-subtitle {
+ color: var(--text-secondary);
+ font-size: 0.95rem;
+ }
+
+ #canvas-container {
+ width: 100%;
+ height: 800px;
+ border-radius: 12px;
+ overflow: hidden;
+ background: rgba(30, 30, 50, 0.3);
+ position: relative;
+ border: 1px solid var(--border);
+ }
+
+ @media (max-width: 768px) {
+ #canvas-container {
+ height: 500px;
+ }
+ }
+
+ .controls {
+ margin-top: 1.5rem;
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+ gap: 0.75rem;
+ }
+
+ .ctrl-btn {
+ padding: 0.75rem 1rem;
+ background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+ border: 1px solid rgba(102, 126, 234, 0.3);
+ border-radius: 10px;
+ color: var(--text-primary);
+ cursor: pointer;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ font-size: 0.9rem;
+ font-weight: 500;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.5rem;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .ctrl-btn::before {
+ content: '';
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 0;
+ height: 0;
+ border-radius: 50%;
+ background: rgba(255, 255, 255, 0.1);
+ transform: translate(-50%, -50%);
+ transition: width 0.6s, height 0.6s;
+ }
+
+ .ctrl-btn:hover::before {
+ width: 300px;
+ height: 300px;
+ }
+
+ .ctrl-btn:hover {
+ background: linear-gradient(135deg, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.5) 100%);
+ border-color: var(--primary);
+ transform: translateY(-3px) scale(1.02);
+ box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4), 0 0 30px rgba(102, 126, 234, 0.2);
+ }
+
+ .ctrl-btn:active {
+ transform: translateY(-1px) scale(0.98);
+ box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+ }
+
+ .hint {
+ margin-top: 1rem;
+ padding: 1rem;
+ background: rgba(0, 212, 255, 0.05);
+ border-left: 3px solid var(--primary);
+ border-radius: 8px;
+ font-size: 0.9rem;
+ color: var(--text-secondary);
+ }
+
+ /* Sidebar */
+ .sidebar {
+ display: flex;
+ flex-direction: column;
+ gap: 1.5rem;
+ }
+
+ @media (max-width: 1024px) {
+ .sidebar {
+ margin-top: 2rem;
+ }
+ }
+
+ .card {
+ background: var(--bg-card);
+ border-radius: 16px;
+ padding: 1.5rem;
+ backdrop-filter: blur(20px);
+ border: 1px solid var(--border);
+ box-shadow: var(--shadow);
+ transition: var(--transition);
+ }
+
+ .card:hover {
+ border-color: rgba(0, 212, 255, 0.3);
+ box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+ }
+
+ .card-header {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-bottom: 1rem;
+ cursor: pointer;
+ }
+
+ .card-title {
+ font-size: 1.3rem;
+ color: var(--primary);
+ font-weight: 600;
+ }
+
+ .card-icon {
+ font-size: 1.5rem;
+ transition: var(--transition);
+ }
+
+ .card-content {
+ max-height: 400px;
+ overflow-y: auto;
+ padding-right: 0.5rem;
+ }
+
+ .card-content::-webkit-scrollbar {
+ width: 6px;
+ }
+
+ .card-content::-webkit-scrollbar-track {
+ background: rgba(0, 0, 0, 0.2);
+ border-radius: 10px;
+ }
+
+ .card-content::-webkit-scrollbar-thumb {
+ background: linear-gradient(135deg, var(--primary), var(--secondary));
+ border-radius: 10px;
+ }
+
+ .card.collapsed .card-content {
+ display: none;
+ }
+
+ .card.collapsed .card-icon {
+ transform: rotate(-90deg);
+ }
+
+ /* Current state card */
+ .state-badge {
+ display: inline-block;
+ padding: 0.4rem 0.9rem;
+ margin: 0.25rem;
+ border-radius: 20px;
+ font-size: 0.85rem;
+ font-weight: 600;
+ letter-spacing: 0.3px;
+ }
+
+ .badge-time { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+ .badge-dim { background: linear-gradient(135deg, #4776e6, #8e54e9); }
+ .badge-id { background: linear-gradient(135deg, #11998e, #38ef7d); }
+
+ .state-name {
+ font-size: 1.5rem;
+ color: var(--accent);
+ margin: 1rem 0 0.5rem 0;
+ font-weight: 600;
+ }
+
+ .state-desc {
+ color: var(--text-secondary);
+ margin-bottom: 1rem;
+ line-height: 1.6;
+ }
+
+ .state-example {
+ background: rgba(0, 255, 136, 0.1);
+ padding: 1rem;
+ border-radius: 8px;
+ border-left: 3px solid var(--accent);
+ font-style: italic;
+ margin: 1rem 0;
+ }
+
+ /* Axes info */
+ .axis-info {
+ margin: 1rem 0;
+ padding: 1rem;
+ background: rgba(0, 0, 0, 0.3);
+ border-radius: 10px;
+ }
+
+ .axis-row {
+ display: flex;
+ align-items: center;
+ gap: 0.75rem;
+ margin: 0.75rem 0;
+ }
+
+ .axis-color {
+ width: 16px;
+ height: 16px;
+ border-radius: 50%;
+ flex-shrink: 0;
+ }
+
+ .axis-label {
+ font-weight: 600;
+ min-width: 80px;
+ }
+
+ .axis-desc {
+ color: var(--text-secondary);
+ font-size: 0.9rem;
+ }
+
+ /* Progress tracker */
+ .progress-card {
+ background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+ }
+
+ .progress-stats {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 1rem;
+ margin-top: 1rem;
+ }
+
+ .stat-box {
+ background: rgba(0, 0, 0, 0.3);
+ padding: 1rem;
+ border-radius: 8px;
+ text-align: center;
+ }
+
+ .stat-value {
+ font-size: 2rem;
+ font-weight: 700;
+ color: var(--primary);
+ }
+
+ .stat-label {
+ font-size: 0.85rem;
+ color: var(--text-secondary);
+ margin-top: 0.25rem;
+ }
+
+ /* Modal */
+ .modal {
+ display: none;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0.9);
+ z-index: 2000;
+ align-items: center;
+ justify-content: center;
+ padding: 2rem;
+ backdrop-filter: blur(10px);
+ animation: fadeIn 0.3s;
+ }
+
+ .modal.active {
+ display: flex;
+ }
+
+ @keyframes fadeIn {
+ from { opacity: 0; }
+ to { opacity: 1; }
+ }
+
+ .modal-content {
+ background: var(--bg-card);
+ border-radius: 20px;
+ max-width: 900px;
+ max-height: 90vh;
+ overflow-y: auto;
+ padding: 2.5rem;
+ position: relative;
+ border: 1px solid var(--border);
+ box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+ animation: slideUp 0.3s;
+ }
+
+ @keyframes slideUp {
+ from { transform: translateY(30px); opacity: 0; }
+ to { transform: translateY(0); opacity: 1; }
+ }
+
+ .modal-close {
+ position: absolute;
+ top: 1.5rem;
+ right: 1.5rem;
+ background: rgba(255, 100, 100, 0.2);
+ border: 1px solid rgba(255, 100, 100, 0.4);
+ width: 36px;
+ height: 36px;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ transition: var(--transition);
+ font-size: 1.2rem;
+ }
+
+ .modal-close:hover {
+ background: var(--danger);
+ transform: rotate(90deg);
+ }
+
+ .modal-header {
+ margin-bottom: 2rem;
+ padding-bottom: 1rem;
+ border-bottom: 1px solid var(--border);
+ }
+
+ .modal-title {
+ font-size: 2rem;
+ color: var(--primary);
+ margin-bottom: 0.5rem;
+ }
+
+ .modal-section {
+ margin: 2rem 0;
+ }
+
+ .modal-section h3 {
+ color: var(--secondary);
+ margin-bottom: 1rem;
+ font-size: 1.4rem;
+ }
+
+ /* Accordion for theorems */
+ .accordion-item {
+ background: rgba(0, 0, 0, 0.3);
+ border-radius: 10px;
+ margin: 0.75rem 0;
+ overflow: hidden;
+ border: 1px solid var(--border);
+ transition: var(--transition);
+ }
+
+ .accordion-item:hover {
+ border-color: var(--primary);
+ }
+
+ .accordion-header {
+ padding: 1rem 1.5rem;
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ transition: var(--transition);
+ }
+
+ .accordion-header:hover {
+ background: rgba(0, 212, 255, 0.05);
+ }
+
+ .accordion-title {
+ font-weight: 600;
+ color: var(--primary);
+ }
+
+ .accordion-icon {
+ transition: var(--transition);
+ color: var(--secondary);
+ }
+
+ .accordion-content {
+ max-height: 0;
+ overflow: hidden;
+ transition: max-height 0.3s ease;
+ }
+
+ .accordion-item.active .accordion-content {
+ max-height: 800px;
+ }
+
+ .accordion-item.active .accordion-icon {
+ transform: rotate(180deg);
+ }
+
+ .accordion-body {
+ padding: 1.5rem;
+ border-top: 1px solid var(--border);
+ }
+
+ /* Formula box */
+ .formula {
+ background: rgba(0, 0, 0, 0.5);
+ padding: 1.5rem;
+ border-radius: 10px;
+ margin: 1rem 0;
+ font-family: 'Courier New', monospace;
+ border: 2px solid rgba(0, 212, 255, 0.2);
+ font-size: 0.95rem;
+ line-height: 1.6;
+ }
+
+ /* TOTE box */
+ .tote-box {
+ background: rgba(0, 255, 136, 0.1);
+ padding: 1.5rem;
+ border-radius: 10px;
+ margin: 1.5rem 0;
+ border-left: 4px solid var(--accent);
+ }
+
+ .tote-step {
+ margin: 0.75rem 0;
+ padding-left: 1rem;
+ }
+
+ /* Neural indicators */
+ .neural-grid {
+ display: grid;
+ gap: 1rem;
+ margin: 1.5rem 0;
+ }
+
+ .neural-row {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ }
+
+ .neural-label {
+ min-width: 120px;
+ font-weight: 600;
+ font-size: 0.9rem;
+ }
+
+ .neural-bar {
+ flex: 1;
+ height: 10px;
+ background: rgba(255, 255, 255, 0.1);
+ border-radius: 10px;
+ overflow: hidden;
+ }
+
+ .neural-fill {
+ height: 100%;
+ background: linear-gradient(90deg, var(--accent), var(--primary));
+ border-radius: 10px;
+ transition: width 0.5s ease;
+ }
+
+ .neural-value {
+ min-width: 50px;
+ text-align: right;
+ font-size: 0.85rem;
+ color: var(--text-secondary);
+ }
+
+ /* Calibration cards */
+ .calib-card {
+ background: rgba(102, 126, 234, 0.08);
+ padding: 1.5rem;
+ border-radius: 12px;
+ margin: 1rem 0;
+ border: 1px solid rgba(102, 126, 234, 0.2);
+ }
+
+ .calib-card h4 {
+ color: var(--primary);
+ margin-bottom: 0.75rem;
+ font-size: 1.1rem;
+ }
+
+ .calib-item {
+ margin: 0.75rem 0;
+ padding-left: 1rem;
+ border-left: 2px solid rgba(255, 255, 255, 0.1);
+ }
+
+ .calib-label {
+ font-weight: 600;
+ color: var(--accent);
+ font-size: 0.9rem;
+ }
+
+ /* Guide overlay */
+ .guide-overlay {
+ display: none;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0.95);
+ z-index: 3000;
+ align-items: center;
+ justify-content: center;
+ }
+
+ .guide-overlay.active {
+ display: flex;
+ }
+
+ .guide-content {
+ background: var(--bg-card);
+ border-radius: 20px;
+ padding: 3rem;
+ max-width: 600px;
+ text-align: center;
+ border: 1px solid var(--primary);
+ box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+ }
+
+ .guide-title {
+ font-size: 2.5rem;
+ background: linear-gradient(90deg, var(--primary), var(--secondary));
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ margin-bottom: 1rem;
+ }
+
+ .guide-text {
+ font-size: 1.2rem;
+ color: var(--text-secondary);
+ margin: 1.5rem 0;
+ line-height: 1.8;
+ }
+
+ .guide-steps {
+ text-align: left;
+ margin: 2rem 0;
+ }
+
+ .guide-step {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ margin: 1rem 0;
+ }
+
+ .guide-step-num {
+ width: 36px;
+ height: 36px;
+ border-radius: 50%;
+ background: linear-gradient(135deg, var(--primary), var(--secondary));
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 700;
+ flex-shrink: 0;
+ }
+
+ .guide-btn {
+ padding: 1rem 2.5rem;
+ background: linear-gradient(135deg, var(--primary), var(--secondary));
+ border: none;
+ border-radius: 30px;
+ color: white;
+ font-size: 1.1rem;
+ font-weight: 600;
+ cursor: pointer;
+ transition: var(--transition);
+ margin-top: 1.5rem;
+ }
+
+ .guide-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+ }
+
+ /* Search */
+ .search-box {
+ position: relative;
+ margin-bottom: 1rem;
+ }
+
+ .search-input {
+ width: 100%;
+ padding: 0.75rem 1rem 0.75rem 3rem;
+ background: rgba(0, 0, 0, 0.3);
+ border: 1px solid var(--border);
+ border-radius: 10px;
+ color: var(--text-primary);
+ font-size: 0.95rem;
+ transition: var(--transition);
+ }
+
+ .search-input:focus {
+ outline: none;
+ border-color: var(--primary);
+ box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+ }
+
+ .search-icon {
+ position: absolute;
+ left: 1rem;
+ top: 50%;
+ transform: translateY(-50%);
+ color: var(--text-secondary);
+ }
+
+ /* State list */
+ .state-list {
+ display: grid;
+ gap: 0.5rem;
+ }
+
+ .state-item {
+ padding: 0.75rem 1rem;
+ background: rgba(0, 0, 0, 0.2);
+ border: 1px solid var(--border);
+ border-radius: 8px;
+ cursor: pointer;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ display: flex;
+ align-items: center;
+ gap: 0.75rem;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .state-item::after {
+ content: '';
+ position: absolute;
+ left: 0;
+ top: 0;
+ height: 100%;
+ width: 3px;
+ background: linear-gradient(180deg, var(--primary), var(--secondary));
+ transform: translateX(-3px);
+ transition: transform 0.3s;
+ }
+
+ .state-item:hover::after {
+ transform: translateX(0);
+ }
+
+ .state-item:hover {
+ background: rgba(0, 212, 255, 0.15);
+ border-color: var(--primary);
+ transform: translateX(6px);
+ box-shadow: -4px 0 12px rgba(0, 212, 255, 0.3);
+ }
+
+ .state-item.active {
+ background: linear-gradient(90deg, rgba(0, 212, 255, 0.25), rgba(255, 0, 255, 0.25));
+ border-color: var(--primary);
+ }
+
+ .state-coords {
+ font-family: 'Courier New', monospace;
+ color: var(--primary);
+ font-size: 0.85rem;
+ min-width: 100px;
+ }
+
+ .state-label {
+ flex: 1;
+ font-size: 0.9rem;
+ }
+
+ /* Footer */
+ .footer {
+ margin-top: 2rem;
+ margin-bottom: 0;
+ padding: 1.5rem 2rem 1rem 2rem;
+ text-align: center;
+ background: var(--bg-card);
+ border-radius: 20px;
+ backdrop-filter: blur(20px);
+ border: 1px solid var(--border);
+ }
+
+ .footer-links {
+ display: flex;
+ gap: 2rem;
+ justify-content: center;
+ margin: 1rem 0;
+ flex-wrap: wrap;
+ }
+
+ .footer-links a {
+ color: var(--primary);
+ text-decoration: none;
+ transition: var(--transition);
+ }
+
+ .footer-links a:hover {
+ color: var(--accent);
+ }
+
+ /* Utilities */
+ .text-gradient {
+ background: linear-gradient(90deg, var(--primary), var(--secondary));
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+
+ .highlight {
+ color: var(--accent);
+ font-weight: 600;
+ }
+
+ code {
+ background: rgba(0, 0, 0, 0.5);
+ padding: 0.2rem 0.5rem;
+ border-radius: 4px;
+ color: var(--accent);
+ font-family: 'Courier New', monospace;
+ font-size: 0.9em;
+ }
+
+ /* Responsive typography */
+ @media (max-width: 768px) {
+ html {
+ font-size: 14px;
+ }
+
+ .header {
+ padding: 1rem;
+ }
+
+ .main-container {
+ margin: 1rem auto;
+ }
+
+ .cube-section, .card {
+ padding: 1.5rem;
+ }
+
+ .modal-content {
+ padding: 2rem;
+ margin: 1rem;
+ }
+ }
+
+ /* Print styles */
+ @media print {
+ .header-nav, .controls, .guide-overlay, .modal {
+ display: none !important;
+ }
+ }
+ </style>
+</head>
+<body>
+ <!-- Starfield -->
+ <canvas id="starfield"></canvas>
+
+ <!-- Sticky Header -->
+ <header class="header">
+ <div class="header-content">
+ <div class="logo">
+ <h1> C4 Cognitive Cube</h1>
+ <span class="version-badge">v3.6 Ultimate</span>
+ </div>
+ <nav class="header-nav">
+ <button class="nav-btn" onclick="showGuide()"> Гид</button>
+ <button class="nav-btn" onclick="openModal('theorems')"> Теоремы</button>
+ <button class="nav-btn" onclick="openModal('calibration')"> Калибровка</button>
+ <button class="nav-btn" onclick="openModal('about')">ℹ О C4</button>
+ </nav>
+ </div>
+ </header>
+
+ <!-- Main Container -->
+ <div class="main-container">
+ <!-- Cube Section -->
+ <div class="cube-section">
+ <div class="cube-header">
+ <h2>Интерактивный Когнитивный Куб</h2>
+ <p class="cube-subtitle">27 состояний сознания в пространстве ℤ₃³</p>
+ </div>
+
+ <div id="canvas-container"></div>
+
+ <div class="controls">
+ <button class="ctrl-btn" onclick="resetView()" title="Сбросить вид (R)">
+ Сброс
+ </button>
+ <button class="ctrl-btn" onclick="toggleRotation()" title="Переключить автовращение (Пробел)">
+ Вращение
+ </button>
+ <button class="ctrl-btn" onclick="toggleLabels()" title="Показать/скрыть метки (L)">
+ Метки
+ </button>
+ <button class="ctrl-btn" onclick="showRandomState()" title="Случайное состояние (X)">
+ Случайное
+ </button>
+ <button class="ctrl-btn" id="fractal-btn" onclick="toggleFractalMode()" title="Фрактальный режим (F)" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+ Фрактал
+ </button>
+ <button class="ctrl-btn" onclick="exportScreenshot()" title="Сохранить скриншот (S)">
+ Скриншот
+ </button>
+ </div>
+
+ <div class="hint">
+ <strong>Подсказка:</strong> Кликните на узел для изучения состояния. Перетаскивайте мышью для вращения, zoom колёсиком.
+ <br><strong>⌨ Шорткаты:</strong> R—сброс, Пробел—вращение, L—метки, X—случайное, F—фрактал, S—скриншот
+ </div>
+ </div>
+
+ <!-- Sidebar -->
+ <aside class="sidebar">
+ <!-- Current State Card -->
+ <div class="card" id="current-state-card">
+ <div class="card-header" onclick="toggleCard(this)">
+ <h3 class="card-title"> Текущее состояние</h3>
+ <span class="card-icon">▼</span>
+ </div>
+ <div class="card-content" id="state-info">
+ <p class="state-desc">Выберите узел на кубе для изучения</p>
+
+ <div class="axis-info">
+ <h4 style="color: var(--primary); margin-bottom: 1rem;">Три оси C4:</h4>
+
+ <div class="axis-row">
+ <span class="axis-color" style="background: #ff4b2b;"></span>
+ <strong class="axis-label">T (Time)</strong>
+ <span class="axis-desc">Прошлое / Настоящее / Будущее</span>
+ </div>
+
+ <div class="axis-row">
+ <span class="axis-color" style="background: #8e54e9;"></span>
+ <strong class="axis-label">D (Масштаб)</strong>
+ <span class="axis-desc">Конкретное / Абстрактное / Мета</span>
+ </div>
+
+ <div class="axis-row">
+ <span class="axis-color" style="background: #38ef7d;"></span>
+ <strong class="axis-label">A (Agency)</strong>
+ <span class="axis-desc">Я / Другой / Система</span>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Progress Card -->
+ <div class="card progress-card">
+ <div class="card-header" onclick="toggleCard(this)">
+ <h3 class="card-title"> Прогресс изучения</h3>
+ <span class="card-icon">▼</span>
+ </div>
+ <div class="card-content">
+ <div class="progress-stats">
+ <div class="stat-box">
+ <div class="stat-value" id="visited-count">0</div>
+ <div class="stat-label">Изучено состояний</div>
+ </div>
+ <div class="stat-box">
+ <div class="stat-value" id="coverage-percent">0%</div>
+ <div class="stat-label">Покрытие</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Navigation Card -->
+ <div class="card">
+ <div class="card-header" onclick="toggleCard(this)">
+ <h3 class="card-title"> Навигация</h3>
+ <span class="card-icon">▼</span>
+ </div>
+ <div class="card-content">
+ <div class="search-box">
+ <span class="search-icon"></span>
+ <input type="text" class="search-input" id="state-search"
+ placeholder="Поиск состояния..."
+ oninput="filterStates(this.value)">
+ </div>
+ <div class="state-list" id="state-list"></div>
+ </div>
+ </div>
+ </aside>
+ </div>
+
+ <!-- Footer -->
+ <div style="max-width: 1600px; margin: 2rem auto 0 auto; padding: 0 2rem;">
+ <div class="footer">
+ <p style="font-size: 1.1rem; margin-bottom: 0.75rem;">
+ <strong class="text-gradient">Авторы:</strong> Илья Селютин, Николай Ковалёв
+ </p>
+ <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+ C4 Framework v3.6 — Полная Система Когнитивных Координат
+ </p>
+ <div class="footer-links" style="margin: 0.75rem 0;">
+ <a href="https://github.com/cognitive-functors/">GitHub</a>
+ <a href="https://t.me/cognitivefunctors">Telegram</a>
+ <a href="mailto:psy.seliger@yandex.ru">Email</a>
+ </div>
+ <p style="font-size: 0.9rem; color: #666; margin: 0.75rem 0 0 0;">
+ © 2025 Triple License: Apache-2.0-NC / AGPL-3.0 / Commercial
+ </p>
+ </div>
+ </div>
+
+ <!-- Guide Overlay -->
+ <div class="guide-overlay" id="guide-overlay">
+ <div class="guide-content">
+ <h2 class="guide-title">Добро пожаловать в C4!</h2>
+ <p class="guide-text">
+ Интерактивная визуализация 27 состояний сознания в дискретном когнитивном пространстве
+ </p>
+
+ <div class="guide-steps">
+ <div class="guide-step">
+ <div class="guide-step-num">1</div>
+ <div>Кликните на узел куба для изучения состояния</div>
+ </div>
+ <div class="guide-step">
+ <div class="guide-step-num">2</div>
+ <div>Вращайте куб мышью, используйте zoom</div>
+ </div>
+ <div class="guide-step">
+ <div class="guide-step-num">3</div>
+ <div>Изучайте теоремы, калибровку, примеры</div>
+ </div>
+ <div class="guide-step">
+ <div class="guide-step-num">4</div>
+ <div>Навигируйте через список состояний</div>
+ </div>
+ </div>
+
+ <button class="guide-btn" onclick="closeGuide()">Начать изучение </button>
+ </div>
+ </div>
+
+ <!-- Modals -->
+ <div class="modal" id="modal-theorems">
+ <div class="modal-content">
+ <button class="modal-close" onclick="closeModal('theorems')"></button>
+ <div class="modal-header">
+ <h2 class="modal-title"> 11 Основных Теорем C4</h2>
+ <p style="color: var(--text-secondary);">Математические доказательства когнитивной системы</p>
+ </div>
+
+ <div class="accordion-item">
+ <div class="accordion-header" onclick="toggleAccordion(this)">
+ <span class="accordion-title">Теорема 1: Полнота пространства</span>
+ <span class="accordion-icon">▼</span>
+ </div>
+ <div class="accordion-content">
+ <div class="accordion-body">
+ <p>Любое когнитивное состояние может быть однозначно представлено в C4 как F⟨T, D, A⟩.</p>
+ <div class="formula">
+∀ cognitive_state ∃! F⟨T, D, A⟩ : represents(cognitive_state)
+
+где:
+• T ∈ {T⁻, T⁰, T⁺}
+• D ∈ {σ, δ, λ}
+• I ∈ {ι, φ, ρ}
+ </div>
+ <p><strong>Следствие:</strong> Никакое мышление не выходит за пределы C4.</p>
+ </div>
+ </div>
+ </div>
+
+ <div class="accordion-item">
+ <div class="accordion-header" onclick="toggleAccordion(this)">
+ <span class="accordion-title">Теорема 2: Дискретность пространства</span>
+ <span class="accordion-icon">▼</span>
+ </div>
+ <div class="accordion-content">
+ <div class="accordion-body">
+ <p>Когнитивное пространство дискретно (ℤ₃³), а не непрерывно (ℝ³).</p>
+ <p style="margin-top: 1rem;"><strong>Доказательство:</strong> Любая попытка разместить состояние "между" двумя узлами приводит к редукции к одному из них.</p>
+ <p style="margin-top: 1rem; color: var(--accent);">
+ <strong>Следствие:</strong> Переходы между состояниями — это скачки, а не плавные движения.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="accordion-item">
+ <div class="accordion-header" onclick="toggleAccordion(this)">
+ <span class="accordion-title">Теорема 3: Композиция функторов</span>
+ <span class="accordion-icon">▼</span>
+ </div>
+ <div class="accordion-content">
+ <div class="accordion-body">
+ <p>Сложные когнитивные операции есть композиция базовых функторов.</p>
+ <div class="formula">
+(F₁ ∘ F₂)⟨T, D, A⟩ = F₁(F₂⟨T, D, A⟩)
+
+Пример:
+τ∘ρ (Trend Forecasting) =
+ τ (temporal shift to future) ∘
+ ρ (pattern detection)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ Это позволяет строить сложные AI-агенты из простых когнитивных операций.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="accordion-item">
+ <div class="accordion-header" onclick="toggleAccordion(this)">
+ <span class="accordion-title">Теорема 8: Недостижимость абсолютного мета (аналог Гёделя)</span>
+ <span class="accordion-icon">▼</span>
+ </div>
+ <div class="accordion-content">
+ <div class="accordion-body">
+ <p>Невозможно выйти за пределы λ (мета-уровень) в рамках C4.</p>
+ <div class="formula">
+∄ F⟨T, D', I⟩ где D' > λ
+
+Это когнитивный аналог теоремы Гёделя:
+"Система не может полностью описать саму себя изнутри"
+ </div>
+ <p style="margin-top: 1rem; color: var(--danger);">
+ <strong>Парадокс:</strong> Мы используем C4 для описания C4, но не можем выйти за её пределы.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="accordion-item">
+ <div class="accordion-header" onclick="toggleAccordion(this)">
+ <span class="accordion-title">Теорема 11: TOTE-совместимость</span>
+ <span class="accordion-icon">▼</span>
+ </div>
+ <div class="accordion-content">
+ <div class="accordion-body">
+ <p>Любая последовательность C4-трансформаций может быть представлена как TOTE-цикл (Miller, 1960).</p>
+ <div class="tote-box">
+ <strong>TOTE Framework:</strong>
+ <div class="tote-step">1. <strong>Test:</strong> Где мы сейчас? (измерить F⟨T, D, A⟩)</div>
+ <div class="tote-step">2. <strong>Operate:</strong> Применить функтор (F' = f(F))</div>
+ <div class="tote-step">3. <strong>Test:</strong> Достигли цели?</div>
+ <div class="tote-step">4. <strong>Exit</strong> или повторить цикл</div>
+ </div>
+ <p style="color: var(--accent);">
+ Это делает C4 практически применимой для построения AI-агентов и психотерапевтических протоколов.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+ Нажмите на теорему для раскрытия деталей
+ </p>
+ </div>
+ </div>
+
+ <div class="modal" id="modal-calibration">
+ <div class="modal-content">
+ <button class="modal-close" onclick="closeModal('calibration')"></button>
+ <div class="modal-header">
+ <h2 class="modal-title"> Библиотека Калибровки</h2>
+ <p style="color: var(--text-secondary);">27 состояний с телесными маркерами и нейрокоррелятами — ПОЛНОЕ ПОКРЫТИЕ ℤ₃³</p>
+ </div>
+
+ <div class="calib-card">
+ <h4>1. Гнев — F⟨T⁻, σ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Он вчера сделал мне гадость" (прошлое, конкретное, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ ↑ Сердцебиение (120-140 bpm), напряжение челюсти, сжатие кулаков
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Амигдала, ↑ ACC (anterior cingulate cortex)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>3. Настоящий момент — F⟨T⁰, σ, ι⟩ </h4>
+ <p style="margin: 0.5rem 0;">"Я чувствую ветер на коже" (настоящее, конкретное, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Нормальное сердцебиение, расслабленные мышцы, глубокое дыхание
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Соматосенсорная кора, ↓ DMN (default mode network)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Состояние "присутствия"</strong> в медитативных практиках (mindfulness)
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>4. Мета-рефлексия — F⟨T⁰, λ, ι⟩ </h4>
+ <p style="margin: 0.5rem 0;">"Я наблюдаю за своими мыслями" (настоящее, мета, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Стабильное дыхание, лёгкая деактивация сенсорики
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC (dorsolateral prefrontal cortex), ↑ posterior cingulate
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Состояние "свидетеля"</strong> в медитации (witnessing consciousness)
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>5. Паттерн-узнавание — F⟨T⁰, δ, ρ⟩ </h4>
+ <p style="margin: 0.5rem 0;">"Вижу, что это повторяется в системе" (настоящее, абстрактное, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ "Ага!"-момент, расширение зрачков, эмоциональный подъём
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Gamma (40 Hz), ↑ Гиппокамп, ↑ Nucleus accumbens
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Инсайт, "момент озарения"</strong> (Aha! experience)
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>6. Конкретное воспоминание — F⟨T⁻, σ, ι⟩</h4>
+ <p style="margin: 0.5rem 0;">"Я помню, как открыл дверь" (прошлое, конкретное, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Деактивация текущей сенсорики, внутренний взгляд, остановка движения
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Гиппокамп (извлечение эпизода), ↑ vmPFC, Theta (4-7 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>7. Рефлексия о прошлом — F⟨T⁻, λ, ι⟩</h4>
+ <p style="margin: 0.5rem 0;">"Почему я тогда так думал?" (прошлое, мета, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Замедленное дыхание, взгляд вверх-влево (конструирование смысла)
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC + гиппокамп, ↑ DMN, Beta (12-20 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>8. Тревога о будущем — F⟨T⁺, σ, ι⟩</h4>
+ <p style="margin: 0.5rem 0;">"Что если я не сдам экзамен?" (будущее, конкретное, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ ↑ Сердцебиение (90-110 bpm), потные ладони, напряжение в груди
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Амигдала, ↑ Инсула, ↑ ACC, Beta (15-25 Hz)
+ </div>
+ <p style="color: var(--danger); margin-top: 1rem;">
+ <strong>Тревожное расстройство</strong> = застревание в T⁺, σ, ι
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>9. Планирование — F⟨T⁺, δ, ι⟩</h4>
+ <p style="margin: 0.5rem 0;">"Моя стратегия на год" (будущее, абстрактное, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Нормальное дыхание, расфокусировка взгляда, микро-жесты руками
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC, ↑ PPC (posterior parietal cortex), Beta (18-25 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Стратегическое мышление</strong>
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>10. Эмпатия — F⟨T⁰, σ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Что он сейчас чувствует?" (настоящее, конкретное, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Синхронизация дыхания, мимическое отражение, телесный резонанс
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Зеркальные нейроны (IFG, IPL), ↑ Инсула, Alpha (8-12 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>11. Теория разума — F⟨T⁰, λ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Он думает, что я думаю..." (настоящее, мета, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Деактивация моторики, интенсивная работа ментальной модели
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ mPFC (medial prefrontal cortex), ↑ TPJ (temporoparietal junction), Gamma (40 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Рекурсивное моделирование чужого сознания</strong>
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>12. Обобщение прошлого — F⟨T⁻, δ, ι⟩</h4>
+ <p style="margin: 0.5rem 0;">"Я всегда был застенчивым" (прошлое, абстрактное, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Медленное сканирование воспоминаний, сжатие плеч (соматизация убеждения)
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Гиппокамп (агрегация эпизодов), ↑ vmPFC (self-schema), Theta (5-7 Hz)
+ </div>
+ <p style="color: var(--danger); margin-top: 1rem;">
+ <strong>Негативные убеждения о себе</strong> формируются здесь
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>13. Мета-планирование — F⟨T⁺, λ, ι⟩</h4>
+ <p style="margin: 0.5rem 0;">"Как я буду думать через год?" (будущее, мета, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Глубокая концентрация, отрыв от сенсорики, микро-напряжение лба
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC + FPC (frontopolar cortex), ↑ DMN, высокий Beta (20-30 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Мета-стратегия, "думание о думании о будущем"</strong>
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>14. Наблюдение системы — F⟨T⁰, σ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Сейчас в команде напряжение" (настоящее, конкретное, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Расширение внимания на периферию, сканирование пространства
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ PPC (пространственное внимание), ↑ Инсула (интероцепция группы), Alpha (10-12 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>15. Системное видение — F⟨T⁰, λ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Как этот паттерн связан с общей динамикой?" (настоящее, мета, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Деактивация личного "я", ощущение "над ситуацией", панорамное внимание
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC + PPC, ↓ vmPFC (снижение self-reference), Gamma (35-45 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Системное мышление, "вид с высоты птичьего полёта"</strong>
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>16. Центр-наблюдатель — F⟨T⁰, δ, φ⟩ </h4>
+ <p style="margin: 0.5rem 0;">"Вижу ситуацию со стороны" (настоящее, абстрактное, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Нейтральное дыхание, расслабленная поза, лёгкая улыбка
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC, ↓ Амигдала, ↓ DMN, Alpha (10 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Нейтральная позиция, "терапевтическая дистанция"</strong>
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>17. История идей — F⟨T⁻, λ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Как эта теория развивалась?" (прошлое, мета, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Академическая поза, вовлечённость без эмоций, сканирование памяти
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Гиппокамп + dlPFC, ↑ Сеть семантической памяти, Theta-Beta coupling
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>18. Эволюция концепций — F⟨T⁺, λ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Как будет развиваться эта парадигма?" (будущее, мета, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Глубокая абстракция, отсутствие телесных якорей, "думание в вакууме"
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ FPC (frontopolar), ↑ dlPFC, высокий Beta (25-30 Hz), Gamma burst
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Максимальная абстракция: мышление о будущем системного знания</strong>
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>19. Ретроспективный анализ — F⟨T⁻, δ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Какие тренды были в прошлом году?" (прошлое, абстрактное, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Аналитическая поза, отключение эмоций, жесты обобщения
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Гиппокамп + PPC, ↑ dlPFC, Theta-Gamma coupling (паттерны)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>20. Тренд-анализ — F⟨T⁺, δ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Куда движется система?" (будущее, абстрактное, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Взгляд вперёд-вверх, жесты экстраполяции, напряжение прогнозирования
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC + PPC, ↑ Сеть прогнозирования, Beta (18-25 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>21. Событие в системе — F⟨T⁻, σ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"В прошлом году произошёл кризис" (прошлое, конкретное, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Объективная дистанция, нейтральная поза, доступ к фактам
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Гиппокамп (эпизодическая память фактов), ↓ Амигдала, Theta (5-7 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>22. Обида/Ресентимент — F⟨T⁻, δ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Он сделал мне гадость" (прошлое, абстрактное, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Хроническое напряжение в челюсти/плечах, сжатие, тяжесть в груди
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Амигдала (застревание в эмоции), ↑ ACC, ↓ vmPFC, дисбаланс Theta/Beta
+ </div>
+ <p style="color: var(--danger); margin-top: 1rem;">
+ <strong>Затяжная обида</strong> = токсическое застревание в T⁻, δ, φ
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>23. Понимание логики другого — F⟨T⁻, λ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Он действовал рационально с его точки зрения" (прошлое, мета, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Расслабление (прощение), раскрытие груди, выдох облегчения
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ mPFC + TPJ (theory of mind), ↓ Амигдала, Alpha (9-11 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Состояние прощения</strong> через понимание чужой логики
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>24. Осознание себя — F⟨T⁰, δ, ι⟩ </h4>
+ <p style="margin: 0.5rem 0;">"Я есть" (настоящее, абстрактное, я)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Глубокое спокойствие, ощущение "я существую", заземлённость
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Инсула (интероцепция), ↑ mPFC, ↓ DMN, Alpha (10 Hz)
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem;">
+ <strong>Декартово "Cogito ergo sum"</strong> — чистое самоосознание
+ </p>
+ </div>
+
+ <div class="calib-card">
+ <h4>25. Ожидание от другого — F⟨T⁺, σ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Он придёт в 3 часа" (будущее, конкретное, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Лёгкое предвосхищение, взгляд на часы, подготовка к встрече
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ Сеть предвосхищения, ↑ Инсула, Beta (12-18 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>26. Прогноз системного события — F⟨T⁺, σ, ρ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Завтра акции упадут" (будущее, конкретное, система)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Сканирование данных, микро-напряжение принятия решения
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ dlPFC + PPC, ↑ Сеть анализа трендов, Beta (15-22 Hz)
+ </div>
+ </div>
+
+ <div class="calib-card">
+ <h4>27. Предсказание чужого поведения — F⟨T⁺, δ, φ⟩</h4>
+ <p style="margin: 0.5rem 0;">"Он, вероятно, откажется" (будущее, абстрактное, другой)</p>
+ <div class="calib-item">
+ <div class="calib-label">Телесные маркеры:</div>
+ Активация модели поведения другого, лёгкая эмпатия + анализ
+ </div>
+ <div class="calib-item">
+ <div class="calib-label">Нейрокорреляты:</div>
+ ↑ mPFC + TPJ, ↑ dlPFC (моделирование), Beta (15-20 Hz)
+ </div>
+ </div>
+
+ <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 255, 0.1)); border-radius: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">
+ <h3 style="color: var(--primary); margin-bottom: 1rem;"> Полное покрытие C4!</h3>
+ <p style="line-height: 1.8; margin-bottom: 1rem;">
+ Эти <strong>27 примеров</strong> покрывают всё пространство ℤ₃³ — каждую возможную комбинацию
+ <strong>T</strong> (прошлое/настоящее/будущее) × <strong>D</strong> (конкретное/абстрактное/мета) × <strong>I</strong> (я/другой/система).
+ </p>
+ <div style="background: rgba(0, 0, 0, 0.3); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+ <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; font-size: 0.85rem;">
+ <div> T-ось: 9+9+9 состояний</div>
+ <div> D-ось: 9+9+9 состояний</div>
+ <div> I-ось: 9+9+9 состояний</div>
+ </div>
+ </div>
+ <p style="color: var(--accent); margin-top: 1rem; font-weight: 600;">
+ Это первая в мире феноменологическая библиотека, покрывающая ВСЁ пространство когнитивных состояний!
+ </p>
+ </div>
+
+ <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 0, 255, 0.1); border-radius: 10px;">
+ <h3 style="color: var(--secondary); margin-bottom: 1rem;"> Как использовать калибровку?</h3>
+ <ol style="line-height: 1.8; margin-left: 1.5rem;">
+ <li><strong>Диагностика:</strong> "Где я сейчас?" → найдите своё состояние в этой библиотеке</li>
+ <li><strong>Навигация:</strong> "Куда мне нужно?" → выберите целевое F⟨T, D, A⟩</li>
+ <li><strong>Трансформация:</strong> Постройте путь функторов: τ → σ → δ → λ и т.д.</li>
+ <li><strong>Проверка:</strong> Используйте телесные маркеры для валидации перехода</li>
+ <li><strong>Закрепление:</strong> Повторите паттерн 3-5 раз для нейропластичности</li>
+ </ol>
+ <p style="margin-top: 1rem; color: var(--accent);">
+ <strong>Совет:</strong> Начните с простых переходов (T⁻ → T⁰, σ → δ), затем усложняйте
+ </p>
+ </div>
+
+ <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+ <h3 style="color: var(--primary); margin-bottom: 1rem;"> Нейронные осцилляции и C4</h3>
+ <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+ Гипотеза: каждая ось C4 коррелирует с определённым диапазоном мозговых ритмов
+ </p>
+ <div class="neural-grid">
+ <div class="neural-row">
+ <span class="neural-label">Theta (4-8 Hz):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: 70%;"></div></div>
+ <span class="neural-value">T-ось</span>
+ </div>
+ <div class="neural-row">
+ <span class="neural-label">Alpha (8-12 Hz):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: 60%;"></div></div>
+ <span class="neural-value">I-ось</span>
+ </div>
+ <div class="neural-row">
+ <span class="neural-label">Beta (12-30 Hz):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: 80%;"></div></div>
+ <span class="neural-value">D-ось</span>
+ </div>
+ <div class="neural-row">
+ <span class="neural-label">Gamma (30-100 Hz):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: 50%;"></div></div>
+ <span class="neural-value">Синхронизация</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="modal" id="modal-about">
+ <div class="modal-content">
+ <button class="modal-close" onclick="closeModal('about')"></button>
+ <div class="modal-header">
+ <h2 class="modal-title">ℹ О C4 Framework</h2>
+ <p style="color: var(--text-secondary);">Полная Система Когнитивных Координат</p>
+ </div>
+
+ <div class="modal-section">
+ <h3> Математическая основа</h3>
+ <div class="formula">
+C4 = ℤ₃³ = ℤ₃ × ℤ₃ × ℤ₃
+
+где:
+• ℤ₃ = {-1, 0, +1} (модульная арифметика)
+• 3 оси: T (Время), D (Масштаб), A (Агентность)
+• 27 = 3³ уникальных когнитивных состояний
+
+Дискретное пространство, а не непрерывное!
+ </div>
+ </div>
+
+ <div class="modal-section" style="background: rgba(102, 126, 234, 0.1); padding: 1.5rem; border-radius: 10px;">
+ <h3> Фрактальная природа сознания</h3>
+ <p style="line-height: 1.8;">
+ C4 описывает <strong>самоподобную структуру</strong> когнитивных процессов:
+ каждое из 27 состояний само содержит внутри себя подструктуру из 27 под-состояний.
+ </p>
+ <div class="tote-box" style="margin-top: 1rem;">
+ <strong>Фрактальный режим визуализации:</strong>
+ <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+ <li>Каждый узел становится центром собственного когнитивного пространства</li>
+ <li>Мини-узлы представляют нюансы и оттенки основного состояния</li>
+ <li>Рекурсивность отражает глубину самонаблюдения (мета-рефлексию)</li>
+ <li>Анимация пульсации символизирует динамику внутренних процессов</li>
+ </ul>
+ </div>
+ <p style="margin-top: 1rem; font-style: italic; color: var(--secondary);">
+ "Сознание фрактально: наблюдая за мыслью, мы создаём новую мысль об этой мысли,
+ и так до бесконечности" — рекурсивная природа функтора λ (мета-измерение)
+ </p>
+ </div>
+
+ <div class="modal-section">
+ <h3> Формальная верификация (Agda)</h3>
+ <p>Все 11 теорем C4 формально доказаны на языке Agda — системе зависимых типов.</p>
+ <div class="tote-box">
+ <strong>Что доказано:</strong>
+ <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+ <li>Полнота (любое состояние представимо)</li>
+ <li>Дискретность (ℤ₃³, не ℝ³)</li>
+ <li>Композиция функторов (ассоциативность)</li>
+ <li>Минимальность базиса (3 оси необходимы и достаточны)</li>
+ <li>TOTE-совместимость (любая траектория = цикл)</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="modal-section">
+ <h3> 8 Тестируемых Предсказаний</h3>
+ <ol style="margin-left: 1.5rem; line-height: 1.8;">
+ <li><strong>EEG:</strong> T-переход ↔ Theta burst</li>
+ <li><strong>fMRI:</strong> D-ось ↔ PFC активность</li>
+ <li><strong>ESM:</strong> 27 состояний в естественной среде</li>
+ <li><strong>Кросс-культурная:</strong> C4 работает в 5 культурах</li>
+ <li><strong>Клиническая:</strong> Депрессия = застревание в F⟨T⁻, σ, ι⟩</li>
+ <li><strong>Медитация:</strong> F⟨T⁰, σ, ι⟩ ↔ ↓ DMN</li>
+ <li><strong>AI:</strong> C4-архитектура > flat LLM на мета-задачах</li>
+ <li><strong>Agda:</strong> Формальная верификация </li>
+ </ol>
+ </div>
+
+ <div class="modal-section">
+ <h3> Практические применения</h3>
+ <ul style="margin-left: 1.5rem; line-height: 1.8;">
+ <li><strong>Психотерапия:</strong> Диагностика когнитивных "застреваний"</li>
+ <li><strong>AI-архитектуры:</strong> 27-агентные системы (Cognitive Navigator)</li>
+ <li><strong>Образование:</strong> Обучение метакогнитивным навыкам</li>
+ <li><strong>Коучинг:</strong> Структурированная навигация по проблемам</li>
+ <li><strong>Исследования:</strong> Операционализация состояний сознания</li>
+ </ul>
+ </div>
+
+ <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 212, 255, 0.1); border-radius: 10px;">
+ <h3 style="color: var(--primary); margin-bottom: 1rem;"> Для кого эта визуализация?</h3>
+ <p style="line-height: 1.8;">
+ <strong style="color: var(--secondary);">Психологи:</strong> Инструмент для операционализации когнитивных состояний<br>
+ <strong style="color: var(--secondary);">Эпистемологи:</strong> Формальная модель структуры знания<br>
+ <strong style="color: var(--secondary);">AI-архитекторы:</strong> Когнитивная архитектура для мультиагентных систем<br>
+ <strong style="color: var(--secondary);">Медитирующие:</strong> Карта состояний сознания<br>
+ <strong style="color: var(--secondary);">Исследователи:</strong> Тестируемая теория для эмпирики
+ </p>
+ </div>
+
+ <div class="modal-section">
+ <h3> Материалы</h3>
+ <div class="footer-links" style="justify-content: flex-start; margin-top: 1rem;">
+ <a href="C4-AWAKENING-KOAN-v3.6.md">Эссе v3.6</a>
+ <a href="C4-DEEP-DIVE.md">Deep Dive</a>
+ <a href="COGNITIVE-NAVIGATOR.md">Navigator</a>
+ <a href="https://github.com/cognitive-functors/">GitHub</a>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+ <script>
+ // ============================================
+ // STATE DATA
+ // ============================================
+ const states = [
+ { id: 0, pos: [-2,-2,-2], t: 'T⁻', d: 'σ', i: 'ι', name: 'Конкретное Воспоминание', desc: 'Эпизодическая память о конкретном прошлом событии', example: '"Я помню, как открыл дверь"' },
+ { id: 1, pos: [-2,-2,0], t: 'T⁻', d: 'σ', i: 'φ', name: 'Прошлое Другого', desc: 'Воспоминание о конкретных действиях другого человека', example: '"Он вчера ответил мне резко"' },
+ { id: 2, pos: [-2,-2,2], t: 'T⁻', d: 'σ', i: 'ρ', name: 'Событие в Системе', desc: 'Конкретный факт из прошлого системы', example: '"В прошлом году произошёл кризис"' },
+ { id: 3, pos: [-2,0,-2], t: 'T⁻', d: 'δ', i: 'ι', name: 'Абстрактное Воспоминание', desc: 'Обобщённые паттерны собственного прошлого', example: '"Я всегда был застенчивым"' },
+ { id: 4, pos: [-2,0,0], t: 'T⁻', d: 'δ', i: 'φ', name: 'Гнев/Обида', desc: 'Абстрактная оценка прошлых действий другого', example: '"Он сделал мне гадость"' },
+ { id: 5, pos: [-2,0,2], t: 'T⁻', d: 'δ', i: 'ρ', name: 'Ретроспективный Анализ', desc: 'Поиск паттернов в прошлом системы', example: '"Какие тренды были в прошлом году?"' },
+ { id: 6, pos: [-2,2,-2], t: 'T⁻', d: 'λ', i: 'ι', name: 'Рефлексия о Прошлом', desc: 'Мышление о собственном прошлом мышлении', example: '"Почему я тогда так думал?"' },
+ { id: 7, pos: [-2,2,0], t: 'T⁻', d: 'λ', i: 'φ', name: 'Понимание Логики', desc: 'Реконструкция чужого мышления в прошлом', example: '"Он действовал рационально с его точки зрения"' },
+ { id: 8, pos: [-2,2,2], t: 'T⁻', d: 'λ', i: 'ρ', name: 'История Идей', desc: 'Эволюция концепций в системе знаний', example: '"Как эта теория развивалась?"' },
+ { id: 9, pos: [0,-2,-2], t: 'T⁰', d: 'σ', i: 'ι', name: 'Настоящий Момент', desc: 'Прямое восприятие здесь-и-сейчас', example: '"Я чувствую ветер на коже" Mindfulness' },
+ { id: 10, pos: [0,-2,0], t: 'T⁰', d: 'σ', i: 'φ', name: 'Эмпатия', desc: 'Чувствование состояния другого прямо сейчас', example: '"Что он сейчас чувствует?"' },
+ { id: 11, pos: [0,-2,2], t: 'T⁰', d: 'σ', i: 'ρ', name: 'Наблюдение Системы', desc: 'Восприятие текущего состояния системы', example: '"Сейчас в команде напряжение"' },
+ { id: 12, pos: [0,0,-2], t: 'T⁰', d: 'δ', i: 'ι', name: 'Осознание Себя', desc: 'Абстрактное самоощущение', example: '"Я есть" (cogito ergo sum)' },
+ { id: 13, pos: [0,0,0], t: 'T⁰', d: 'δ', i: 'φ', name: 'Наблюдатель (Центр)', desc: 'Состояние свидетеля, нейтральное наблюдение', example: '"Вижу ситуацию со стороны"' },
+ { id: 14, pos: [0,0,2], t: 'T⁰', d: 'δ', i: 'ρ', name: 'Паттерн-Узнавание', desc: 'Инсайт, "Ага!"-момент', example: '"Вижу, что это повторяется" Insight' },
+ { id: 15, pos: [0,2,-2], t: 'T⁰', d: 'λ', i: 'ι', name: 'Мета-Рефлексия', desc: 'Наблюдение за собственными мыслями', example: '"Я наблюдаю за мыслями" Witnessing' },
+ { id: 16, pos: [0,2,0], t: 'T⁰', d: 'λ', i: 'φ', name: 'Теория Разума', desc: 'Мышление о мышлении другого', example: '"Он думает, что я думаю..."' },
+ { id: 17, pos: [0,2,2], t: 'T⁰', d: 'λ', i: 'ρ', name: 'Системное Видение', desc: 'Мета-паттерны в системной динамике', example: '"Как этот паттерн связан с общей динамикой?"' },
+ { id: 18, pos: [2,-2,-2], t: 'T⁺', d: 'σ', i: 'ι', name: 'Страх Будущего', desc: 'Конкретная тревога о будущем событии', example: '"Что если я не сдам экзамен?"' },
+ { id: 19, pos: [2,-2,0], t: 'T⁺', d: 'σ', i: 'φ', name: 'Ожидание', desc: 'Предвосхищение конкретного действия другого', example: '"Он придёт в 3 часа"' },
+ { id: 20, pos: [2,-2,2], t: 'T⁺', d: 'σ', i: 'ρ', name: 'Прогноз Системы', desc: 'Конкретное предсказание системного события', example: '"Завтра акции упадут"' },
+ { id: 21, pos: [2,0,-2], t: 'T⁺', d: 'δ', i: 'ι', name: 'Планирование', desc: 'Абстрактная стратегия на будущее', example: '"Моя стратегия на год"' },
+ { id: 22, pos: [2,0,0], t: 'T⁺', d: 'δ', i: 'φ', name: 'Предсказание Поведения', desc: 'Моделирование будущих действий другого', example: '"Он, вероятно, откажется"' },
+ { id: 23, pos: [2,0,2], t: 'T⁺', d: 'δ', i: 'ρ', name: 'Тренд-Анализ', desc: 'Экстраполяция системных паттернов', example: '"Куда движется система?"' },
+ { id: 24, pos: [2,2,-2], t: 'T⁺', d: 'λ', i: 'ι', name: 'Мета-Планирование', desc: 'Мышление о будущем мышлении', example: '"Как я буду думать через год?"' },
+ { id: 25, pos: [2,2,0], t: 'T⁺', d: 'λ', i: 'φ', name: 'Предсказание Мета', desc: 'Что другой будет думать о мышлении', example: '"Он поймёт, что я имел в виду?"' },
+ { id: 26, pos: [2,2,2], t: 'T⁺', d: 'λ', i: 'ρ', name: 'Эволюция Концепций', desc: 'Мета-тренды в системе знаний', example: '"Как будет развиваться эта парадигма?"' }
+ ];
+
+ // ============================================
+ // GLOBAL VARIABLES
+ // ============================================
+ let nodes = [];
+ let labels = [];
+ let selectedNode = null;
+ let isRotating = true;
+ let showLabels = false;
+ let visitedStates = new Set();
+ let isFractalMode = false;
+ let fractalNodes = [];
+
+ // Utility: Debounce
+ function debounce(func, wait) {
+ let timeout;
+ return function executedFunction(...args) {
+ const later = () => {
+ clearTimeout(timeout);
+ func(...args);
+ };
+ clearTimeout(timeout);
+ timeout = setTimeout(later, wait);
+ };
+ }
+
+ function updateProgress() {
+ const count = visitedStates.size;
+ const percent = Math.round((count / 27) * 100);
+ document.getElementById('visited-count').textContent = count;
+ document.getElementById('coverage-percent').textContent = percent + '%';
+ }
+
+ // ============================================
+ // STARFIELD
+ // ============================================
+ const starCanvas = document.getElementById('starfield');
+ const starCtx = starCanvas.getContext('2d');
+ starCanvas.width = window.innerWidth;
+ starCanvas.height = window.innerHeight;
+
+ const stars = Array.from({ length: 200 }, () => ({
+ x: Math.random() * starCanvas.width,
+ y: Math.random() * starCanvas.height,
+ radius: Math.random() * 1.5,
+ velocity: Math.random() * 0.05
+ }));
+
+ function animateStars() {
+ starCtx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+ starCtx.fillRect(0, 0, starCanvas.width, starCanvas.height);
+
+ stars.forEach(star => {
+ starCtx.beginPath();
+ starCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+ starCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+ starCtx.fill();
+
+ star.y += star.velocity;
+ if (star.y > starCanvas.height) {
+ star.y = 0;
+ star.x = Math.random() * starCanvas.width;
+ }
+ });
+
+ requestAnimationFrame(animateStars);
+ }
+ animateStars();
+
+ // Debounced starfield resize
+ const handleStarfieldResize = debounce(() => {
+ starCanvas.width = window.innerWidth;
+ starCanvas.height = window.innerHeight;
+ }, 150);
+
+ window.addEventListener('resize', handleStarfieldResize);
+
+ // ============================================
+ // THREE.JS CUBE
+ // ============================================
+ const container = document.getElementById('canvas-container');
+ if (!container) {
+ console.error('Canvas container not found!');
+ } else {
+
+ const scene = new THREE.Scene();
+ const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+ const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+ renderer.setSize(container.clientWidth, container.clientHeight);
+ renderer.setClearColor(0x000000, 0);
+ container.appendChild(renderer.domElement);
+
+ // Center the camera looking at origin
+ camera.position.set(6, 6, 10);
+ camera.lookAt(0, 0, 0);
+ camera.updateProjectionMatrix();
+
+ const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+ scene.add(ambientLight);
+
+ const pointLight1 = new THREE.PointLight(0x00d4ff, 1, 100);
+ pointLight1.position.set(10, 10, 10);
+ scene.add(pointLight1);
+
+ const pointLight2 = new THREE.PointLight(0xff00ff, 0.5, 100);
+ pointLight2.position.set(-10, -10, -10);
+ scene.add(pointLight2);
+
+ // Create nodes
+ states.forEach(state => {
+ const geometry = new THREE.SphereGeometry(0.15, 32, 32);
+ const material = new THREE.MeshStandardMaterial({
+ color: state.id === 13 ? 0x00ff88 : 0x00d4ff,
+ emissive: state.id === 13 ? 0x00ff88 : 0x00d4ff,
+ emissiveIntensity: 0.3,
+ roughness: 0.3,
+ metalness: 0.7
+ });
+
+ const sphere = new THREE.Mesh(geometry, material);
+ sphere.position.set(...state.pos);
+ sphere.userData = state;
+ scene.add(sphere);
+ nodes.push(sphere);
+
+ // Label
+ const canvas = document.createElement('canvas');
+ const context = canvas.getContext('2d');
+ canvas.width = 256;
+ canvas.height = 64;
+ context.fillStyle = 'rgba(0, 0, 0, 0.8)';
+ context.fillRect(0, 0, 256, 64);
+ context.font = '18px Arial';
+ context.fillStyle = '#00d4ff';
+ context.textAlign = 'center';
+ context.fillText(`F⟨${state.t},${state.d},${state.i}⟩`, 128, 40);
+
+ const texture = new THREE.CanvasTexture(canvas);
+ const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+ const sprite = new THREE.Sprite(spriteMaterial);
+ sprite.position.set(state.pos[0], state.pos[1] + 0.5, state.pos[2]);
+ sprite.scale.set(1.5, 0.4, 1);
+ sprite.visible = false;
+ scene.add(sprite);
+ labels.push(sprite);
+ });
+
+ // Create edges
+ const tEdgeMaterial = new THREE.LineBasicMaterial({ color: 0xff4b2b, opacity: 0.5, transparent: true });
+ const dEdgeMaterial = new THREE.LineBasicMaterial({ color: 0x8e54e9, opacity: 0.5, transparent: true });
+ const iEdgeMaterial = new THREE.LineBasicMaterial({ color: 0x38ef7d, opacity: 0.5, transparent: true });
+
+ function createEdge(from, to, material) {
+ const points = [new THREE.Vector3(...from), new THREE.Vector3(...to)];
+ const geometry = new THREE.BufferGeometry().setFromPoints(points);
+ const line = new THREE.Line(geometry, material);
+ scene.add(line);
+ }
+
+ states.forEach(state => {
+ const nextT = states.find(s => s.pos[0] === state.pos[0] + 2 && s.pos[1] === state.pos[1] && s.pos[2] === state.pos[2]);
+ if (nextT) createEdge(state.pos, nextT.pos, tEdgeMaterial);
+
+ const nextD = states.find(s => s.pos[0] === state.pos[0] && s.pos[1] === state.pos[1] + 2 && s.pos[2] === state.pos[2]);
+ if (nextD) createEdge(state.pos, nextD.pos, dEdgeMaterial);
+
+ const nextI = states.find(s => s.pos[0] === state.pos[0] && s.pos[1] === state.pos[1] && s.pos[2] === state.pos[2] + 2);
+ if (nextI) createEdge(state.pos, nextI.pos, iEdgeMaterial);
+ });
+
+ // Mouse interaction
+ const raycaster = new THREE.Raycaster();
+ const mouse = new THREE.Vector2();
+ let isDragging = false;
+ let previousMousePosition = { x: 0, y: 0 };
+
+ renderer.domElement.addEventListener('click', onNodeClick);
+ renderer.domElement.addEventListener('mousedown', onMouseDown);
+ renderer.domElement.addEventListener('mousemove', onMouseMove);
+ renderer.domElement.addEventListener('mouseup', onMouseUp);
+ renderer.domElement.addEventListener('wheel', onWheel);
+
+ function onNodeClick(event) {
+ if (isDragging) return;
+
+ const rect = renderer.domElement.getBoundingClientRect();
+ mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+ mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+ raycaster.setFromCamera(mouse, camera);
+ const intersects = raycaster.intersectObjects(nodes);
+
+ if (intersects.length > 0) {
+ const node = intersects[0].object;
+ selectNode(node);
+ }
+ }
+
+ function selectNode(node) {
+ if (selectedNode) {
+ selectedNode.material.color.setHex(selectedNode.userData.id === 13 ? 0x00ff88 : 0x00d4ff);
+ selectedNode.material.emissive.setHex(selectedNode.userData.id === 13 ? 0x00ff88 : 0x00d4ff);
+ }
+
+ selectedNode = node;
+ node.material.color.setHex(0xffff00);
+ node.material.emissive.setHex(0xffff00);
+
+ visitedStates.add(node.userData.id);
+ updateProgress();
+ updateStateInfo(node.userData);
+ highlightStateInList(node.userData.id);
+ }
+
+ function updateStateInfo(state) {
+ const tPercent = state.t === 'T⁻' ? 80 : state.t === 'T⁰' ? 50 : 70;
+ const dPercent = state.d === 'σ' ? 40 : state.d === 'δ' ? 70 : 90;
+ const iPercent = state.i === 'ι' ? 70 : state.i === 'φ' ? 80 : 60;
+
+ document.getElementById('state-info').innerHTML = `
+ <div>
+ <span class="state-badge badge-time">${state.t}</span>
+ <span class="state-badge badge-dim">${state.d}</span>
+ <span class="state-badge badge-id">${state.i}</span>
+ </div>
+
+ <h3 class="state-name">${state.name}</h3>
+ <p class="state-desc">${state.desc}</p>
+
+ <div class="state-example">
+ <strong>Пример:</strong> ${state.example}
+ </div>
+
+ <div class="formula" style="font-size: 0.9rem; margin: 1rem 0;">
+ F⟨${state.t}, ${state.d}, ${state.i}⟩
+ </div>
+
+ <div class="tote-box" style="font-size: 0.85rem;">
+ <strong>TOTE-цикл:</strong>
+ <div style="margin-top: 0.5rem;">
+ 1. <strong>Test:</strong> F⟨${state.t}, ${state.d}, ${state.i}⟩<br>
+ 2. <strong>Operate:</strong> Применить функтор<br>
+ 3. <strong>Test:</strong> Достигнута цель?<br>
+ 4. <strong>Exit</strong> или повторить
+ </div>
+ </div>
+
+ <h4 style="color: var(--primary); margin: 1.5rem 0 1rem 0;">Нейронные корреляты (гипотеза)</h4>
+ <div class="neural-grid">
+ <div class="neural-row">
+ <span class="neural-label">Theta (T):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: ${tPercent}%;"></div></div>
+ <span class="neural-value">${tPercent}%</span>
+ </div>
+ <div class="neural-row">
+ <span class="neural-label">Beta (D):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: ${dPercent}%;"></div></div>
+ <span class="neural-value">${dPercent}%</span>
+ </div>
+ <div class="neural-row">
+ <span class="neural-label">Alpha (I):</span>
+ <div class="neural-bar"><div class="neural-fill" style="width: ${iPercent}%;"></div></div>
+ <span class="neural-value">${iPercent}%</span>
+ </div>
+ </div>
+ `;
+ }
+
+ function onMouseDown(event) {
+ isDragging = false;
+ previousMousePosition = { x: event.clientX, y: event.clientY };
+ }
+
+ function onMouseMove(event) {
+ if (event.buttons === 1) {
+ isDragging = true;
+ const deltaMove = {
+ x: event.clientX - previousMousePosition.x,
+ y: event.clientY - previousMousePosition.y
+ };
+
+ scene.rotation.y += deltaMove.x * 0.005;
+ scene.rotation.x += deltaMove.y * 0.005;
+
+ previousMousePosition = { x: event.clientX, y: event.clientY };
+ }
+ }
+
+ function onMouseUp() {
+ setTimeout(() => { isDragging = false; }, 100);
+ }
+
+ function onWheel(event) {
+ event.preventDefault();
+ // Zoom by scaling distance from origin, not just z
+ const zoomSpeed = 0.01;
+ const direction = camera.position.clone().normalize();
+ const distance = camera.position.length();
+
+ const newDistance = distance + event.deltaY * zoomSpeed;
+ const clampedDistance = Math.max(7, Math.min(18, newDistance));
+
+ camera.position.copy(direction.multiplyScalar(clampedDistance));
+ camera.lookAt(0, 0, 0);
+ }
+
+ function animate() {
+ requestAnimationFrame(animate);
+
+ if (isRotating && !isDragging) {
+ scene.rotation.y += 0.002;
+ }
+
+ if (selectedNode) {
+ const scale = 1 + Math.sin(Date.now() * 0.003) * 0.1;
+ selectedNode.scale.set(scale, scale, scale);
+ }
+
+ // Animate fractal nodes with wave-like pulsing
+ if (isFractalMode && fractalNodes.length > 0) {
+ const time = Date.now() * 0.001;
+ fractalNodes.forEach((obj, idx) => {
+ if (obj.geometry && obj.geometry.type === 'SphereGeometry') {
+ const phase = obj.userData.phase || idx * 0.05;
+ const offset = obj.userData.offset || {};
+ const radialDist = Math.sqrt((offset.x || 0)**2 + (offset.y || 0)**2 + (offset.z || 0)**2);
+
+ // Wave propagation from center
+ const wave = Math.sin(time * 2 + radialDist * 2 + phase);
+ const pulse = 1 + wave * 0.4;
+ obj.scale.set(pulse, pulse, pulse);
+
+ // Dynamic glow with color shifting
+ if (obj.material.emissiveIntensity !== undefined) {
+ obj.material.emissiveIntensity = 0.3 + wave * 0.3;
+ }
+
+ // Subtle rotation around parent
+ const angle = time * 0.5 + phase;
+ if (obj.userData.parentId !== undefined) {
+ const parentNode = nodes[obj.userData.parentId];
+ if (parentNode) {
+ const radius = 0.02;
+ obj.position.x += Math.cos(angle) * radius * 0.1;
+ obj.position.z += Math.sin(angle) * radius * 0.1;
+ }
+ }
+ }
+ });
+ }
+
+ renderer.render(scene, camera);
+ }
+ animate();
+
+ // Debounced resize handler for better performance
+ const handleResize = debounce(() => {
+ camera.aspect = container.clientWidth / container.clientHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(container.clientWidth, container.clientHeight);
+ }, 150);
+
+ window.addEventListener('resize', handleResize);
+
+ // ============================================
+ // UI FUNCTIONS
+ // ============================================
+ function resetView() {
+ scene.rotation.x = 0;
+ scene.rotation.y = 0;
+ scene.rotation.z = 0;
+ camera.position.set(6, 6, 10);
+ camera.lookAt(0, 0, 0);
+ camera.updateProjectionMatrix();
+ }
+
+ function toggleRotation() {
+ isRotating = !isRotating;
+ }
+
+ function toggleLabels() {
+ showLabels = !showLabels;
+ labels.forEach(label => label.visible = showLabels);
+ }
+
+ function showRandomState() {
+ const randomNode = nodes[Math.floor(Math.random() * nodes.length)];
+ selectNode(randomNode);
+ }
+
+ function exportScreenshot() {
+ try {
+ renderer.render(scene, camera);
+ const dataURL = renderer.domElement.toDataURL('image/png');
+ const link = document.createElement('a');
+ link.download = `C4-Cube-${Date.now()}.png`;
+ link.href = dataURL;
+ link.click();
+ } catch (e) {
+ alert('Ошибка при создании скриншота');
+ }
+ }
+
+ // ============================================
+ // KEYBOARD SHORTCUTS
+ // ============================================
+ document.addEventListener('keydown', (e) => {
+ if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+ switch(e.key.toLowerCase()) {
+ case 'r':
+ resetView();
+ break;
+ case ' ':
+ e.preventDefault();
+ toggleRotation();
+ break;
+ case 'l':
+ toggleLabels();
+ break;
+ case 'x':
+ showRandomState();
+ break;
+ case 'f':
+ toggleFractalMode();
+ break;
+ case 's':
+ exportScreenshot();
+ break;
+ case 'escape':
+ closeGuide();
+ closeModal('theorems');
+ closeModal('calibration');
+ closeModal('about');
+ break;
+ }
+ });
+
+ // ============================================
+ // FRACTAL MODE
+ // ============================================
+ function toggleFractalMode() {
+ isFractalMode = !isFractalMode;
+ const btn = document.getElementById('fractal-btn');
+
+ if (isFractalMode) {
+ btn.textContent = ' Обычный';
+ btn.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+ createFractalVisualization();
+ } else {
+ btn.textContent = ' Фрактал';
+ btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+ removeFractalVisualization();
+ }
+ }
+
+ function createFractalVisualization() {
+ const scale = 0.35;
+ const miniSize = 0.06;
+ const colors = [0xff00ff, 0x00ffff, 0xffff00, 0xff00aa, 0x00aaff, 0xaaff00, 0xff66ff, 0x66ffff];
+
+ nodes.forEach((node, idx) => {
+ const basePos = node.position;
+ const state = states[idx];
+ let colorIdx = 0;
+
+ // Create 3x3x3 cube of mini-nodes (26 nodes, excluding center)
+ for (let x = -1; x <= 1; x++) {
+ for (let y = -1; y <= 1; y++) {
+ for (let z = -1; z <= 1; z++) {
+ if (x === 0 && y === 0 && z === 0) continue;
+
+ const distance = Math.sqrt(x*x + y*y + z*z);
+ const adjustedSize = miniSize * (1.5 - distance * 0.2);
+
+ const geometry = new THREE.SphereGeometry(adjustedSize, 12, 12);
+ const color = colors[colorIdx % colors.length];
+ const material = new THREE.MeshStandardMaterial({
+ color: color,
+ emissive: color,
+ emissiveIntensity: 0.4,
+ roughness: 0.3,
+ metalness: 0.7,
+ opacity: 0.7,
+ transparent: true
+ });
+
+ const miniSphere = new THREE.Mesh(geometry, material);
+ miniSphere.position.set(
+ basePos.x + x * scale,
+ basePos.y + y * scale,
+ basePos.z + z * scale
+ );
+
+ miniSphere.userData = {
+ ...state,
+ isFractal: true,
+ parentId: state.id,
+ offset: { x, y, z },
+ phase: colorIdx * 0.3
+ };
+
+ scene.add(miniSphere);
+ fractalNodes.push(miniSphere);
+
+ // Thinner connecting lines with gradient effect
+ if (distance < 1.5) {
+ const points = [
+ new THREE.Vector3(basePos.x, basePos.y, basePos.z),
+ new THREE.Vector3(miniSphere.position.x, miniSphere.position.y, miniSphere.position.z)
+ ];
+ const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+ const lineMaterial = new THREE.LineBasicMaterial({
+ color: color,
+ opacity: 0.15,
+ transparent: true
+ });
+ const line = new THREE.Line(lineGeometry, lineMaterial);
+ scene.add(line);
+ fractalNodes.push(line);
+ }
+
+ colorIdx++;
+ }
+ }
+ }
+
+ // Make main node glow more in fractal mode
+ node.material.opacity = 0.8;
+ node.material.transparent = true;
+ node.material.emissiveIntensity = 0.5;
+ });
+ }
+
+ function removeFractalVisualization() {
+ fractalNodes.forEach(obj => {
+ scene.remove(obj);
+ if (obj.geometry) obj.geometry.dispose();
+ if (obj.material) obj.material.dispose();
+ });
+ fractalNodes = [];
+
+ nodes.forEach(node => {
+ node.material.opacity = 1.0;
+ node.material.transparent = false;
+ node.material.emissiveIntensity = 0.3;
+ });
+ }
+
+ function toggleCard(header) {
+ const card = header.parentElement;
+ card.classList.toggle('collapsed');
+ }
+
+ function showGuide() {
+ document.getElementById('guide-overlay').classList.add('active');
+ }
+
+ function closeGuide() {
+ document.getElementById('guide-overlay').classList.remove('active');
+ }
+
+ function openModal(name) {
+ document.getElementById('modal-' + name).classList.add('active');
+ }
+
+ function closeModal(name) {
+ document.getElementById('modal-' + name).classList.remove('active');
+ }
+
+ function toggleAccordion(header) {
+ const item = header.parentElement;
+ const wasActive = item.classList.contains('active');
+
+ document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+
+ if (!wasActive) {
+ item.classList.add('active');
+ }
+ }
+
+ } // End of Three.js block
+
+ // ============================================
+ // STATE LIST
+ // ============================================
+ function populateStateList() {
+ const list = document.getElementById('state-list');
+ list.innerHTML = states.map(state => `
+ <div class="state-item" data-id="${state.id}" onclick="selectStateFromList(${state.id})">
+ <span class="state-coords">F⟨${state.t},${state.d},${state.i}⟩</span>
+ <span class="state-label">${state.name}</span>
+ </div>
+ `).join('');
+ }
+
+ function selectStateFromList(id) {
+ const node = nodes.find(n => n.userData.id === id);
+ if (node) {
+ selectNode(node);
+ }
+ }
+
+ function highlightStateInList(id) {
+ document.querySelectorAll('.state-item').forEach(item => {
+ item.classList.toggle('active', parseInt(item.dataset.id) === id);
+ });
+ }
+
+ function filterStates(query) {
+ const items = document.querySelectorAll('.state-item');
+ items.forEach(item => {
+ const text = item.textContent.toLowerCase();
+ const matches = text.includes(query.toLowerCase());
+ item.style.display = matches ? 'flex' : 'none';
+ });
+ }
+
+ // ============================================
+ // INIT
+ // ============================================
+ populateStateList();
+ setTimeout(() => {
+ if (nodes[13]) selectNode(nodes[13]);
+ showGuide();
+ }, 500);
+ </script>
+</body>
+</html>

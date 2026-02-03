@@ -1,0 +1,46 @@
+[
+  {
+    "name": "d2103",
+    "n": 2103,
+    "optimal": 80450,
+    "v4_length": 83175.39080665681,
+    "v4_gap": 3.39,
+    "time": 231.3,
+    "fallback": false,
+    "swarm_gen": 14717,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "u2319",
+    "n": 2319,
+    "optimal": 234256,
+    "v4_length": 239151.99570798595,
+    "v4_gap": 2.09,
+    "time": 259.1,
+    "fallback": false,
+    "swarm_gen": 13628,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "pr2392",
+    "n": 2392,
+    "optimal": 378032,
+    "v4_length": 397084.69598446006,
+    "v4_gap": 5.04,
+    "time": 266.5,
+    "fallback": false,
+    "swarm_gen": 21526,
+    "mcts_improvements": 8
+  },
+  {
+    "name": "pcb3038",
+    "n": 3038,
+    "optimal": 137694,
+    "v4_length": 143470.5743052053,
+    "v4_gap": 4.2,
+    "time": 341.8,
+    "fallback": false,
+    "swarm_gen": 11023,
+    "mcts_improvements": 18
+  }
+]

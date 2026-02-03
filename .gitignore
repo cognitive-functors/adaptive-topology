@@ -1,0 +1,33 @@
+.DS_Store
+*.pyc
+__pycache__/
+.env
+*.key
+.venv/
+node_modules/
+.claude/
+work/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Secrets
+*.pem
+*.p12
+credentials.*
+secrets.*
+.secrets/

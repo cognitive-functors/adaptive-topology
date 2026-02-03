@@ -1,0 +1,145 @@
+[
+  {
+    "name": "eil51",
+    "n": 51,
+    "optimal": 426,
+    "v3_length": 428.0,
+    "v3_gap": 0.47,
+    "time": 27.1,
+    "fallback": false,
+    "eax_improvements": 21,
+    "mcts_improvements": 0
+  },
+  {
+    "name": "berlin52",
+    "n": 52,
+    "optimal": 7542,
+    "v3_length": 7542.0,
+    "v3_gap": 0.0,
+    "time": 25.5,
+    "fallback": false,
+    "eax_improvements": 12,
+    "mcts_improvements": 0
+  },
+  {
+    "name": "st70",
+    "n": 70,
+    "optimal": 675,
+    "v3_length": 684.0,
+    "v3_gap": 1.33,
+    "time": 25.5,
+    "fallback": false,
+    "eax_improvements": 20,
+    "mcts_improvements": 2
+  },
+  {
+    "name": "eil76",
+    "n": 76,
+    "optimal": 538,
+    "v3_length": 547.0,
+    "v3_gap": 1.67,
+    "time": 25.5,
+    "fallback": false,
+    "eax_improvements": 13,
+    "mcts_improvements": 1
+  },
+  {
+    "name": "kroA100",
+    "n": 100,
+    "optimal": 21282,
+    "v3_length": 21379.0,
+    "v3_gap": 0.46,
+    "time": 51.0,
+    "fallback": false,
+    "eax_improvements": 13,
+    "mcts_improvements": 0
+  },
+  {
+    "name": "ch150",
+    "n": 150,
+    "optimal": 6528,
+    "v3_length": 6593.0,
+    "v3_gap": 1.0,
+    "time": 51.0,
+    "fallback": false,
+    "eax_improvements": 9,
+    "mcts_improvements": 1
+  },
+  {
+    "name": "tsp225",
+    "n": 225,
+    "optimal": 3916,
+    "v3_length": 4003.0,
+    "v3_gap": 2.22,
+    "time": 51.0,
+    "fallback": false,
+    "eax_improvements": 16,
+    "mcts_improvements": 1
+  },
+  {
+    "name": "a280",
+    "n": 280,
+    "optimal": 2579,
+    "v3_length": 2583.0,
+    "v3_gap": 0.16,
+    "time": 51.1,
+    "fallback": false,
+    "eax_improvements": 14,
+    "mcts_improvements": 4
+  },
+  {
+    "name": "pcb442",
+    "n": 442,
+    "optimal": 50778,
+    "v3_length": 51600.0,
+    "v3_gap": 1.62,
+    "time": 76.6,
+    "fallback": false,
+    "eax_improvements": 14,
+    "mcts_improvements": 6
+  },
+  {
+    "name": "att532",
+    "n": 532,
+    "optimal": 27686,
+    "v3_length": 28378.0,
+    "v3_gap": 2.5,
+    "time": 76.8,
+    "fallback": false,
+    "eax_improvements": 12,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "rat783",
+    "n": 783,
+    "optimal": 8806,
+    "v3_length": 9037.0,
+    "v3_gap": 2.62,
+    "time": 102.4,
+    "fallback": false,
+    "eax_improvements": 6,
+    "mcts_improvements": 10
+  },
+  {
+    "name": "pr1002",
+    "n": 1002,
+    "optimal": 259045,
+    "v3_length": 265302.0,
+    "v3_gap": 2.42,
+    "time": 153.5,
+    "fallback": false,
+    "eax_improvements": 15,
+    "mcts_improvements": 15
+  },
+  {
+    "name": "fl1577",
+    "n": 1577,
+    "optimal": 22249,
+    "v3_length": 23085.0,
+    "v3_gap": 3.76,
+    "time": 154.5,
+    "fallback": false,
+    "eax_improvements": 9,
+    "mcts_improvements": 9
+  }
+]

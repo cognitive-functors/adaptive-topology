@@ -1,0 +1,71 @@
+{
+  "schema_version": "v1",
+  "name": "fractal-27-c4",
+  "display_name": "Adaptive Routing Theory: C4 + MASTm",
+  "description": "A unified theory with 17 unique research papers (12 bilingual EN+RU, 5 EN-only) proving adaptive strategy selection outperforms fixed approaches. Formally verified in Agda (Z3-cubed, 10/11 theorems) and empirically validated via MASTm (Multi-scale Adaptive Spectral TSP meta-solver, 0.22% gap on fl3795). Central thesis: Intelligence = adaptive routing.",
+  "central_thesis": "Intelligence is not a single algorithm but adaptive routing: given a structural fingerprint of the input, select the strategy that matches. Proven for cognition (C4) and combinatorial optimization (MASTm).",
+  "authors": [
+    {
+      "name": "Ilya Selyutin",
+      "github": "ilyaselyutin"
+    },
+    {
+      "name": "Nikolai Kovalev"
+    }
+  ],
+  "organization": "cognitive-functors",
+  "repository": "https://github.com/cognitive-functors/adaptive-topology",
+  "license": "Apache-2.0-NC AND AGPL-3.0-only",
+  "keywords": [
+    "cognitive-science", "formal-verification", "agda", "group-theory",
+    "category-theory", "Z3-cubed", "cognitive-coordinates", "text-classification",
+    "NLP", "metaprograms", "DeBERTa", "multi-head-classifier",
+    "psychology", "linguistics", "philosophy-of-mind", "systems-thinking",
+    "TRIZ", "neuro-linguistic-programming", "fractal", "type-theory",
+    "MASTm", "TSP", "combinatorial-optimization", "adaptive-routing",
+    "instance-fingerprint", "topological-fingerprint", "meta-solver",
+    "adaptive-routing-theorem", "structure-predicts-strategy",
+    "intelligence-as-adaptive-routing",
+    "7d-hypercube", "transformation-space", "domain-analysis",
+    "domain-meta-analysis"
+  ],
+  "main_topics": [
+    "27 cognitive basis states structured as Z3-cubed",
+    "Formal verification in Agda (10/11 theorems)",
+    "Adaptive Routing Theorem: structure-based routing >= any fixed strategy",
+    "MASTm (Multi-scale Adaptive Spectral TSP meta-solver, 0.22% gap on fl3795)",
+    "DeBERTa text classifier (65 heads, 12 LoRA adapters)",
+    "Cross-domain models (quantum, causal, entropy, morphogenetic)",
+    "17 unique research papers (12 bilingual EN+RU, 5 EN-only) across 3 paper directories",
+    "Applications to negotiation, personality typology, AI agents"
+  ],
+  "entry_points": {
+    "overview": "llms.txt",
+    "detailed": "llms-full.txt",
+    "papers": "papers/SUMMARY-FOR-AI.md",
+    "guides": "guides/SUMMARY-FOR-AI.md",
+    "code": "code/README.md",
+    "formal_proofs": "formal-proofs/c4-comp-v5.agda",
+    "preprint": "preprint/en/C4-PREPRINT-V3-FINAL.md",
+    "topics": "TOPICS.md"
+  },
+  "live_demo": "https://c4cognitive.com",
+  "model_hub": "https://huggingface.co/HangJang/c4-cognitive-adapters",
+  "related_repos": [
+    {
+      "name": "c4cogl",
+      "url": "https://github.com/ilyaselyutin/c4cogl",
+      "description": "Production implementation: DeBERTa V10 classifier, FastAPI, training pipeline"
+    },
+    {
+      "name": "c4-cognitive-adapters",
+      "url": "https://huggingface.co/HangJang/c4-cognitive-adapters",
+      "description": "Pretrained LoRA adapters (12 tiers, 65 heads) for mDeBERTa-v3-base"
+    }
+  ],
+  "languages": ["en", "ru"],
+  "formal_verification": "agda",
+  "paper_count": 17,
+  "theorem_count": 11,
+  "theorems_verified": 10
+}

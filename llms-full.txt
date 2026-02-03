@@ -1,0 +1,385 @@
+# C4: Complete Cognitive Coordinate System -- Full Reference
+
+> Adaptive Routing Theory: From Cognitive Coordinates to Combinatorial Optimization
+
+A formal framework modeling cognition as navigation through a 27-element state space Z3^3, structured by three orthogonal axes: Time (Past/Present/Future), Scale (Concrete/Abstract/Meta), and Agency (Self/Other/System). The framework includes 11 core theorems (10 verified in Agda) and a cross-domain application to combinatorial optimization via the MASTm (Multi-scale Adaptive Spectral TSP meta-solver).
+
+Authors: Ilya Selyutin (psy.seliger@yandex.ru), Nikolai Kovalev (comonoid@yandex.ru)
+License: Apache-2.0-NC / AGPL-3.0 / Commercial
+Repository: https://github.com/cognitive-functors/adaptive-topology
+Live Demo: https://c4cognitive.com
+Pretrained Models: https://huggingface.co/HangJang/c4-cognitive-adapters
+Version: 5.0 (2026-02-03)
+Languages: English and Russian (most content bilingual)
+
+---
+
+## 1. Central Thesis
+
+Any system that (1) fingerprints its input into a structured state space, (2) routes execution to a strategy matched to that fingerprint, and (3) adapts its execution based on feedback will outperform any fixed strategy over a sufficiently diverse set of inputs. Intelligence is adaptive routing through structured state space.
+
+This theorem unifies results across combinatorial optimization, machine learning, cognitive science, and decision theory into a single formal claim.
+
+---
+
+## 2. Papers: Detailed Directory Guide
+
+### 2.1. Core C4 Theory (papers/fractal-c4/) -- 6 RU + 6 EN papers + README
+
+The foundational layer defining the Z3^3 coordinate system, its algebraic structure, and applications to cognition, knowledge, and language. All 6 papers available in both Russian (original) and English (translation).
+
+Paper (RU / EN)                      Description
+----------------------------------------------------------------------
+01_c4-fractal.md / -en.md           Fractal refinement of the coordinate system -- recursive subdivision of states
+02_c4-knowledge.md / -en.md         Knowledge modeling through the fractal coordinate system
+03_c4-system.md / -en.md            Systems thinking modeled via fractal C4
+04_c4-formalism.md / -en.md         Rigor and unambiguity of C4 descriptions -- formal specification
+05_c4-content.md / -en.md           Structure vs. Content -- how C4 separates form from substance
+06_c4-language.md / -en.md          C4-Language -- a Russian dialect with built-in fractal structure
+README.md                           Directory overview
+
+Cross-references: 04_c4-formalism -> formal-mathematics/ (Agda encoding)
+
+### 2.2. Formal Mathematics (papers/formal-mathematics/) -- 6 RU + 6 EN papers + README
+
+Rigorous mathematical foundations: Agda proofs, categorical semantics, linear logic, and type theory. All 6 papers available in both Russian (original) and English (translation).
+
+Paper (RU / EN)                      Description
+----------------------------------------------------------------------
+functors-catalog.md / -en.md        Catalog of functors in the Belief category within C4
+functors.md / -en.md                Base functors of the Lin category
+MILL.md / -en.md                    Multiplicative Intuitionistic Linear Logic -- semantics for distributed processes with true concurrency
+monoidal-category.md / -en.md       Monoidal category: differential linear logic with dependent types
+par-explanation.md / -en.md         Par connective and linear implication -- base concepts
+type-system.md / -en.md             Type system: MALL with dependent types, (co)inductive types, and differentiation
+README.md                           Directory overview
+
+Cross-references: MILL -> transformation concepts (resource semantics)
+
+### 2.3. Algorithmic Topology / MASTm (papers/algorithmic-topology/) -- 5 EN papers + README
+
+The MASTm (Multi-scale Adaptive Spectral TSP meta-solver) for TSP and the universal fingerprint protocol. English only.
+
+Paper                                                        Description
+----------------------------------------------------------------------
+00-mast-instance-adaptive-tsp.md                             MASTm: Instance-Adaptive Spectral Decomposition for Large-Scale TSP
+01-universal-fingerprint-protocol.md                         Universal Fingerprint Protocol for Adaptive Strategy Selection
+02-from-cognitive-coordinates-to-combinatorial-optimization.md  Unified theory bridging C4 and combinatorial optimization
+03-adaptive-routing-theorem.md                               The Adaptive Routing Theorem -- formal statement and proof
+04-cross-domain-evidence.md                                  Cross-domain evidence for adaptive routing across biology, economics, neuroscience, ecology
+README.md                                                    Directory overview
+
+MASTm Benchmark Results (TSPLIB):
+  fl3795:  0.22% optimality gap
+  fnl4461: 1.78% optimality gap
+  rl5915:  1.20% optimality gap
+
+Cross-references: 03-adaptive-routing-theorem -> fractal-c4/04_c4-formalism (formal foundations); 04-cross-domain-evidence -> empirical validation
+
+---
+
+## 3. Preprint (preprint/)
+
+Full manuscript in two languages.
+
+English edition (preprint/en/) -- 7 files:
+- C4-PREPRINT-V3-FINAL.md -- main preprint text
+- C4-DEEP-DIVE.md -- extended deep dive
+- C4-AWAKENING-KOAN-v3.6.md -- philosophical introduction (koan format)
+- C4-PREPRINT-VIXRA.pdf -- PDF for viXra submission
+- ERRATA-CYCLIC-GROUP.md -- errata on cyclic group discussion
+- PREPRINT-README.md -- preprint overview
+- TRANSLATION-CONSISTENCY-REVIEW.md -- EN/RU translation consistency check
+
+Russian edition (preprint/ru/) -- 5 files:
+- C4-PREPRINT-VIXRA-RU.md -- Russian preprint
+- C4-DEEP-DIVE.md -- Russian deep dive
+- C4-AWAKENING-KOAN-v3.6.md -- Russian koan
+- C4-ANSWER-TO-ERIC-SCHMIDT-v6.md -- Response to Eric Schmidt on intelligence
+- C4-vs-BERTSCORE-NLP-FAQ-v2.md -- FAQ: C4 vs BERTScore and NLP benchmarks
+
+preprint/README.md -- preprint directory overview
+
+---
+
+## 4. Guides (guides/) -- 7 EN + 7 RU guides + README + SUMMARY-FOR-AI
+
+Audience-specific entry points into the C4 framework. All 7 guides available in both English and Russian.
+
+Guide (EN / RU)                    Target Audience
+----------------------------------------------------------------------
+for-psychologists.md / -ru.md     Psychologists and therapists -- CBT mapping, therapy trajectories
+for-linguists.md / -ru.md         Linguists -- discourse analysis, tense-aspect, pragmatics
+for-philosophers.md / -ru.md      Philosophers -- epistemology, phenomenology, consciousness
+for-ai-researchers.md / -ru.md    AI/ML researchers -- architectures, multi-agent systems, alignment
+for-nlp-practitioners.md / -ru.md NLP practitioners -- text classification, DeBERTa, adapter modules
+for-agda-users.md / -ru.md        Agda/type theory users -- dependent types, formal proofs
+integration-guide.md / -ru.md     Technical integration -- API, embedding, deployment
+README.md                         Directory overview
+SUMMARY-FOR-AI.md                 Condensed summary for AI agent consumption
+
+---
+
+## 5. Applications (applications/)
+
+Practical tools and analyses built on the C4 framework.
+
+Directory/File (RU / EN)                          Description
+----------------------------------------------------------------------
+functor-agents/how-it-works.md / -en.md           How functor-based AI agents work in C4
+functor-agents/system-prompts.md / -en.md         System prompts for C4-aware agents
+applications/README.md                            Directory overview
+
+---
+
+## 6. Code (code/)
+
+### 6.1. MASTm TSP Solver (code/mast/)
+
+Run-ready MASTm (Multi-scale Adaptive Spectral TSP meta-solver) implementation.
+
+Structure:
+- src/ -- solver source code (core/, __init__.py)
+  - core/distance_oracle.py -- distance computation
+  - core/eax_sparse.py -- EAX crossover operator
+  - core/fingerprint.py -- instance fingerprinting
+  - core/hierarchy.py -- hierarchical decomposition
+  - core/hybrid_solver.py -- hybrid solver orchestration
+  - core/numba_sparse.py -- Numba-accelerated sparse operations
+  - core/ultra_solver.py -- ultra solver (top-level)
+- benchmarks/ -- 12 TSPLIB instances (berlin52, eil51, kroA100, ch150, pcb442, att532, fl1400, fl3795, fnl4461, rl5915, pla7397, d15112)
+- results/ -- 30+ benchmark result JSON files (v3 through v6.6)
+- scripts/ -- run_benchmark_v6.py, fingerprint_analysis.py
+- requirements.txt -- Python dependencies
+- README.md / README-ru.md -- documentation (EN + RU)
+- BENCHMARK-ANALYSIS.md / BENCHMARK-ANALYSIS-ru.md -- detailed analysis (EN + RU)
+
+Key benchmark highlights:
+- fl3795 (3795 cities): 0.22% optimality gap
+- fnl4461 (4461 cities): 1.78% optimality gap
+- rl5915 (5915 cities): 1.20% optimality gap
+- Techniques: spectral decomposition, k-NN graph, Laplacian/Fiedler vector, LK-DLB, EAX crossover, V-cycle refinement
+
+### 6.2. Agda Proofs (code/agda/)
+
+- c4-comp-v5.agda -- Agda formal proofs (same as formal-proofs/)
+
+### 6.3. Python Demo (code/python/)
+
+- c4_classifier_demo.py -- C4 text classifier demo
+- examples/classify_text.py -- text classification example
+- examples/analyze_text_batch.py -- batch analysis example
+- examples/visualize_27_states.py -- visualization of 27 states
+- requirements.txt -- Python dependencies
+
+code/README.md -- code directory overview
+
+---
+
+## 7. Visualizations (visualizations/)
+
+Interactive 3D visualizations of the C4 hypercube.
+
+- hypercube-en.html -- English version (HTML/JavaScript, runs in browser)
+- hypercube-ru.html -- Russian version
+- README.md -- directory overview
+
+---
+
+## 8. Formal Proofs (formal-proofs/)
+
+Machine-checked proofs in Agda.
+
+- c4-comp-v5.agda -- Main Agda proof file (group axioms, metric properties, reachability)
+- VERIFICATION-GUIDE.md -- Guide to checking the proofs
+- README.md -- directory overview
+
+Also available at: code/agda/c4-comp-v5.agda
+
+---
+
+## 9. Start Here (start-here/)
+
+Popular introductions for general audience.
+
+- popular-intro-en.md -- English popular introduction
+- popular-intro-ru.md -- Russian popular introduction
+- README.md -- directory overview
+
+---
+
+## 10. Key Theorems
+
+11 theorems form the mathematical backbone of C4. 10 are formally verified in Agda.
+
+ #  Theorem                                              Agda-verified
+-----------------------------------------------------------------------
+ 1  Z3^3 forms a finite Abelian group under addition.    Yes
+ 2  Hamming distance is a valid metric on Z3^3.          Yes
+ 3  Triangle inequality holds for Hamming distance.      Yes
+ 4  Any state is reachable from any other in <=6 steps.  Yes
+ 5  The composition operation is associative.             Yes
+ 6  Identity element exists and is unique.                Yes
+ 7  Every element has a unique inverse.                   Yes
+ 8  The adaptive routing protocol terminates.             Yes
+ 9  Partitioning bound: heterogeneity decreases           Yes
+    monotonically under refinement.
+10  Fingerprint uniqueness within equivalence classes.    Yes
+11  Meta-connectivity: the 27-state graph is connected   No (proven
+    with specific structural properties.                  on paper)
+
+---
+
+## 11. Cross-Reference Map
+
+Source                          Target                          Relationship
+----------------------------------------------------------------------
+fractal-c4/                     formal-mathematics/             Agda encoding of C4 axioms
+algorithmic-topology/           fractal-c4/                     C4 principles applied to TSP
+guides/                         papers/                         Entry points into paper collections
+preprint/                       papers/                         Unified narrative across all papers
+code/mast/                      algorithmic-topology/           MASTm implementation of theory
+formal-proofs/                  formal-mathematics/             Machine-checked proofs
+
+---
+
+## 12. MASTm Benchmark Results
+
+MASTm (Multi-scale Adaptive Spectral TSP meta-solver). Uses instance fingerprinting (spectral gap, cluster ratio, edge density, coefficient of variation) to select and configure solver strategies.
+
+Instance    Cities   Optimality Gap   Method
+----------------------------------------------------------------------
+fl3795      3795     0.22%            Spectral decomposition + LK-DLB + EAX crossover
+fnl4461     4461     1.78%            V-cycle + boundary optimization + oracle k-NN remapping
+rl5915      5915     1.20%            Iterated local search + double bridge perturbation
+
+Key techniques: spectral decomposition, k-NN graph, Laplacian/Fiedler vector, modularity analysis, attention budget allocation, trajectory fingerprinting.
+
+12 TSPLIB benchmark instances included: berlin52, eil51, kroA100, ch150, pcb442, att532, fl1400, fl3795, fnl4461, rl5915, pla7397, d15112.
+
+---
+
+## 13. Full File Inventory
+
+Total files (excluding .git, .DS_Store, work/): 119
+
+papers/ (31 files):
+  fractal-c4/: 13 (6 RU + 6 EN + README)
+  formal-mathematics/: 13 (6 RU + 6 EN + README)
+  algorithmic-topology/: 6 (5 EN + README)
+  + README.md, SUMMARY-FOR-AI.md (directory-level)
+
+preprint/ (13 files):
+  en/: 7 files
+  ru/: 5 files
+  + README.md
+
+guides/ (16 files):
+  7 EN + 7 RU + README + SUMMARY-FOR-AI
+
+applications/ (5 files):
+  functor-agents/: 4 (2 RU + 2 EN)
+  + README.md
+
+code/ (approx. 50 files):
+  mast/src/: 8 Python source files
+  mast/benchmarks/: 12 TSPLIB .tsp files
+  mast/results/: 30 JSON result files
+  mast/scripts/: 2 Python scripts
+  mast/: 5 (README, README-ru, BENCHMARK-ANALYSIS, BENCHMARK-ANALYSIS-ru, requirements.txt)
+  agda/: 1 file
+  python/: 5 files (demo + 3 examples + requirements.txt)
+  + README.md
+
+formal-proofs/: 3 files
+visualizations/: 3 files
+start-here/: 3 files
+root: 8 files (README.md, llms.txt, llms-full.txt, TOPICS.md, CITATION.cff, LICENSE, LICENSE-AGPL.md, LICENSE-APACHE-NC.md, LICENSE-COMMERCIAL.md, .gitignore)
+.well-known/: 1 file (ai-plugin.json)
+
+---
+
+## 14. Full Keyword Index
+
+cognitive-science, cognitive-coordinates, cognitive-states, cognitive-space,
+formal-verification, agda, proof-assistant, dependent-types, type-theory,
+group-theory, Z3-cubed, finite-group, abelian-group,
+metric-space, hamming-distance, triangle-inequality,
+category-theory, functors, monoidal-category, composition,
+text-classification, multi-label-classification, structured-prediction,
+DeBERTa, transformer, attention-heads, adapter-modules, fine-tuning,
+27-states, three-axes, time-scale-agency,
+intelligence-as-adaptive-routing, structure-predicts-strategy,
+adaptive-routing-theorem, universal-fingerprint-protocol,
+Martin-Lof-type-theory, without-K, agda-stdlib,
+multiplicative-intuitionistic-linear-logic, MILL, par-connective,
+resource-semantics, temporal-logic,
+fractal-recursion, self-similarity, hierarchical-decomposition,
+partitioning-bound, heterogeneity-bound, refinement-monotonicity,
+Lipschitz-continuity, topological-fingerprint,
+psychology, cognitive-behavioral-therapy, CBT, cognitive-distortions,
+therapy-trajectories, mental-health, stress-regulation,
+linguistics, discourse-analysis, pragmatics, tense-aspect, perspective,
+metalanguage, cognitive-linguistics,
+neuro-linguistic-programming, NLP-metaprograms, neurological-levels,
+AI-agents, multi-agent-systems, functor-agents, cognitive-architecture,
+knowledge-graphs, knowledge-modeling, systems-thinking,
+TSP, traveling-salesman-problem, combinatorial-optimization, meta-solver,
+instance-fingerprint, strategy-router, adaptive-routing, spectral-decomposition,
+k-NN-graph, Laplacian, Fiedler-vector, modularity, coefficient-of-variation,
+Lin-Kernighan, LK-DLB, EAX-crossover, iterated-local-search, double-bridge,
+V-cycle, boundary-optimization, oracle-k-NN-remapping,
+attention-budget, trajectory-fingerprinting,
+spectral-gap, cluster-ratio, edge-density,
+cross-domain-evidence, multiplexed-subspace-routing,
+Python, Agda, DeBERTa-v3-base, FastAPI, Docker, HTML, JavaScript,
+Numba, NumPy, SciPy, tsplib95,
+epistemology, phenomenology,
+bilingual, english, russian, translation
+
+---
+
+## 15. Connections to Established Fields
+
+- Cognitive Behavioral Therapy (CBT): cognitive distortions mapped as C4 state patterns
+- Neuro-Linguistic Programming (NLP): metaprograms, neurological levels as C4 coordinates and transformations
+- Systems Thinking: archetypes, leverage points in C4 framework
+- Category Theory: heuristic categorical framing (functors, monoidal structure); explicitly motivational, not rigorous
+- Linear Logic (MILL): resource-sensitive reasoning about cognitive state management
+- Type Theory: dependent types encoding cognitive constraints in Agda
+- Group Theory: Z3^3 structure with proven group axioms
+- Metric Spaces: Hamming distance with proven triangle inequality
+- Phenomenology: structure of subjective experience through (T, D, A) coordinates
+- Epistemology: classification of knowledge types by cognitive position
+- Combinatorial Optimization: MASTm meta-solver for TSP; fingerprint-based adaptive routing
+- Neuroscience: multiplexed subspace routing in neural populations
+- Biological Evolution: adaptive immune system as fingerprint-route-adapt instance
+- Economics/Game Theory: market microstructure as adaptive strategy selection
+
+---
+
+## 16. C4 <-> MASTm Connection
+
+- Fingerprint <-> Coordinates: cv_nn_dist maps to heterogeneity, spectral_gap to decomposability, modularity to clustering; (T,D,A) maps to time/scale/agency -- same abstract protocol
+- Router <-> Orchestrator: strategy selection based on structural analysis of input
+- Attention Budget <-> Time Budget: resource allocation adapted by fingerprint
+- Cognitive Trajectory <-> Optimization Trajectory: state sequences with attractors and perturbations
+- Reframing <-> Double Bridge: escape from local optima via structural perturbation
+- Universal Principle: both C4 and MASTm instantiate fingerprint(input) -> route(strategy) -> adapt(execute)
+
+---
+
+## 17. Live Demo & Pretrained Models
+
+- **Interactive Demo:** https://c4cognitive.com
+  Real-time C4 classification and cognitive state visualization. Try the framework in your browser: input any text, get (T, D, A) coordinates with confidence scores, explore the 27-state space interactively.
+
+- **Pretrained Adapters (HuggingFace Hub):** https://huggingface.co/HangJang/c4-cognitive-adapters
+  12 LoRA adapters for mDeBERTa-v3-base with 65 classification heads across cognitive, epistemic, logical, structural, and psychological dimensions. Available in PyTorch (.pt) and ONNX formats.
+
+  Adapters: core (T/D/A), affect, epistemic, logical, paradigmatic, generative, integration, structural, cognitive_filters, transform_objects, transform_modes, psycho.
+
+---
+
+Copyright 2024-2026 Ilya Selyutin, Nikolai Kovalev and contributors.
+Citation: see CITATION.cff or https://github.com/cognitive-functors/adaptive-topology

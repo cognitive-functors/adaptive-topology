@@ -1,0 +1,72 @@
+[
+  {
+    "name": "eil51",
+    "n": 51,
+    "v3_gap": 0.0,
+    "fallback": false,
+    "time": 15.57
+  },
+  {
+    "name": "eil76",
+    "n": 76,
+    "v3_gap": 0.0,
+    "fallback": false,
+    "time": 20.1
+  },
+  {
+    "name": "st70",
+    "n": 70,
+    "v3_gap": 0.74,
+    "fallback": false,
+    "time": 27.56
+  },
+  {
+    "name": "a280",
+    "n": 280,
+    "v3_gap": 5.74,
+    "fallback": false,
+    "time": 39.36
+  },
+  {
+    "name": "tsp225",
+    "n": 225,
+    "v3_gap": 12.1,
+    "fallback": true,
+    "time": 22.75
+  },
+  {
+    "name": "ch150",
+    "n": 150,
+    "v3_gap": 1.85,
+    "fallback": false,
+    "time": 25.33
+  },
+  {
+    "name": "berlin52",
+    "n": 52,
+    "v3_gap": 0.0,
+    "fallback": false,
+    "time": 26.08
+  },
+  {
+    "name": "kroA100",
+    "n": 100,
+    "v3_gap": 4.9,
+    "fallback": true,
+    "time": 23.39
+  },
+  {
+    "name": "att532",
+    "n": 532,
+    "v3_gap": 10.99,
+    "fallback": true,
+    "time": 62.89
+  },
+  {
+    "name": "pcb442",
+    "n": 442,
+    "v3_gap": 9.22,
+    "fallback": true,
+    "time": 46.54
+  }
+]

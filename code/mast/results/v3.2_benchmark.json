@@ -1,0 +1,186 @@
+[
+  {
+    "name": "eil51",
+    "n": 51,
+    "optimal": 426,
+    "v3_length": 427.0,
+    "v3_gap": 0.23,
+    "time": 12.9,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "berlin52",
+    "n": 52,
+    "optimal": 7542,
+    "v3_length": 7542.0,
+    "v3_gap": 0.0,
+    "time": 31.9,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils"
+    ]
+  },
+  {
+    "name": "st70",
+    "n": 70,
+    "optimal": 675,
+    "v3_length": 681.0,
+    "v3_gap": 0.89,
+    "time": 34.8,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils"
+    ]
+  },
+  {
+    "name": "eil76",
+    "n": 76,
+    "optimal": 538,
+    "v3_length": 538.0,
+    "v3_gap": 0.0,
+    "time": 32.3,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils"
+    ]
+  },
+  {
+    "name": "kroA100",
+    "n": 100,
+    "optimal": 21282,
+    "v3_length": 21373.0,
+    "v3_gap": 0.43,
+    "time": 10.4,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "ch150",
+    "n": 150,
+    "optimal": 6528,
+    "v3_length": 6589.0,
+    "v3_gap": 0.93,
+    "time": 8.1,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "tsp225",
+    "n": 225,
+    "optimal": 3916,
+    "v3_length": 3993.0,
+    "v3_gap": 1.97,
+    "time": 13.7,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "a280",
+    "n": 280,
+    "optimal": 2579,
+    "v3_length": 2630.0,
+    "v3_gap": 1.98,
+    "time": 15.3,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "pcb442",
+    "n": 442,
+    "optimal": 50778,
+    "v3_length": 52033.0,
+    "v3_gap": 2.47,
+    "time": 21.2,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "att532",
+    "n": 532,
+    "optimal": 27686,
+    "v3_length": 28610.0,
+    "v3_gap": 3.34,
+    "time": 24.4,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  },
+  {
+    "name": "rat783",
+    "n": 783,
+    "optimal": 8806,
+    "v3_length": 9141.0,
+    "v3_gap": 3.8,
+    "time": 54.3,
+    "fallback": false,
+    "phases": [
+      "spectral_analysis",
+      "construction",
+      "local_search",
+      "eax",
+      "mcts_ils",
+      "final_polish"
+    ]
+  }
+]

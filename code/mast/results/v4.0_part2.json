@@ -1,0 +1,79 @@
+[
+  {
+    "name": "tsp225",
+    "n": 225,
+    "optimal": 3916,
+    "v4_length": 3864.0913634399003,
+    "v4_gap": -1.33,
+    "time": 46.5,
+    "fallback": true,
+    "swarm_gen": 7633,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "a280",
+    "n": 280,
+    "optimal": 2579,
+    "v4_length": 2594.0470842912055,
+    "v4_gap": 0.58,
+    "time": 46.6,
+    "fallback": true,
+    "swarm_gen": 7429,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "pcb442",
+    "n": 442,
+    "optimal": 50778,
+    "v4_length": 51686.42132935308,
+    "v4_gap": 1.79,
+    "time": 46.7,
+    "fallback": false,
+    "swarm_gen": 4885,
+    "mcts_improvements": 5
+  },
+  {
+    "name": "att532",
+    "n": 532,
+    "optimal": 27686,
+    "v4_length": 28310.0,
+    "v4_gap": 2.25,
+    "time": 75.8,
+    "fallback": false,
+    "swarm_gen": 6051,
+    "mcts_improvements": 8
+  },
+  {
+    "name": "rat783",
+    "n": 783,
+    "optimal": 8806,
+    "v4_length": 9084.719912191082,
+    "v4_gap": 3.17,
+    "time": 76.0,
+    "fallback": true,
+    "swarm_gen": 3954,
+    "mcts_improvements": 5
+  },
+  {
+    "name": "pr1002",
+    "n": 1002,
+    "optimal": 259045,
+    "v4_length": 264100.22708805214,
+    "v4_gap": 1.95,
+    "time": 133.3,
+    "fallback": false,
+    "swarm_gen": 6475,
+    "mcts_improvements": 9
+  },
+  {
+    "name": "fl1577",
+    "n": 1577,
+    "optimal": 22249,
+    "v4_length": 23256.860627616872,
+    "v4_gap": 4.53,
+    "time": 139.1,
+    "fallback": false,
+    "swarm_gen": 2501,
+    "mcts_improvements": 7
+  }
+]

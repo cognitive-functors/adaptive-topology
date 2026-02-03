@@ -1,0 +1,66 @@
+# Triple License
+
+Copyright 2024-2026 Ilya Selyutin, Nikolai Kovalev and contributors
+
+This work is available under three licenses. Choose the one that fits your use case.
+
+---
+
+## 1. Apache-2.0-NC (Non-Commercial)
+
+**Free** for research, education, and personal use.
+
+- Academic and scientific research
+- Personal projects (non-revenue)
+- Educational purposes
+- Evaluation and prototyping
+
+See [LICENSE-APACHE-NC.md](./LICENSE-APACHE-NC.md)
+
+---
+
+## 2. AGPL-3.0 (Open-Source Copyleft)
+
+**Free** for open-source projects with copyleft obligation.
+
+- Commercial use allowed if your project is fully open-source under AGPL-3.0
+- Network use triggers source disclosure (if you run a modified version as a service, you must release source)
+- All derivative works must remain AGPL-3.0
+
+See [LICENSE-AGPL.md](./LICENSE-AGPL.md)
+
+---
+
+## 3. Commercial License (Proprietary)
+
+**Paid** license for proprietary / closed-source / commercial use.
+
+- Closed-source integration
+- SaaS / API offerings
+- No copyleft obligations
+- Priority support available
+
+See [LICENSE-COMMERCIAL.md](./LICENSE-COMMERCIAL.md)
+
+Contact: psy.seliger@yandex.ru / comonoid@yandex.ru
+
+---
+
+## Quick Selection Guide
+
+| Your Use Case | License | Cost |
+|---------------|---------|------|
+| Research / Education / Personal | Apache-2.0-NC | Free |
+| Open-source project (copyleft OK) | AGPL-3.0 | Free |
+| Proprietary / Commercial / SaaS | Commercial | Paid |
+
+---
+
+## Brand and Trademark
+
+The C4 Framework, Cognitive Navigator, and associated trademarks are protected separately from the source code license. Use of the name, logo, or identity requires explicit permission regardless of which license applies to the code.
+
+---
+
+_Effective Date: 2026-02-02_
+_Version: 2.0.0_

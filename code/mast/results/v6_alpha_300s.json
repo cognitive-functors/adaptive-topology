@@ -1,0 +1,149 @@
+{
+  "fl3795": {
+    "n": 3795,
+    "optimal": 28772,
+    "length": 29219.348848633774,
+    "gap": 1.55,
+    "time": 300.0,
+    "phases": {
+      "oracle": {
+        "time": 0.29,
+        "knn_k": 20,
+        "memory_mb": 20.96,
+        "cv_nn_dist": 1.62,
+        "adaptive_leaf_size": 1265
+      },
+      "warmup": {
+        "time": 0.02
+      },
+      "decomposition": {
+        "time": 0.32,
+        "n_leaves": 4,
+        "max_depth": 2,
+        "leaf_min": 948,
+        "leaf_max": 949,
+        "leaf_mean": 948.75
+      },
+      "leaf_optimization": {
+        "time": 74.91,
+        "n_leaves": 4,
+        "sum_length": 38855.76
+      },
+      "stitching": {
+        "time": 0.01,
+        "length": 41773.12
+      },
+      "v_cycle": {
+        "time": 0.06,
+        "length": 36737.39,
+        "n_cycles": 3,
+        "segment_size": 1000,
+        "improvement": 5035.74
+      },
+      "global_polish": {
+        "time": 224.38,
+        "length": 29219.35,
+        "knn_k": 30,
+        "knn_rebuild_time": 0.19
+      }
+    }
+  },
+  "fnl4461": {
+    "n": 4461,
+    "optimal": 182566,
+    "length": 187093.0110808874,
+    "gap": 2.48,
+    "time": 300.0,
+    "phases": {
+      "oracle": {
+        "time": 0.33,
+        "knn_k": 20,
+        "memory_mb": 21.12,
+        "cv_nn_dist": 0.32,
+        "adaptive_leaf_size": 1487
+      },
+      "warmup": {
+        "time": 0.0
+      },
+      "decomposition": {
+        "time": 0.38,
+        "n_leaves": 4,
+        "max_depth": 2,
+        "leaf_min": 1115,
+        "leaf_max": 1116,
+        "leaf_mean": 1115.25
+      },
+      "leaf_optimization": {
+        "time": 74.9,
+        "n_leaves": 4,
+        "sum_length": 189043.07
+      },
+      "stitching": {
+        "time": 0.02,
+        "length": 196165.17
+      },
+      "v_cycle": {
+        "time": 0.09,
+        "length": 190130.3,
+        "n_cycles": 3,
+        "segment_size": 1000,
+        "improvement": 6034.87
+      },
+      "global_polish": {
+        "time": 224.29,
+        "length": 187093.01,
+        "knn_k": 30,
+        "knn_rebuild_time": 0.3
+      }
+    }
+  },
+  "rl5915": {
+    "n": 5915,
+    "optimal": 565530,
+    "length": 573615.0337493556,
+    "gap": 1.43,
+    "time": 300.0,
+    "phases": {
+      "oracle": {
+        "time": 0.37,
+        "knn_k": 20,
+        "memory_mb": 21.49,
+        "cv_nn_dist": 0.64,
+        "adaptive_leaf_size": 1500
+      },
+      "warmup": {
+        "time": 0.0
+      },
+      "decomposition": {
+        "time": 0.51,
+        "n_leaves": 4,
+        "max_depth": 2,
+        "leaf_min": 1478,
+        "leaf_max": 1479,
+        "leaf_mean": 1478.75
+      },
+      "leaf_optimization": {
+        "time": 74.88,
+        "n_leaves": 4,
+        "sum_length": 586893.42
+      },
+      "stitching": {
+        "time": 0.02,
+        "length": 607197.03
+      },
+      "v_cycle": {
+        "time": 0.11,
+        "length": 601760.75,
+        "n_cycles": 3,
+        "segment_size": 1000,
+        "improvement": 5436.28
+      },
+      "global_polish": {
+        "time": 224.11,
+        "length": 573615.03,
+        "knn_k": 30,
+        "knn_rebuild_time": 0.36
+      }
+    }
+  }
+}

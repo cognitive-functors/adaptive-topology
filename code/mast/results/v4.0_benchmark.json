@@ -1,0 +1,145 @@
+[
+  {
+    "name": "eil51",
+    "n": 51,
+    "optimal": 426,
+    "v4_length": 428.9816471722068,
+    "v4_gap": 0.7,
+    "time": 23.1,
+    "fallback": false,
+    "swarm_gen": 14386,
+    "mcts_improvements": 2
+  },
+  {
+    "name": "berlin52",
+    "n": 52,
+    "optimal": 7542,
+    "v4_length": 7544.365901904089,
+    "v4_gap": 0.03,
+    "time": 23.1,
+    "fallback": false,
+    "swarm_gen": 12520,
+    "mcts_improvements": 0
+  },
+  {
+    "name": "st70",
+    "n": 70,
+    "optimal": 675,
+    "v4_length": 677.1096092748468,
+    "v4_gap": 0.31,
+    "time": 23.1,
+    "fallback": false,
+    "swarm_gen": 9554,
+    "mcts_improvements": 0
+  },
+  {
+    "name": "eil76",
+    "n": 76,
+    "optimal": 538,
+    "v4_length": 547.5482872524974,
+    "v4_gap": 1.77,
+    "time": 23.1,
+    "fallback": false,
+    "swarm_gen": 11442,
+    "mcts_improvements": 4
+  },
+  {
+    "name": "kroA100",
+    "n": 100,
+    "optimal": 21282,
+    "v4_length": 21285.443181571078,
+    "v4_gap": 0.02,
+    "time": 23.3,
+    "fallback": true,
+    "swarm_gen": 5099,
+    "mcts_improvements": 1
+  },
+  {
+    "name": "ch150",
+    "n": 150,
+    "optimal": 6528,
+    "v4_length": 6533.8121143506005,
+    "v4_gap": 0.09,
+    "time": 23.3,
+    "fallback": true,
+    "swarm_gen": 5684,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "tsp225",
+    "n": 225,
+    "optimal": 3916,
+    "v4_length": 3864.0913634399003,
+    "v4_gap": -1.33,
+    "time": 46.5,
+    "fallback": true,
+    "swarm_gen": 7633,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "a280",
+    "n": 280,
+    "optimal": 2579,
+    "v4_length": 2594.0470842912055,
+    "v4_gap": 0.58,
+    "time": 46.6,
+    "fallback": true,
+    "swarm_gen": 7429,
+    "mcts_improvements": 3
+  },
+  {
+    "name": "pcb442",
+    "n": 442,
+    "optimal": 50778,
+    "v4_length": 51686.42132935308,
+    "v4_gap": 1.79,
+    "time": 46.7,
+    "fallback": false,
+    "swarm_gen": 4885,
+    "mcts_improvements": 5
+  },
+  {
+    "name": "att532",
+    "n": 532,
+    "optimal": 27686,
+    "v4_length": 28310.0,
+    "v4_gap": 2.25,
+    "time": 75.8,
+    "fallback": false,
+    "swarm_gen": 6051,
+    "mcts_improvements": 8
+  },
+  {
+    "name": "rat783",
+    "n": 783,
+    "optimal": 8806,
+    "v4_length": 9084.719912191082,
+    "v4_gap": 3.17,
+    "time": 76.0,
+    "fallback": true,
+    "swarm_gen": 3954,
+    "mcts_improvements": 5
+  },
+  {
+    "name": "pr1002",
+    "n": 1002,
+    "optimal": 259045,
+    "v4_length": 264100.22708805214,
+    "v4_gap": 1.95,
+    "time": 133.3,
+    "fallback": false,
+    "swarm_gen": 6475,
+    "mcts_improvements": 9
+  },
+  {
+    "name": "fl1577",
+    "n": 1577,
+    "optimal": 22249,
+    "v4_length": 23256.860627616872,
+    "v4_gap": 4.53,
+    "time": 139.1,
+    "fallback": false,
+    "swarm_gen": 2501,
+    "mcts_improvements": 7
+  }
+]

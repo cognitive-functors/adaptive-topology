@@ -1,0 +1,58 @@
+{
+  "fnl4461": {
+    "n": 4461,
+    "optimal": 182566,
+    "budget": 120,
+    "runs": [
+      2.426,
+      1.923
+    ],
+    "mean": 2.175,
+    "min": 1.923,
+    "std": 0.252,
+    "times": [
+      120.0,
+      120.0
+    ],
+    "phase_info": [
+      {
+        "stitch_ratio": 0.03262536570449251,
+        "vcycle_time": 0.13180991599801928,
+        "vcycle_improvement": 5667.728102245193
+      },
+      {
+        "stitch_ratio": 0.02874199825196731,
+        "vcycle_time": 0.11633229099970777,
+        "vcycle_improvement": 5374.688188971108
+      }
+    ]
+  },
+  "rl5915": {
+    "n": 5915,
+    "optimal": 565530,
+    "budget": 120,
+    "runs": [
+      2.143,
+      2.258
+    ],
+    "mean": 2.2,
+    "min": 2.143,
+    "std": 0.058,
+    "times": [
+      92.9,
+      92.9
+    ],
+    "phase_info": [
+      {
+        "stitch_ratio": 0.041301826184567854,
+        "vcycle_time": 0.13663779199123383,
+        "vcycle_improvement": 16819.450875947718
+      },
+      {
+        "stitch_ratio": 0.043561814130421116,
+        "vcycle_time": 0.16549674999259878,
+        "vcycle_improvement": 17099.61476736667
+      }
+    ]
+  }
+}

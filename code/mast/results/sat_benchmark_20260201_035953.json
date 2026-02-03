@@ -1,0 +1,29 @@
+[
+  {
+    "series": "uf20",
+    "count": 100,
+    "expected": "SAT",
+    "correct": 100,
+    "accuracy": 100.0,
+    "avg_time": 0.0011367720901034773,
+    "total_flips": 1082
+  },
+  {
+    "series": "uf100",
+    "count": 50,
+    "expected": "SAT",
+    "correct": 44,
+    "accuracy": 88.0,
+    "avg_time": 93.18609237163909,
+    "total_flips": 7612259
+  },
+  {
+    "series": "uuf100",
+    "count": 20,
+    "expected": "UNSAT",
+    "correct": 20,
+    "accuracy": 100.0,
+    "avg_time": 223.73277916449297,
+    "total_flips": 10000000
+  }
+]

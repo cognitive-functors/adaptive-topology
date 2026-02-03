@@ -1,0 +1,98 @@
+{
+  "fl3795": {
+    "n": 3795,
+    "optimal": 28772,
+    "length": 29287.9281852747,
+    "gap": 1.79,
+    "v50_gap": 1.1,
+    "delta": -0.69,
+    "time": 300.0,
+    "phases": {
+      "oracle": {
+        "time": 0.01
+      },
+      "warmup": {
+        "time": 0.15
+      },
+      "decomposition": {
+        "time": 1.38
+      },
+      "leaf_optimization": {
+        "time": 45.05
+      },
+      "stitching": {
+        "time": 0.06
+      },
+      "v_cycle": {
+        "time": 0.12
+      },
+      "global_polish": {
+        "time": 253.22
+      }
+    }
+  },
+  "fnl4461": {
+    "n": 4461,
+    "optimal": 182566,
+    "length": 186167.15294134317,
+    "gap": 1.97,
+    "v50_gap": 3.28,
+    "delta": 1.31,
+    "time": 300.0,
+    "phases": {
+      "oracle": {
+        "time": 0.02
+      },
+      "warmup": {
+        "time": 0.0
+      },
+      "decomposition": {
+        "time": 1.55
+      },
+      "leaf_optimization": {
+        "time": 44.93
+      },
+      "stitching": {
+        "time": 0.04
+      },
+      "v_cycle": {
+        "time": 0.1
+      },
+      "global_polish": {
+        "time": 253.36
+      }
+    }
+  },
+  "rl5915": {
+    "n": 5915,
+    "optimal": 565530,
+    "length": 574296.9961463928,
+    "gap": 1.55,
+    "v50_gap": 2.06,
+    "delta": 0.51,
+    "time": 300.0,
+    "phases": {
+      "oracle": {
+        "time": 0.03
+      },
+      "warmup": {
+        "time": 0.0
+      },
+      "decomposition": {
+        "time": 2.0
+      },
+      "leaf_optimization": {
+        "time": 44.89
+      },
+      "stitching": {
+        "time": 0.06
+      },
+      "v_cycle": {
+        "time": 0.14
+      },
+      "global_polish": {
+        "time": 252.87
+      }
+    }
+  }
+}

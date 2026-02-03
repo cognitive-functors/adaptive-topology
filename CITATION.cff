@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "If you use this research, please cite it as below."
+title: "Adaptive Routing Theory: From Cognitive Coordinates to Combinatorial Optimization"
+abstract: >-
+ A unified theory with 17 research papers (12 bilingual EN+RU, 5 EN-only) proving that adaptive
+ strategy selection (routing problems through fingerprint-matched solvers) always
+ outperforms fixed approaches. Demonstrated formally via Z3-cubed cognitive
+ coordinate system (27 states, 10 Agda theorems) and empirically via MASTm TSP
+ solver (0.03-2.65% gap on TSPLIB). Central thesis: Intelligence = adaptive routing.
+type: dataset
+authors:
+ - given-names: Ilya
+   family-names: Selyutin
+ - given-names: Nikolai
+   family-names: Kovalev
+repository-code: "https://github.com/cognitive-functors/adaptive-topology"
+url: "https://c4cognitive.com"
+identifiers:
+ - type: url
+   value: "https://huggingface.co/HangJang/c4-cognitive-adapters"
+   description: "Pretrained C4 cognitive adapters on HuggingFace Hub"
+license: "Apache-2.0-NC AND AGPL-3.0-only"
+version: "5.0"
+date-released: "2026-02-03"
+keywords:
+ - cognitive-coordinates
+ - Z3-cubed
+ - adaptive-routing
+ - MASTm
+ - TSP
+ - Agda
+ - formal-verification
+ - domain-analysis
+ - cognitive-science
+ - group-theory
+ - category-theory
+ - text-classification
+ - NLP
+ - metaprograms
+ - TRIZ
+ - combinatorial-optimization
+ - instance-fingerprint
+ - meta-solver
+ - intelligence
+preferred-citation:
+ type: article
+ authors:
+ - given-names: Ilya
+   family-names: Selyutin
+ - given-names: Nikolai
+   family-names: Kovalev
+ title: >-
+  Adaptive Routing Theory: From Cognitive Coordinates to Combinatorial
+  Optimization -- A Universal Framework for Intelligent Strategy Selection
+ year: 2026
