@@ -1,4 +1,4 @@
-# C4: Cognitive Coordinate System
+# C4: Complete Cognitive Coordinate System
 
 > Adaptive Routing Theory: From Cognitive Coordinates to Combinatorial Optimization
 
