@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this research, please cite it as below."
-title: "Adaptive Routing Theory: From Cognitive Coordinates to Combinatorial Optimization"
+title: "Adaptive Routing Theory: From Complete Cognitive Coordinates to Combinatorial Optimization"
 abstract: >-
  A unified theory with 17 research papers (12 bilingual EN+RU, 5 EN-only) proving that adaptive
  strategy selection (routing problems through fingerprint-matched solvers) always
@@ -50,6 +50,6 @@ preferred-citation:
  - given-names: Nikolai
    family-names: Kovalev
  title: >-
-  Adaptive Routing Theory: From Cognitive Coordinates to Combinatorial
+  Adaptive Routing Theory: From Complete Cognitive Coordinates to Combinatorial
   Optimization -- A Universal Framework for Intelligent Strategy Selection
  year: 2026
