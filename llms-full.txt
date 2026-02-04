@@ -4,6 +4,8 @@
 
 A formal framework modeling cognition as navigation through a 27-element state space Z3^3, structured by three orthogonal axes: Time (Past/Present/Future), Scale (Concrete/Abstract/Meta), and Agency (Self/Other/System). The framework includes 11 core theorems (10 verified in Agda) and a cross-domain application to combinatorial optimization via the MASTm (Multi-scale Adaptive Spectral TSP meta-solver).
 
+The name "C4" encodes four layers: CCCS abbreviation (Complete Cognitive Coordinate System → 4 C/S letters), combinatorial explosion "detonation" (C4 explosive → solving combinatorial explosion), completeness claim validated by the Koan of Awakening (phenomenological proof), and the hidden 4th continuous dimension. Full explanation: WHY-C4.md
+
 Authors: Ilya Selyutin (psy.seliger@yandex.ru), Nikolai Kovalev (comonoid@yandex.ru)
 License: Apache-2.0-NC / AGPL-3.0 / Commercial
 Repository: https://github.com/cognitive-functors/adaptive-topology
@@ -164,9 +166,14 @@ Key benchmark highlights:
 
 - c4-comp-v5.agda -- Agda formal proofs (same as formal-proofs/)
 
-### 6.3. Python Demo (code/python/)
+### 6.3. Python Demo & ID-3 Experiment (code/python/)
 
 - c4_classifier_demo.py -- C4 text classifier demo
+- test_intrinsic_dimension.py -- ID estimation methods (TwoNN, MLE, correlation, PCA)
+- run_id3_full_experiment.py -- 10-phase ID-3 validation experiment
+- id3_deep_analysis.py -- Extended analysis (per-axis slice, stability, Time diagnosis)
+- visualize_id3_results.py -- Publication-quality figures
+- id3_results/ -- Experimental results (JSON + PNG figures)
 - examples/classify_text.py -- text classification example
 - examples/analyze_text_batch.py -- batch analysis example
 - examples/visualize_27_states.py -- visualization of 27 states
@@ -259,6 +266,43 @@ Key techniques: spectral decomposition, k-NN graph, Laplacian/Fiedler vector, mo
 
 ---
 
+## 12.5. Hypothesis ID-3: Empirical Validation (NEW)
+
+The intrinsic dimensionality of C4-supervised cognitive text embeddings has been experimentally confirmed to be ≈ 3.0, consistent with the Z3^3 prediction.
+
+**10-phase experiment** (code/python/run_id3_full_experiment.py):
+- Phase 0: Baseline (N=135, 27 states × 5 texts)
+- Phase 1: Multi-model robustness (3 sentence-transformer models)
+- Phase 2: Controlled minimal-pair templates
+- Phase 3: Large-scale c4factory data (N=2000)
+- Phases 5: Cross-linguistic (EN vs RU)
+- Phase 6: Time axis diagnosis (Ridge vs MLP probes)
+- Phase 7: Scaling analysis (ID convergence as N→∞)
+- Phase 8: Z₃³ topology (27-class confusion vs Hamming distance)
+- Phase 9: Non-linear subspace (MLP probe)
+- Phase 10: Multi-LLM annotation preparation
+
+**Key results:**
+
+Condition           N      Subspace ID   95% CI          Perm p
+----------------------------------------------------------------------
+MiniLM-384d         135    2.61          —               <0.001
+MPNet-768d          135    2.43          —               <0.001
+Multilingual        135    2.93          —               <0.001
+Controlled          135    2.08          —               <0.001
+c4factory           1998   2.91          —               <0.001
+English             1620   3.14          —               <0.001
+Russian             1998   3.02          —               <0.001
+N=5000 convergence  4995   3.07          [2.91, 3.15]    <0.001
+
+**Axis hierarchy:** Scale (R²=0.639) >> Agency (R²=0.176) >> Time (R²<0).
+**Topology:** Hamming distance in Z₃³ predicts confusion (r = -0.489).
+**Stability:** subspace ID = 2.954 ± 0.069 across 5 random seeds.
+
+Full paper: papers/ID3-INTRINSIC-DIMENSIONALITY-en.md
+
+---
+
 ## 13. Full File Inventory
 
 Total files (excluding .git, .DS_Store, work/): 119
@@ -294,7 +338,7 @@ code/ (approx. 50 files):
 formal-proofs/: 3 files
 visualizations/: 3 files
 start-here/: 3 files
-root: 8 files (README.md, llms.txt, llms-full.txt, TOPICS.md, CITATION.cff, LICENSE, LICENSE-AGPL.md, LICENSE-APACHE-NC.md, LICENSE-COMMERCIAL.md, .gitignore)
+root: 9 files (README.md, WHY-C4.md, llms.txt, llms-full.txt, TOPICS.md, CITATION.cff, LICENSE, LICENSE-AGPL.md, LICENSE-APACHE-NC.md, LICENSE-COMMERCIAL.md, .gitignore)
 .well-known/: 1 file (ai-plugin.json)
 
 ---
@@ -335,7 +379,10 @@ cross-domain-evidence, multiplexed-subspace-routing,
 Python, Agda, DeBERTa-v3-base, FastAPI, Docker, HTML, JavaScript,
 Numba, NumPy, SciPy, tsplib95,
 epistemology, phenomenology,
-bilingual, english, russian, translation
+bilingual, english, russian, translation,
+intrinsic-dimensionality, TwoNN, MLE, supervised-subspace-projection,
+hypothesis-ID3, empirical-validation, sentence-transformers,
+cross-linguistic, axis-hierarchy, Scale-Agency-Time
 
 ---
 

@@ -1,0 +1,141 @@
+{
+  "per_axis_slice_id": {
+    "Time_0": {
+      "n": 666,
+      "id_twonn": 10.63,
+      "id_mle": 9.16,
+      "subspace_2d_id": 2.09
+    },
+    "Time_1": {
+      "n": 666,
+      "id_twonn": 8.09,
+      "id_mle": 7.37,
+      "subspace_2d_id": 2.05
+    },
+    "Time_2": {
+      "n": 666,
+      "id_twonn": 9.64,
+      "id_mle": 7.42,
+      "subspace_2d_id": 1.95
+    },
+    "Scale_0": {
+      "n": 666,
+      "id_twonn": 10.41,
+      "id_mle": 6.13,
+      "subspace_2d_id": 2.04
+    },
+    "Scale_1": {
+      "n": 666,
+      "id_twonn": 6.98,
+      "id_mle": 6.13,
+      "subspace_2d_id": 2.02
+    },
+    "Scale_2": {
+      "n": 666,
+      "id_twonn": 22.45,
+      "id_mle": 12.9,
+      "subspace_2d_id": 2.1
+    },
+    "Agency_0": {
+      "n": 666,
+      "id_twonn": 9.19,
+      "id_mle": 7.3,
+      "subspace_2d_id": 2.23
+    },
+    "Agency_1": {
+      "n": 666,
+      "id_twonn": 8.83,
+      "id_mle": 7.57,
+      "subspace_2d_id": 2.21
+    },
+    "Agency_2": {
+      "n": 666,
+      "id_twonn": 10.24,
+      "id_mle": 9.45,
+      "subspace_2d_id": 1.96
+    }
+  },
+  "pairwise_axes": {
+    "Time+Scale": {
+      "r2_mean": -0.135,
+      "r2_std": 0.561,
+      "subspace_2d_id": 1.97
+    },
+    "Time+Agency": {
+      "r2_mean": -0.263,
+      "r2_std": 0.642,
+      "subspace_2d_id": 1.88
+    },
+    "Scale+Agency": {
+      "r2_mean": 0.449,
+      "r2_std": 0.157,
+      "subspace_2d_id": 2.12
+    }
+  },
+  "stability": {
+    "n_seeds": 5,
+    "sample_size": 1000,
+    "subspace_ids": [
+      2.95,
+      2.94,
+      2.84,
+      3.05,
+      2.99
+    ],
+    "subspace_mean": 2.954,
+    "subspace_std": 0.069,
+    "full_ids": [
+      10.41,
+      10.48,
+      9.5,
+      10.65,
+      10.58
+    ],
+    "full_mean": 10.325,
+    "full_std": 0.421
+  },
+  "time_deep_dive": {
+    "Time_acc_D0_A0": 0.432,
+    "Time_acc_D0_A1": 0.5,
+    "Time_acc_D0_A2": 0.486,
+    "Time_acc_D1_A0": 0.446,
+    "Time_acc_D1_A1": 0.491,
+    "Time_acc_D1_A2": 0.559,
+    "Time_acc_D2_A0": 0.604,
+    "Time_acc_D2_A1": 0.626,
+    "Time_acc_D2_A2": 0.473,
+    "Time_controlled_mean_acc": 0.513,
+    "Time_controlled_max_acc": 0.626,
+    "centroid_distances": {
+      "T0_vs_T1_mean_dist": 0.0885,
+      "T0_vs_T2_mean_dist": 0.1153,
+      "T1_vs_T2_mean_dist": 0.0791,
+      "D0_vs_D1_mean_dist": 0.4607,
+      "D0_vs_D2_mean_dist": 0.7711,
+      "D1_vs_D2_mean_dist": 0.6318
+    }
+  },
+  "effective_dim": {
+    "participation_ratio_full": 7.72,
+    "participation_ratio_subspace": 2.93,
+    "shannon_entropy_dim": 19.38,
+    "top3_var_explained": 0.3853,
+    "top10_var_explained": 0.5362
+  },
+  "model_comparison": {
+    "MiniLM-384d": {
+      "subspace_id": 2.91,
+      "c4_var": 0.1513,
+      "Time_r2": -0.847,
+      "Scale_r2": 0.577,
+      "Agency_r2": 0.321
+    },
+    "MPNet-768d": {
+      "subspace_id": 3.0,
+      "c4_var": 0.1347,
+      "Time_r2": -0.851,
+      "Scale_r2": 0.376,
+      "Agency_r2": 0.048
+    }
+  }
+}

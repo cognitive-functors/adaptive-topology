@@ -1,0 +1,20 @@
+{
+  "Time_ridge_r2": -0.764,
+  "Time_mlp_r2": -0.942,
+  "Time_nonlinear_gain": -0.179,
+  "Scale_ridge_r2": 0.639,
+  "Scale_mlp_r2": 0.508,
+  "Scale_nonlinear_gain": -0.131,
+  "Agency_ridge_r2": 0.176,
+  "Agency_mlp_r2": 0.176,
+  "Agency_nonlinear_gain": 0.0,
+  "Time_fisher_ratio": 0.1341,
+  "Time_within_dist": 0.7969,
+  "Time_between_dist": 0.8586,
+  "Scale_fisher_ratio": 0.5197,
+  "Scale_within_dist": 0.6349,
+  "Scale_between_dist": 0.8959,
+  "Agency_fisher_ratio": 0.1263,
+  "Agency_within_dist": 0.7973,
+  "Agency_between_dist": 0.855
+}

@@ -1,0 +1,16 @@
+{
+  "MiniLM-384d": {
+    "subspace_id": 2.91,
+    "c4_var": 0.1513,
+    "Time_r2": -0.847,
+    "Scale_r2": 0.577,
+    "Agency_r2": 0.321
+  },
+  "MPNet-768d": {
+    "subspace_id": 3.0,
+    "c4_var": 0.1347,
+    "Time_r2": -0.851,
+    "Scale_r2": 0.376,
+    "Agency_r2": 0.048
+  }
+}

@@ -1,4 +1,4 @@
-# C4: Cognitive Coordinate System
+# C4: Complete Cognitive Coordinate System
 ## The First Formally Verified Algebra of Cognitive Coordinates
 
 **Ilya Selyutin¹ · Nikolai Kovalev¹**
@@ -13,7 +13,7 @@
 
 ## ABSTRACT
 
-We present **C4** (Cognitive Coordinate System), a **formally verified algebraic framework** for modeling cognitive states and transformations. Where many cognitive theories rely on informal descriptions or statistical models, C4 offers a **rigorous algebraic structure** with **machine-checked proofs** of core properties and **testable empirical predictions**.
+We present **C4** (Complete Cognitive Coordinate System), a **formally verified algebraic framework** for modeling cognitive states and transformations. Where many cognitive theories rely on informal descriptions or statistical models, C4 offers a **rigorous algebraic structure** with **machine-checked proofs** of core properties and **testable empirical predictions**.
 
 **Key contributions:**
 

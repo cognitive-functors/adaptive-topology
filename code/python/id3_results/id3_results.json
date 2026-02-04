@@ -1,0 +1,107 @@
+{
+  "pca_80": 49,
+  "pca_90": 71,
+  "pca_95": 90,
+  "pca_top3_var": 0.1714,
+  "pca_top5_var": 0.2411,
+  "twonn": "6.86",
+  "mle_k5": "11.04",
+  "mle_k10": "9.85",
+  "mle_k20": "9.52",
+  "correlation_dim": 7.41,
+  "bootstrap": {
+    "twonn": {
+      "mean": 0.3603602349758148,
+      "ci_low": 0.2043944150209427,
+      "ci_high": 0.6659743785858154,
+      "std": 0.1197219118475914
+    },
+    "mle_k5": {
+      "mean": 10.54444694519043,
+      "ci_low": 4.9886298179626465,
+      "ci_high": 26.477855682373047,
+      "std": 9.108484268188477
+    },
+    "mle_k10": {
+      "mean": 4.739007949829102,
+      "ci_low": 3.567345142364502,
+      "ci_high": 6.378200054168701,
+      "std": 0.6926352381706238
+    },
+    "mle_k20": {
+      "mean": 4.273879051208496,
+      "ci_low": 3.3434081077575684,
+      "ci_high": 5.216375827789307,
+      "std": 0.4539225101470947
+    },
+    "correlation": {
+      "mean": 7.076930586385876,
+      "ci_low": 6.446682908439192,
+      "ci_high": 7.832700909330384,
+      "std": 0.36325463621117965
+    }
+  },
+  "ttest_h0_eq_3": {
+    "t_statistic": 1.429,
+    "p_value": 0.2263,
+    "reject_h0": false
+  },
+  "eigenvalue_gaps": {
+    "lambda1_over_lambda2": 1.288,
+    "lambda2_over_lambda3": 1.438,
+    "lambda3_over_lambda4": 1.058,
+    "lambda4_over_lambda5": 1.183,
+    "lambda5_over_lambda6": 1.158
+  },
+  "mi_matrix": {
+    "Time": {
+      "PC1": 0.026,
+      "PC2": 0.023,
+      "PC3": 0.066
+    },
+    "Scale": {
+      "PC1": 0.593,
+      "PC2": 0.041,
+      "PC3": 0.035
+    },
+    "Agency": {
+      "PC1": 0.03,
+      "PC2": 0.333,
+      "PC3": 0.149
+    }
+  },
+  "permutation_test": {
+    "real_mi": 1.2962,
+    "perm_mean_mi": 0.1401,
+    "perm_std_mi": 0.034,
+    "p_value": 0.0,
+    "significant": true
+  },
+  "per_axis": {
+    "full_id": 6.86,
+    "Time_within_id": 8.81,
+    "Time_contribution": -1.95,
+    "Scale_within_id": 6.94,
+    "Scale_contribution": -0.07,
+    "Agency_within_id": 6.9,
+    "Agency_contribution": -0.04
+  },
+  "classification": {
+    "Time_accuracy": 0.37,
+    "Scale_accuracy": 0.681,
+    "Agency_accuracy": 0.696,
+    "chance_level": 0.333,
+    "n_pca_components": 3
+  },
+  "random_baseline": {
+    "real_id": 6.86,
+    "random_mean_id": 47.34,
+    "random_std_id": 3.02,
+    "ratio": 0.145,
+    "cognitive_lower": "True"
+  },
+  "mean_estimate": 8.94,
+  "std_estimate": 1.56,
+  "three_in_bootstrap_ci": false,
+  "verdict": "inconsistent"
+}

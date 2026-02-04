@@ -18,7 +18,7 @@ We present a unified theory connecting two independently developed systems: C4, 
 
 ### 1.1 The C4 Project
 
-C4 (Cognitive Coordinates in 4 dimensions, reduced to 3 for tractability) models cognitive states as points in the discrete space Z3^3 = {0, 1, 2}^3, yielding 27 distinct states:
+C4 (Complete Cognitive Coordinate System; see [WHY-C4.md](../../WHY-C4.md) for the name's full meaning) models cognitive states as points in the discrete space Z3^3 = {0, 1, 2}^3, yielding 27 distinct states:
 
 ```
 T (Time): Past(0) / Present(1) / Future(2)

@@ -59,7 +59,7 @@ See [LICENSE-COMMERCIAL.md](./LICENSE-COMMERCIAL.md) for details.
 All permitted uses must include the following attribution in documentation
 and/or user-visible notices:
 
-> C4 Cognitive Coordinate System (Fractal-27)
+> C4 Complete Cognitive Coordinate System (Fractal-27)
 > Copyright 2024-2026 Ilya Selyutin, Nikolai Kovalev
 > Licensed under Apache-2.0-NC (Non-Commercial)
 
@@ -75,5 +75,5 @@ IN THE LICENSED WORK.
 
 ---
 
-_C4 Cognitive Coordinate System (Fractal-27)_
+_C4 Complete Cognitive Coordinate System (Fractal-27)_
 _Authors: Ilya Selyutin, Nikolai Kovalev_

@@ -1,0 +1,7 @@
+{
+  "participation_ratio_full": 7.72,
+  "participation_ratio_subspace": 2.93,
+  "shannon_entropy_dim": 19.38,
+  "top3_var_explained": 0.3853,
+  "top10_var_explained": 0.5362
+}

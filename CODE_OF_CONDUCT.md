@@ -34,5 +34,5 @@ https://www.contributor-covenant.org/version/2/1/code_of_conduct/
 
 ---
 
-_C4 Cognitive Coordinate System (Fractal-27)_
+_C4 Complete Cognitive Coordinate System (Fractal-27)_
 _Authors: Ilya Selyutin, Nikolai Kovalev_

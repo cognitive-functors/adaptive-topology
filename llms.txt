@@ -4,6 +4,8 @@
 
 A formal framework modeling cognition as navigation through a 27-element state space Z3^3, structured by three orthogonal axes: Time (Past/Present/Future), Scale (Concrete/Abstract/Meta), and Agency (Self/Other/System). The framework includes 11 core theorems (10 verified in Agda) and a cross-domain application to combinatorial optimization via the MASTm (Multi-scale Adaptive Spectral TSP meta-solver).
 
+The name "C4" encodes multiple layers: CCCS abbreviation, combinatorial explosion "detonation", completeness claim (Koan of Awakening), and the hidden 4th dimension. See WHY-C4.md for details.
+
 Most content is available in both English and Russian (bilingual repository).
 
 ## Central Thesis
@@ -33,13 +35,17 @@ Any system that fingerprints its input, routes execution to a matched strategy, 
 - Agda Verification: 10 of 11 theorems machine-checked via dependent types
 - Universal Fingerprint Protocol: domain-independent strategy selection mechanism
 - Cross-domain universality: same pattern across optimization, NLP, decision-making, cognitive science
+- **Hypothesis ID-3 (CONFIRMED)**: intrinsic dimensionality of cognitive text embeddings ≈ 3.0 (95% CI: [2.91, 3.15] at N=5000), validated across 3 models, 2 languages. Hamming distance in Z3^3 predicts confusion (r=-0.489). Axis hierarchy: Scale >> Agency >> Time
 
 ## Paper Counts
 
 - papers/fractal-c4/: 12 papers (6 RU originals + 6 EN translations)
 - papers/formal-mathematics/: 12 papers (6 RU originals + 6 EN translations)
 - papers/algorithmic-topology/: 5 papers (EN only)
-- Total unique research papers: 17 (12 bilingual EN+RU, 5 EN-only)
+- papers/ID3-INTRINSIC-DIMENSIONALITY.md + -en.md: ID-3 experiment paper (bilingual)
+- papers/FRA-CROSS-DOMAIN-TABLE.md + -en.md: FRA cross-domain table (bilingual)
+- papers/FUTURE-RESEARCH-DIRECTIONS.md + -en.md: Future directions (bilingual)
+- Total unique research papers: 19 (14 bilingual EN+RU, 5 EN-only)
 
 ## License
 

@@ -42,6 +42,7 @@
   "entry_points": {
     "overview": "llms.txt",
     "detailed": "llms-full.txt",
+    "why_c4": "WHY-C4.md",
     "papers": "papers/SUMMARY-FOR-AI.md",
     "guides": "guides/SUMMARY-FOR-AI.md",
     "code": "code/README.md",

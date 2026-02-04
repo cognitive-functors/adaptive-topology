@@ -1,0 +1,56 @@
+{
+  "Time_0": {
+    "n": 666,
+    "id_twonn": 10.63,
+    "id_mle": 9.16,
+    "subspace_2d_id": 2.09
+  },
+  "Time_1": {
+    "n": 666,
+    "id_twonn": 8.09,
+    "id_mle": 7.37,
+    "subspace_2d_id": 2.05
+  },
+  "Time_2": {
+    "n": 666,
+    "id_twonn": 9.64,
+    "id_mle": 7.42,
+    "subspace_2d_id": 1.95
+  },
+  "Scale_0": {
+    "n": 666,
+    "id_twonn": 10.41,
+    "id_mle": 6.13,
+    "subspace_2d_id": 2.04
+  },
+  "Scale_1": {
+    "n": 666,
+    "id_twonn": 6.98,
+    "id_mle": 6.13,
+    "subspace_2d_id": 2.02
+  },
+  "Scale_2": {
+    "n": 666,
+    "id_twonn": 22.45,
+    "id_mle": 12.9,
+    "subspace_2d_id": 2.1
+  },
+  "Agency_0": {
+    "n": 666,
+    "id_twonn": 9.19,
+    "id_mle": 7.3,
+    "subspace_2d_id": 2.23
+  },
+  "Agency_1": {
+    "n": 666,
+    "id_twonn": 8.83,
+    "id_mle": 7.57,
+    "subspace_2d_id": 2.21
+  },
+  "Agency_2": {
+    "n": 666,
+    "id_twonn": 10.24,
+    "id_mle": 9.45,
+    "subspace_2d_id": 1.96
+  }
+}

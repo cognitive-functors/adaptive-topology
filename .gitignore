@@ -25,6 +25,13 @@ dist/
 build/
 .eggs/
 
+# Research thinking / drafts (private)
+thinking/
+
+# Large model caches (sentence-transformers downloads)
+.cache/
+sentence-transformers/
+
 # Secrets
 *.pem
 *.p12

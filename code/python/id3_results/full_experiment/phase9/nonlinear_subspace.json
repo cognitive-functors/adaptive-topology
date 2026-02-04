@@ -1,0 +1,8 @@
+{
+  "nonlinear_3d_id_twonn": 0.97,
+  "nonlinear_3d_id_mle": 0.46,
+  "hidden_64d_id_twonn": 0.97,
+  "Time_r2_train": 0.231,
+  "Scale_r2_train": 0.428,
+  "Agency_r2_train": 0.266
+}

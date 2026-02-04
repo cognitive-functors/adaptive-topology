@@ -1,4 +1,4 @@
-# C4 FRACTAL -- Fractal Refinement of the Cognitive Coordinate System
+# C4 FRACTAL -- Fractal Refinement of the Complete Cognitive Coordinate System
 
 **A Speculative Investigation into the Mechanisms of C4 Self-Application**
 

@@ -1,0 +1,78 @@
+{
+  "phase": "Phase 1: paraphrase-multilingual-MiniLM-L12-v2",
+  "n_samples": 135,
+  "embedding_dim": 384,
+  "twonn_cosine": "6.15",
+  "twonn_euclidean": 12.31,
+  "mle_k5": "10.32",
+  "mle_k10": "8.99",
+  "mle_k20": "8.33",
+  "correlation_dim": 5.94,
+  "mean_id": 8.89,
+  "std_id": 2.27,
+  "bootstrap_mean": {
+    "mean": 9.11,
+    "ci_low": 8.25,
+    "ci_high": 10.14,
+    "std": 0.52,
+    "n_valid": 100,
+    "three_in_ci": false
+  },
+  "pca_90": 58,
+  "pca_95": 75,
+  "pca_top3_var": 0.2095,
+  "eigenvalue_gaps": {
+    "lambda1_over_lambda2": 1.418,
+    "lambda2_over_lambda3": 1.275,
+    "lambda3_over_lambda4": 1.284,
+    "lambda4_over_lambda5": 1.127,
+    "lambda5_over_lambda6": 1.121
+  },
+  "mi_matrix": {
+    "Time": {
+      "PC1": 0.038,
+      "PC2": 0.103,
+      "PC3": 0.108
+    },
+    "Scale": {
+      "PC1": 0.443,
+      "PC2": 0.072,
+      "PC3": 0.015
+    },
+    "Agency": {
+      "PC1": 0.046,
+      "PC2": 0.188,
+      "PC3": 0.076
+    }
+  },
+  "permutation_test": {
+    "real_mi": 1.0905,
+    "perm_mean_mi": 0.1348,
+    "perm_std_mi": 0.0296,
+    "p_value": 0.0,
+    "significant": true
+  },
+  "classification": {
+    "Time_accuracy": 0.511,
+    "Scale_accuracy": 0.77,
+    "Agency_accuracy": 0.615,
+    "chance_level": 0.333,
+    "n_pca_components": 3
+  },
+  "supervised_subspace": {
+    "c4_subspace_id_twonn": 2.93,
+    "c4_subspace_id_mle": 0.3,
+    "residual_id_twonn": 14.29,
+    "c4_variance_explained": 0.128,
+    "Time_r2": -0.559,
+    "Scale_r2": 0.478,
+    "Agency_r2": 0.482
+  },
+  "random_baseline": {
+    "real_id": 6.15,
+    "random_mean_id": 45.14,
+    "random_std_id": 4.53,
+    "ratio": 0.136,
+    "cognitive_lower": "True"
+  }
+}

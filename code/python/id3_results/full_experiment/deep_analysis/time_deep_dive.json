@@ -1,0 +1,21 @@
+{
+  "Time_acc_D0_A0": 0.432,
+  "Time_acc_D0_A1": 0.5,
+  "Time_acc_D0_A2": 0.486,
+  "Time_acc_D1_A0": 0.446,
+  "Time_acc_D1_A1": 0.491,
+  "Time_acc_D1_A2": 0.559,
+  "Time_acc_D2_A0": 0.604,
+  "Time_acc_D2_A1": 0.626,
+  "Time_acc_D2_A2": 0.473,
+  "Time_controlled_mean_acc": 0.513,
+  "Time_controlled_max_acc": 0.626,
+  "centroid_distances": {
+    "T0_vs_T1_mean_dist": 0.0885,
+    "T0_vs_T2_mean_dist": 0.1153,
+    "T1_vs_T2_mean_dist": 0.0791,
+    "D0_vs_D1_mean_dist": 0.4607,
+    "D0_vs_D2_mean_dist": 0.7711,
+    "D1_vs_D2_mean_dist": 0.6318
+  }
+}

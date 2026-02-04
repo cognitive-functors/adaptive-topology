@@ -1,6 +1,6 @@
 # Commercial License
 
-## C4 Cognitive Coordinate System (Fractal-27)
+## C4 Complete Cognitive Coordinate System (Fractal-27)
 
 **Copyright 2024-2026 Ilya Selyutin, Nikolai Kovalev**
 
@@ -9,7 +9,7 @@
 ## Overview
 
 This document describes the terms for obtaining a Commercial License for the
-C4 Cognitive Coordinate System (Fractal-27) and associated software, models,
+C4 Complete Cognitive Coordinate System (Fractal-27) and associated software, models,
 and documentation (collectively, the "Licensed Work").
 
 The Licensed Work is available under a triple license structure:
@@ -93,7 +93,7 @@ but does not transfer ownership of the intellectual property.
 
 ## Brand and Trademark
 
-The names "C4", "Cognitive Coordinate System", "Fractal-27", "Cognitive Navigator",
+The names "C4", "Complete Cognitive Coordinate System", "Fractal-27", "Cognitive Navigator",
 and associated logos and visual identity are trademarks of the authors. Use of these
 trademarks requires explicit written permission, regardless of the license tier.
 
@@ -107,6 +107,6 @@ COMMERCIAL LICENSE AGREEMENTS.
 
 ---
 
-_C4 Cognitive Coordinate System (Fractal-27)_
+_C4 Complete Cognitive Coordinate System (Fractal-27)_
 _Authors: Ilya Selyutin, Nikolai Kovalev_
 _Contact: comonoid@yandex.ru_

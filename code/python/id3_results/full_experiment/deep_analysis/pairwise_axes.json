@@ -1,0 +1,17 @@
+{
+  "Time+Scale": {
+    "r2_mean": -0.135,
+    "r2_std": 0.561,
+    "subspace_2d_id": 1.97
+  },
+  "Time+Agency": {
+    "r2_mean": -0.263,
+    "r2_std": 0.642,
+    "subspace_2d_id": 1.88
+  },
+  "Scale+Agency": {
+    "r2_mean": 0.449,
+    "r2_std": 0.157,
+    "subspace_2d_id": 2.12
+  }
+}

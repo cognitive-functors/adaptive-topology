@@ -1,6 +1,6 @@
 # C4 Framework — Academic Preprint
 
-**Cognitive Coordinate System: A Formally Verified Algebraic Framework for Modeling Cognition**
+**Complete Cognitive Coordinate System: A Formally Verified Algebraic Framework for Modeling Cognition**
 
 **Authors:** Ilya Selyutin, Nikolai Kovalev
 **Version:** V3 (Final)
@@ -70,6 +70,7 @@ We present C4 (Cognitive Coordinate System), a formally verified algebraic frame
 ## Related Materials
 
 **In This Repository:**
+- **Why "C4"?** `../../WHY-C4.md` — four layers of meaning behind the name
 - **Formal Proofs:** `../../formal-proofs/c4-comp-v5.agda`
 - **Implementation:** `../../code/python/`
 
@@ -84,7 +85,7 @@ We present C4 (Cognitive Coordinate System), a formally verified algebraic frame
 ### BibTeX
 ```bibtex
 @misc{c4-2025,
- title={C4: Cognitive Coordinate System — A Formally Verified Algebraic Framework for Modeling Cognition},
+ title={C4: Complete Cognitive Coordinate System — A Formally Verified Algebraic Framework for Modeling Cognition},
  author={Selyutin, Ilya and Kovalev, Nikolai},
  year={2025},
  eprint={XXXX.XXXXX},
@@ -96,7 +97,7 @@ We present C4 (Cognitive Coordinate System), a formally verified algebraic frame
 ```
 
 ### Text
-Ilya Selyutin and Nikolai Kovalev. "C4: Cognitive Coordinate System — A Formally Verified Algebraic Framework for Modeling Cognition." Preprint (2025). https://github.com/cognitive-functors/adaptive-topology.
+Ilya Selyutin and Nikolai Kovalev. "C4: Complete Cognitive Coordinate System — A Formally Verified Algebraic Framework for Modeling Cognition." Preprint (2025). https://github.com/cognitive-functors/adaptive-topology.
 
 ---
 

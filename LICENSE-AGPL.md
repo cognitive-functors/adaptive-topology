@@ -155,7 +155,7 @@ URL above shall prevail.
 
 To apply this license, attach the following notices to your program:
 
-    C4 Cognitive Coordinate System (Fractal-27)
+    C4 Complete Cognitive Coordinate System (Fractal-27)
     Copyright (C) 2024-2026 Ilya Selyutin, Nikolai Kovalev
 
     This program is free software: you can redistribute it and/or modify
@@ -173,5 +173,5 @@ To apply this license, attach the following notices to your program:
 
 ---
 
-_C4 Cognitive Coordinate System (Fractal-27)_
+_C4 Complete Cognitive Coordinate System (Fractal-27)_
 _Authors: Ilya Selyutin, Nikolai Kovalev_

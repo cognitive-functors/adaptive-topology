@@ -6,7 +6,9 @@
 
 C4 stands for the Complete Cognitive Coordinate System. It is a framework
 that describes human thinking using just three simple dimensions, producing
-27 distinct cognitive states.
+27 distinct cognitive states. (The name "C4" itself carries [four layers of meaning](../WHY-C4.md) —
+from a letter-based abbreviation to a deliberate allusion to "detonating" the
+combinatorial explosion problem.)
 
 Think of it as a GPS for the mind. Instead of latitude, longitude, and
 altitude, C4 uses three axes that capture where your attention is directed
