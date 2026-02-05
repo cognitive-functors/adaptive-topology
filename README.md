@@ -54,7 +54,7 @@ cognitive science, and decision theory under a shared formal framework.
 | `code/agda/` | 1 file | Agda formal proofs |
 | `code/python/` | demo + ID-3 experiment + examples | C4 classifier, ID-3 validation (10-phase experiment), examples |
 | `formal-proofs/` | 3 files | Agda proofs + verification guide |
-| `start-here/` | EN + RU | Popular introductions |
+| `start-here/` | EN + RU | Plain-language introductions (FOR-EVERYONE + popular intros) |
 | `visualizations/` | EN + RU | Interactive 3D hypercube (HTML/JavaScript) |
 | `WHY-C4.md` | bilingual | Why the framework is called "C4" — four layers of meaning |
 
@@ -65,10 +65,12 @@ cognitive science, and decision theory under a shared formal framework.
 
 ## Quick Start
 
-1. Start with **`guides/`** -- choose the entry point that matches your background
-   (mathematician, cognitive scientist, engineer, philosopher, or general reader).
+**New here?** Start with **[FOR-EVERYONE](start-here/FOR-EVERYONE-en.md)** — a plain-language explanation of what C4 is, what we proved, and why it matters for you (no math required).
+
+Then:
+1. Explore **`guides/`** for entry points matching your background (mathematician, cognitive scientist, engineer, philosopher).
 2. Read the **`preprint/`** for the complete formal treatment.
-3. Explore **`papers/`** for individual results and proofs.
+3. Dive into **`papers/`** for individual results and proofs.
 
 ---
 
