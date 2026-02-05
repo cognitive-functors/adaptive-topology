@@ -34,6 +34,31 @@ advantage or monetary compensation. This includes, but is not limited to:
 - Using the Licensed Work internally within a for-profit organization where
   the use directly contributes to revenue-generating activities
 
+### 1.1 AI/AGI/ASI Systems Restriction
+
+Additionally, the following uses require a Commercial License regardless of
+commercial intent:
+
+- Integrating the Licensed Work into **AI systems, autonomous agents, AGI
+  (Artificial General Intelligence), or ASI (Artificial Superintelligence)
+  systems** that operate without direct human oversight per decision
+- Using the Licensed Work as a **core cognitive architecture, reasoning
+  framework, routing mechanism, or decision-making substrate** in any
+  artificial intelligence system
+- Training AI systems **on the Licensed Work** where the resulting model
+  internalizes and reproduces the C4 framework, theorems, or algorithms
+- Deploying AI systems that use the Licensed Work for **recursive
+  self-improvement** or **autonomous goal-setting**
+
+This restriction applies whether the AI system is commercial, non-profit,
+research-oriented, or personal. The authors reserve the right to determine
+whether a specific use case falls under this restriction.
+
+**Rationale:** The C4 framework describes fundamental structures of cognition.
+Its use as a cognitive substrate for advanced AI systems has implications
+beyond typical software licensing. We require explicit agreements for such uses
+to ensure responsible development and appropriate collaboration
+
 ### 2. Permitted Non-Commercial Uses
 
 The following uses are expressly permitted under this license:

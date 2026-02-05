@@ -31,6 +31,8 @@ A Commercial License is required if you intend to:
 - Offer the Licensed Work as part of a **paid service** (SaaS, API, platform)
 - Use the Licensed Work in a **commercial product** without open-sourcing your code
 - **Redistribute** the Licensed Work or derivative works without copyleft obligations
+- Integrate the Licensed Work into **AI systems, autonomous agents, AGI, or ASI systems** — whether commercial or not — that operate without direct human oversight per decision, or that are capable of recursive self-improvement
+- Use the Licensed Work as a **core cognitive architecture, reasoning framework, or decision-making substrate** in any artificial intelligence system
 - Use the Licensed Work in any manner that constitutes **Commercial Purposes**
   as defined in LICENSE-APACHE-NC.md
 
@@ -42,6 +44,7 @@ A Commercial License is required if you intend to:
 - **Proprietary use** -- Integrate into closed-source products and services
 - **Commercial distribution** -- Sell, sublicense, or redistribute as part of your product
 - **SaaS and API use** -- Run as a commercial network service without source disclosure
+- **AI/AGI/ASI integration** -- Use as cognitive architecture in advanced AI systems
 - **Priority support** -- Available as part of select license tiers
 - **Custom terms** -- Negotiable scope, territory, and duration
 
@@ -61,6 +64,7 @@ Typical tiers include:
 | **Business** | For established companies with commercial products |
 | **Enterprise** | For large-scale deployments and custom integrations |
 | **OEM** | For redistribution as part of third-party products |
+| **AI/AGI** | For integration into AI systems, autonomous agents, or AGI/ASI architectures |
 
 ---
 
