@@ -160,6 +160,43 @@ AI systems (like ChatGPT, Claude) are essentially machines for generating text i
 
 ---
 
+## The Universal Recipe: FRA
+
+From all this research emerges one simple pattern that works everywhere. We call it **FRA**:
+
+### Fingerprint → Route → Adapt
+
+1. **Fingerprint**: First, understand where you are. What state is your thinking in? What task is before you? What's the context?
+
+2. **Route**: Choose a strategy that fits *this specific* state. Not a universal "best" strategy, but one that works *here and now*.
+
+3. **Adapt**: Watch the result and adjust. If it's not working — go back to step 1, reassess the situation.
+
+### Why Does This Matter?
+
+We mathematically proved (the Adaptive Routing Theorem): **any system that follows FRA will outperform any fixed strategy** over a sufficiently diverse set of tasks.
+
+This isn't an opinion. It's a theorem.
+
+### FRA in Life
+
+| Domain | Fingerprint | Route | Adapt |
+|--------|-------------|-------|-------|
+| **Learning** | "Is this theory or practice? Familiar or new?" | Choose method: reading / practice / discussion | Check understanding, adjust |
+| **Conflict** | "Are they angry or scared? What's the real issue?" | Choose approach: listen / explain / step back | Watch their reaction, change tactics |
+| **Creativity** | "Need novelty or improvement of existing?" | Long jumps across the map / short steps | Evaluate result, iterate |
+| **Problem-solving** | "Is this a technical bug or systemic error?" | Debug / refactor / change architecture | Test, return to diagnosis |
+
+### FRA Is What Experts Do
+
+When you watch a master in any field, they do exactly this — quickly assess the situation (fingerprint), instantly choose the right tool (route), and flexibly adjust as they go (adapt).
+
+A novice uses one strategy for everything. That's precisely why they're a novice.
+
+**FRA is the formula for turning a novice into an expert.**
+
+---
+
 ## The Big Picture
 
 ### For Cognitive Science
