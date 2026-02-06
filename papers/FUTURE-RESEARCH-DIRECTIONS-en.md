@@ -79,8 +79,8 @@ Building on two independent research lines — the C4 cognitive coordinate syste
 - Per-axis slice: fixing one axis → ID ≈ 2.0 (as predicted by Z₃²)
 
 **Full report:** `papers/ID3-INTRINSIC-DIMENSIONALITY-en.md`
-**Code:** `code/python/run_id3_full_experiment.py`
-**Data:** `code/python/id3_results/full_experiment/`
+**Code:** `experiments/id3/run_experiment.py`
+**Data:** `experiments/id3/results/`
 
 ---
 
@@ -333,11 +333,11 @@ The next question: **is this a mathematical law or merely a powerful heuristic?*
 
 ## See Also
 
-- [WHY-C4.md](../WHY-C4.md) — four layers of meaning in the name C4
+- [WHY-C4.md](../about/WHY-C4.md) — four layers of meaning in the name C4
 - [Adaptive Routing Theorem](algorithmic-topology/03-adaptive-routing-theorem.md) — formal proof
 - [Cross-Domain Evidence](algorithmic-topology/04-cross-domain-evidence.md) — 32 systems across 6 domains
-- [Koan of Awakening (EN)](../preprint/en/C4-AWAKENING-KOAN-v3.6.md) | [(RU)](../preprint/ru/C4-AWAKENING-KOAN-v3.6.md) — phenomenological proof
-- [Fractal C4](fractal-c4/01_c4-fractal.md) — recursive structure
+- [Koan of Awakening (EN)](c4-awakening-koan-en.md) | [(RU)](c4-awakening-koan-ru.md) — phenomenological proof
+- [Fractal C4](fractal-c4/01_c4-fractal-en.md) — recursive structure
 - [Multi-Domain FRA Table](FRA-CROSS-DOMAIN-TABLE-en.md) — FRA pattern across 15+ domains
 
 ---

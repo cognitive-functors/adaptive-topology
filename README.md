@@ -3,7 +3,7 @@
 [![License: Triple](https://img.shields.io/badge/License-Apache--2.0--NC%20%7C%20AGPL--3.0%20%7C%20Commercial-orange)](./LICENSE)
 [![Agda Verified](https://img.shields.io/badge/Agda_Verified-10%2F11_theorems-green)](./formal-proofs/)
 [![Papers](https://img.shields.io/badge/Papers-17_papers-blue)](./papers/)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](./code/python/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](./code/)
 [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97_HuggingFace-Models_on_HF_Hub-yellow)](https://huggingface.co/HangJang/c4-cognitive-adapters)
 [![Demo](https://img.shields.io/badge/Demo-Live_Demo-brightgreen)](https://c4cognitive.com)
 
@@ -21,8 +21,8 @@ with 11 core theorems -- 10 of which have been formally verified in Agda.
 
 > **Why "C4"?** The name encodes four layers of meaning: a letter-based abbreviation (CCCS → C4),
 > an allusion to detonating the combinatorial explosion problem, a completeness claim
-> validated by a phenomenological proof ([The Koan of Awakening](preprint/en/C4-AWAKENING-KOAN-v3.6.md)),
-> and a hint at the hidden fourth dimension. See **[WHY-C4.md](WHY-C4.md)** for the full explanation.
+> validated by a phenomenological proof ([The Koan of Awakening](papers/c4-awakening-koan-en.md)),
+> and a hint at the hidden fourth dimension. See **[about/WHY-C4.md](about/WHY-C4.md)** for the full explanation.
 
 Most content is available in both English and Russian.
 
@@ -44,23 +44,17 @@ cognitive science, and decision theory under a shared formal framework.
 
 | Directory | Contents | Description |
 |-----------|----------|-------------|
-| `papers/fractal-c4/` | 6 RU + 6 EN papers + README | Core C4 theory: Z3^3 group, Hamming metric, routing |
-| `papers/formal-mathematics/` | 6 RU + 6 EN papers + README | Agda proofs, functors, categorical semantics |
-| `papers/algorithmic-topology/` | 5 EN papers + README | MASTm TSP solver, fingerprint protocol |
-| `preprint/` | 7 EN + 5 RU files | Full preprint (English and Russian editions) |
-| `guides/` | 7 EN + 7 RU guides + README + SUMMARY-FOR-AI | Entry points for different audiences |
-| `applications/functor-agents/` | 2 RU + 2 EN files | Functor-based AI agents |
-| `code/mast/` | solver + 12 benchmarks + results | Run-ready MASTm (Multi-scale Adaptive Spectral TSP meta-solver) |
-| `code/agda/` | 1 file | Agda formal proofs |
-| `code/python/` | demo + ID-3 experiment + examples | C4 classifier, ID-3 validation (10-phase experiment), examples |
-| `experiments/fra_scaling_v2/` | FRA scaling research | FRA routing validation on ASlib, bilingual papers (EN+RU), reproducibility package |
-| `formal-proofs/` | 3 files | Agda proofs + verification guide |
+| `papers/` | 20+ papers (EN+RU) | All research papers including fractal-c4, formal-mathematics, algorithmic-topology |
+| `experiments/` | FRA, ID3 | Hypothesis validation experiments with reproducibility packages |
+| `guides/` | 7 EN + 7 RU guides | Entry points for different audiences (AI researchers, linguists, philosophers) |
+| `code/` | mast, c4-classifier, agda | Run-ready implementations and formal proofs |
 | `start-here/` | EN + RU | Plain-language introductions (FOR-EVERYONE + popular intros) |
+| `applications/` | functor-agents | Practical applications of C4 theory |
+| `formal-proofs/` | Agda proofs | Verification guides and verified theorems |
 | `visualizations/` | EN + RU | Interactive 3D hypercube (HTML/JavaScript) |
-| `WHY-C4.md` | bilingual | Why the framework is called "C4" — four layers of meaning |
+| `about/` | WHY-C4, TOPICS, llms.txt | Meta-documentation and AI-readable descriptions |
 
-**Total:** 19 unique research papers (14 bilingual EN+RU, 5 EN-only), 14 bilingual guides,
-4 bilingual application docs, run-ready code with benchmark data and experimental results.
+**Total:** 20+ research papers (bilingual EN+RU), 14 bilingual guides, run-ready code with benchmark data and experimental results.
 
 ---
 
@@ -70,8 +64,8 @@ cognitive science, and decision theory under a shared formal framework.
 
 Then:
 1. Explore **`guides/`** for entry points matching your background (mathematician, cognitive scientist, engineer, philosopher).
-2. Read the **`preprint/`** for the complete formal treatment.
-3. Dive into **`papers/`** for individual results and proofs.
+2. Dive into **`papers/`** for formal treatments and proofs.
+3. Check **`experiments/`** for reproducible hypothesis validation.
 
 ---
 
@@ -90,7 +84,7 @@ Then:
 - **FRA Scaling validated** -- FRA (Fingerprint-Route-Adapt) routing achieves up to +44%
   improvement over Single Best Solver on ASlib benchmarks when diversity > 50%.
   Key finding: K_min = n_types (step function, not power law). Wilcoxon p = 0.0002.
-  See `experiments/fra_scaling_v2/` for reproducibility package.
+  See `experiments/fra-scaling/` for reproducibility package and `papers/fra-scaling-en.md` for the paper.
 - **MASTm solver** -- MASTm (Multi-scale Adaptive Spectral TSP meta-solver):
   algorithmic topology approach to TSP achieving 0.22% optimality gap on fl3795 benchmark.
 - **Cross-domain applicability** -- the same fingerprint-route-adapt pattern yields
@@ -117,7 +111,7 @@ Then:
 
 ## For AI Agents
 
-Machine-readable project description is available at [llms.txt](./llms.txt).
+Machine-readable project description is available at [about/llms.txt](./about/llms.txt).
 
 ---
 

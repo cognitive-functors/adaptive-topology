@@ -50,7 +50,7 @@ The word **"Complete"** in the name is not decorative. It makes a specific and f
 
 > **The C4 coordinate system is complete — no cognitive content exists outside the three axes (Time, Scale, Agency).**
 
-This claim is supported by a phenomenological proof known as **The Koan of Awakening** (see [English version](preprint/en/C4-AWAKENING-KOAN-v3.6.md) | [Russian version](preprint/ru/C4-AWAKENING-KOAN-v3.6.md)):
+This claim is supported by a phenomenological proof known as **The Koan of Awakening** (see [English version](../papers/c4-awakening-koan-en.md) | [Russian version](../papers/c4-awakening-koan-ru.md)):
 
 > *"Try to think a thought that has no temporal orientation (past/present/future), no scale (concrete/abstract/meta), and no agency position (self/other/system)."*
 
@@ -146,7 +146,7 @@ This expansion is used in all citations, documentation, and formal statements th
 
 > **Координатная система C4 полна — не существует когнитивного содержания вне трёх осей (Время, Масштаб, Агентность).**
 
-Это утверждение подкреплено феноменологическим доказательством, известным как **Коан Пробуждения** (см. [английская версия](preprint/en/C4-AWAKENING-KOAN-v3.6.md) | [русская версия](preprint/ru/C4-AWAKENING-KOAN-v3.6.md)):
+Это утверждение подкреплено феноменологическим доказательством, известным как **Коан Пробуждения** (см. [английская версия](../papers/c4-awakening-koan-en.md) | [русская версия](../papers/c4-awakening-koan-ru.md)):
 
 > *«Попробуйте подумать мысль, у которой нет временной ориентации (прошлое/настоящее/будущее), нет масштаба (конкретное/абстрактное/мета) и нет позиции агентности (я/другой/система).»*
 
@@ -190,8 +190,8 @@ This expansion is used in all citations, documentation, and formal statements th
 
 ## See Also / См. также
 
-- [The Koan of Awakening (EN)](preprint/en/C4-AWAKENING-KOAN-v3.6.md) — phenomenological proof of completeness
-- [Коан Пробуждения (RU)](preprint/ru/C4-AWAKENING-KOAN-v3.6.md) — феноменологическое доказательство полноты
+- [The Koan of Awakening (EN)](../papers/c4-awakening-koan-en.md) — phenomenological proof of completeness
+- [Коан Пробуждения (RU)](../papers/c4-awakening-koan-ru.md) — феноменологическое доказательство полноты
 - [Adaptive Routing Theorem](papers/algorithmic-topology/03-adaptive-routing-theorem.md) — formal proof that structure-based routing avoids combinatorial explosion
 - [From Cognitive Coordinates to Combinatorial Optimization](papers/algorithmic-topology/02-from-cognitive-coordinates-to-combinatorial-optimization.md) — the bridge between C4 and combinatorial optimization
 - [MASTm Solver](code/mast/) — empirical demonstration: fingerprinting defeats factorial explosion in TSP

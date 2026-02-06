@@ -1,10 +1,11 @@
 # FRA Scaling Research — Reproducibility Package
 
+**Paper:** `papers/fra-scaling-en.md` (English) | `papers/fra-scaling-ru.md` (Russian)
+
 ## 🎯 Quick Start
 
 ```bash
-# Clone and setup
-cd /Users/figuramax/LocalProjects/adaptive-topology/experiments/fra_scaling_v2
+cd experiments/fra-scaling
 
 # Install dependencies
 pip install numpy scipy scikit-learn torch
@@ -28,39 +29,29 @@ python3 experiments/run_aslib_full.py        # Real ASlib validation
 ## 📁 Repository Structure
 
 ```
-fra_scaling_v2/
+fra-scaling/
 ├── README.md                 # This file
-├── PLAN.md                   # Research plan
-├── ULTIMATE_PLAN.md          # Detailed methodology
-│
-├── PAPER_EN.md               # English paper
-├── PAPER_RU.md               # Russian paper
-│
 ├── run_experiment.py         # Main synthetic experiment
 ├── problems/
 │   ├── synthetic.py          # Controlled diversity data
 │   └── aslib.py              # ASlib-like scenarios
 ├── fra/
 │   └── router.py             # FRA Router (MLP)
-│
 ├── experiments/
 │   ├── download_aslib.py     # Download ASlib scenarios
 │   ├── parse_aslib.py        # Parse ARFF format
 │   └── run_aslib_full.py     # Full ASlib experiment
-│
 ├── data/
 │   └── aslib/                # Downloaded scenarios
 │       ├── SAT11-RAND/
 │       ├── SAT12-ALL/
 │       └── CSP-2010/
-│
-├── results/
-│   ├── synthetic/            # Synthetic results
-│   └── aslib_real/           # Real ASlib results
-│
-└── analysis/
-    └── REPORT.md             # Analysis report
+└── results/
+    ├── synthetic/            # Synthetic results
+    └── aslib_real/           # Real ASlib results
 ```
+
+**Research paper:** See `papers/fra-scaling-en.md` for full methodology and results.
 
 ## 🔬 Reproducing Key Findings
 
@@ -160,4 +151,4 @@ This is a **step function**, not a continuous scaling law.
 
 ## 📧 Contact
 
-For questions about reproducibility, see PAPER_EN.md or PAPER_RU.md.
+For questions about reproducibility, see `papers/fra-scaling-en.md` or `papers/fra-scaling-ru.md`.

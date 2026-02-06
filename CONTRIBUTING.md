@@ -10,10 +10,12 @@ Thank you for your interest in contributing to the Adaptive Topology project. Th
 ## Table of Contents
 
 - [Welcome Contributions](#welcome-contributions)
+- [Repository Structure Guidelines](#repository-structure-guidelines)
 - [Getting Started](#getting-started)
 - [Workflow](#workflow)
 - [Code Standards](#code-standards)
 - [Adding a New TSPLIB Benchmark to MASTm](#adding-a-new-tsplib-benchmark-to-mastm)
+- [Adding a New Experiment](#adding-a-new-experiment)
 - [Proposing a New Audience Guide](#proposing-a-new-audience-guide)
 - [Review Process](#review-process)
 - [Language Policy](#language-policy)
@@ -31,6 +33,78 @@ We welcome contributions in the following areas:
 - **Theoretical extensions** — Proposing new theorems, conjectures, or formal proof extensions within the adaptive topology framework.
 - **Documentation improvements** — Clarifying existing guides, fixing typos, improving examples, or adding diagrams.
 - **Code improvements** — Performance optimizations, better test coverage, refactoring, or new utilities.
+
+---
+
+## Repository Structure Guidelines
+
+This section defines the canonical structure for organizing files in the repository.
+
+### Directory Layout
+
+```
+adaptive-topology/
+├── papers/                    # All research papers and theoretical documents
+│   ├── fractal-c4/           # Core C4 theory papers
+│   ├── formal-mathematics/    # Category theory, type systems, Agda formalization
+│   ├── algorithmic-topology/  # MASTm, TSP, optimization algorithms
+│   └── *.md                  # Individual papers (ID3, FRA, etc.)
+├── experiments/               # All experimental work
+│   ├── fra-scaling/          # FRA routing experiments on ASlib
+│   ├── id3/                  # Intrinsic dimensionality experiments
+│   └── <experiment-name>/    # Future experiments
+├── code/                      # Production-ready implementations
+│   ├── mast/                 # MASTm TSP solver
+│   ├── c4-classifier/        # C4 cognitive classifier demo
+│   └── agda/                 # Formal proofs
+├── guides/                    # Audience-specific entry points
+├── start-here/               # Plain-language introductions
+├── applications/             # Application examples (functor-agents)
+├── visualizations/           # Interactive demos (3D hypercube)
+├── formal-proofs/            # Agda verification guides
+├── thinking/                 # Work-in-progress theoretical notes
+└── about/                    # Meta-documentation (WHY-C4, TOPICS, llms.txt)
+```
+
+### File Naming Conventions
+
+**Bilingual Files:**
+- English version: `filename.md` or `filename-en.md`
+- Russian version: `filename-ru.md` (ALWAYS use `-ru` suffix for Russian)
+- Example: `FOR-EVERYONE-en.md` / `FOR-EVERYONE-ru.md`
+
+**Papers:**
+- Use descriptive names: `fra-scaling-en.md`, `ID3-INTRINSIC-DIMENSIONALITY-ru.md`
+- Numbered series: `01_c4-fractal-en.md`, `02_c4-knowledge-ru.md`
+
+**Experiments:**
+- Each experiment gets its own subdirectory in `experiments/`
+- Include: `README.md`, code files, `results/` subdirectory
+- Keep raw data and analysis scripts together
+
+### What Goes Where
+
+| Content Type | Location | Notes |
+|-------------|----------|-------|
+| Research papers | `papers/` | Finalized theory and results |
+| Experimental code | `experiments/<name>/` | Hypothesis testing, benchmarks |
+| Production code | `code/<project>/` | Reusable implementations |
+| Entry points | `guides/` or `start-here/` | Audience-oriented docs |
+| Work-in-progress | `thinking/` | Theoretical explorations |
+| Meta-info | `about/` | llms.txt, TOPICS, WHY-C4 |
+
+### Internal vs. External Files
+
+**Keep in repo:**
+- Papers, code, results, documentation
+- Benchmark data referenced in papers
+- Visualization assets
+
+**Do NOT commit:**
+- Planning files (PLAN.md, ULTIMATE_PLAN.md)
+- Personal notes and drafts
+- API keys, credentials
+- Large binary files (use Git LFS if needed)
 
 ---
 
@@ -71,7 +145,7 @@ We follow a standard fork-and-pull-request workflow:
 
 ## Code Standards
 
-### Python (`code/python/`)
+### Python (`code/c4-classifier/`, `experiments/*/`)
 
 - Follow **PEP 8** style conventions.
 - Use **type hints** for all function signatures.
@@ -122,6 +196,42 @@ To add a new TSPLIB instance for MASTm evaluation:
    - Number of iterations / topological transitions
 6. **Add a brief description** of the instance characteristics (number of cities, geometry type, difficulty class).
 7. Submit a PR following the standard [workflow](#workflow).
+
+---
+
+## Adding a New Experiment
+
+To add a new hypothesis validation experiment:
+
+1. **Create a subdirectory** in `experiments/` with a descriptive name:
+   ```bash
+   experiments/your-experiment-name/
+   ```
+
+2. **Structure your experiment directory:**
+   ```
+   experiments/your-experiment-name/
+   ├── README.md           # Experiment description, hypothesis, methodology
+   ├── run_experiment.py   # Main execution script
+   ├── analysis.py         # Analysis and visualization code
+   ├── requirements.txt    # Python dependencies (if any)
+   ├── data/               # Input data (or links to external sources)
+   └── results/            # Output files, charts, tables
+   ```
+
+3. **Write a clear README.md** with:
+   - Hypothesis being tested
+   - Methodology description
+   - How to reproduce results
+   - Key findings summary
+
+4. **Write the research paper** in `papers/`:
+   - `papers/your-experiment-name-en.md` (English)
+   - `papers/your-experiment-name-ru.md` (Russian, optional)
+
+5. **Update references** in main README.md if the experiment produces key results.
+
+6. Submit a PR following the standard [workflow](#workflow).
 
 ---
 

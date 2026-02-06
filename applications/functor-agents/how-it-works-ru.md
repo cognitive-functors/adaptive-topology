@@ -994,7 +994,7 @@ Implementation:
 - `HOW_IT_WORKS_GUIDE.md` — этот файл (практический гайд)
 
 **Научная база:**
-- `../../preprint/C4-PREPRINT-V3-FINAL.md`
+- `../../papers/c4-deep-dive-ru.md`
  - 11 формально доказанных теорем
  - Математическое обоснование 27 функторов
 

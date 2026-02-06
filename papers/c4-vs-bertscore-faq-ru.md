@@ -1260,7 +1260,7 @@ C4 + BERT = **лучшее из двух миров:**
 
 **C4:**
 
-- Selyutin & Kovalev (2025). "C4: Complete Cognitive Coordinate System". Preprint. (https://github.com/cognitive-functors/adaptive-topology/blob/main/preprint/ru/C4-PREPRINT-VIXRA-RU.md)
+- Selyutin & Kovalev (2025). "C4: Complete Cognitive Coordinate System". (https://github.com/cognitive-functors/adaptive-topology/blob/main/papers/c4-deep-dive-ru.md)
 
 ### Релевантные исследования:
 

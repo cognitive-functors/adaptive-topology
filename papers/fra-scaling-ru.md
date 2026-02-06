@@ -599,12 +599,12 @@ O(\eta) & \text{если } K \geq n_{types}
 
 **Репозиторий:**
 ```
-adaptive-topology/experiments/fra_scaling_v2/
+adaptive-topology/experiments/fra-scaling/
 ```
 
 **Структура:**
 ```
-fra_scaling_v2/
+fra-scaling/
 ├── run_experiment.py        # Главный скрипт
 ├── problems/
 │   ├── synthetic.py         # SyntheticProblem

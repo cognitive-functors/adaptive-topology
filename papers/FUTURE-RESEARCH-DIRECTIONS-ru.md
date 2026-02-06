@@ -78,9 +78,9 @@
 - Стабильность: subspace ID = 2.954 ± 0.069 через 5 независимых seed'ов
 - Per-axis slice: фиксация одной оси → ID ≈ 2.0 (как и предсказывает ℤ₃²)
 
-**Полный отчёт:** `papers/ID3-INTRINSIC-DIMENSIONALITY.md`
-**Код:** `code/python/run_id3_full_experiment.py`
-**Данные:** `code/python/id3_results/full_experiment/`
+**Полный отчёт:** `papers/ID3-INTRINSIC-DIMENSIONALITY-ru.md`
+**Код:** `experiments/id3/run_experiment.py`
+**Данные:** `experiments/id3/results/`
 
 ---
 
@@ -333,11 +333,11 @@ min I(X; F(X))  subject to  I(F(X); S*(X)) ≥ β
 
 ## См. также
 
-- [WHY-C4.md](../WHY-C4.md) — четыре слоя смысла в названии C4
+- [WHY-C4.md](../about/WHY-C4.md) — четыре слоя смысла в названии C4
 - [Теорема адаптивной маршрутизации](algorithmic-topology/03-adaptive-routing-theorem.md) — формальное доказательство
 - [Кросс-доменные свидетельства](algorithmic-topology/04-cross-domain-evidence.md) — 32 системы из 6 доменов
-- [Коан Пробуждения (EN)](../preprint/en/C4-AWAKENING-KOAN-v3.6.md) | [(RU)](../preprint/ru/C4-AWAKENING-KOAN-v3.6.md) — феноменологическое доказательство
-- [Фрактальный C4](fractal-c4/01_c4-fractal.md) — рекурсивная структура
+- [Коан Пробуждения (EN)](c4-awakening-koan-en.md) | [(RU)](c4-awakening-koan-ru.md) — феноменологическое доказательство
+- [Фрактальный C4](fractal-c4/01_c4-fractal-ru.md) — рекурсивная структура
 - [Мульти-доменная таблица FRA](FRA-CROSS-DOMAIN-TABLE.md) — паттерн FRA в 15+ доменах
 
 ---

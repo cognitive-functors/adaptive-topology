@@ -316,13 +316,13 @@ MLP сжимает до ~1D — доминирует Scale. Но Time R² улу
 
 | Ресурс | Путь |
 |--------|------|
-| 10-фазный эксперимент | `code/python/run_id3_full_experiment.py` |
-| Глубокий анализ | `code/python/id3_deep_analysis.py` |
-| Базовые оценщики ID | `code/python/test_intrinsic_dimension.py` |
-| Визуализация | `code/python/visualize_id3_results.py` |
-| Результаты (JSON) | `code/python/id3_results/full_experiment/` |
-| Фигуры | `code/python/id3_results/full_experiment/figures/` |
-| Консолидированный отчёт | `code/python/id3_results/full_experiment/CONSOLIDATED_REPORT.txt` |
+| 10-фазный эксперимент | `experiments/id3/run_experiment.py` |
+| Глубокий анализ | `experiments/id3/analysis.py` |
+| Базовые оценщики ID | `experiments/id3/test_dimension.py` |
+| Визуализация | `experiments/id3/visualize.py` |
+| Результаты (JSON) | `experiments/id3/results/` |
+| Фигуры | `experiments/id3/results/figures/` |
+| Консолидированный отчёт | `experiments/id3/results/CONSOLIDATED_REPORT.txt` |
 
 Воспроизведение:
 

@@ -98,4 +98,4 @@ See `guides/for-agda-users.md` for contribution guidelines.
 
 - `c4-comp-v5.agda` -- Main Agda proof file (all 11 theorems)
 - `guides/for-agda-users.md` -- Detailed walkthrough of the proof structure
-- `preprint/en/C4-PREPRINT-V3-FINAL.md` -- Full preprint with mathematical exposition
+- `papers/c4-deep-dive-en.md` -- Full mathematical exposition

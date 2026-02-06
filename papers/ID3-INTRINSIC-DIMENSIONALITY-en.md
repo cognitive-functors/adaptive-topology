@@ -316,13 +316,13 @@ Main findings:
 
 | Resource | Path |
 |----------|------|
-| 10-phase experiment | `code/python/run_id3_full_experiment.py` |
-| Deep analysis | `code/python/id3_deep_analysis.py` |
-| Base ID estimators | `code/python/test_intrinsic_dimension.py` |
-| Visualization | `code/python/visualize_id3_results.py` |
-| Results (JSON) | `code/python/id3_results/full_experiment/` |
-| Figures | `code/python/id3_results/full_experiment/figures/` |
-| Consolidated report | `code/python/id3_results/full_experiment/CONSOLIDATED_REPORT.txt` |
+| 10-phase experiment | `experiments/id3/run_experiment.py` |
+| Deep analysis | `experiments/id3/analysis.py` |
+| Base ID estimators | `experiments/id3/test_dimension.py` |
+| Visualization | `experiments/id3/visualize.py` |
+| Results (JSON) | `experiments/id3/results/` |
+| Figures | `experiments/id3/results/figures/` |
+| Consolidated report | `experiments/id3/results/CONSOLIDATED_REPORT.txt` |
 
 To reproduce:
 

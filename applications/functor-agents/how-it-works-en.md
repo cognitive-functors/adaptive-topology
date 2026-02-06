@@ -995,7 +995,7 @@ Implementation:
 - `HOW_IT_WORKS_GUIDE.md` -- this file (practical guide)
 
 **Scientific foundation:**
-- `../../preprint/C4-PREPRINT-V3-FINAL.md`
+- `../../papers/c4-deep-dive-en.md`
  - 11 formally proven theorems
  - Mathematical justification of the 27 functors
 

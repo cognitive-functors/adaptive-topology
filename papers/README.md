@@ -2,7 +2,7 @@
 
 Research papers organized by topic. All papers build on or extend the C4 (Complete Cognitive Coordinate System) framework, which models cognitive space as Z3^3 = 27 basis states along three axes: Time, Scale, and Agency.
 
-The formal mathematical foundation is in the [preprint](../preprint/en/C4-PREPRINT-V3-FINAL.md). These papers explore applications, extensions, and cross-domain connections.
+These papers explore the core theory, applications, extensions, and cross-domain connections of the C4 framework.
 
 ---
 
@@ -39,8 +39,9 @@ Category-theoretic foundations: functors catalog, monoidal category structure, l
 ## Recommended Reading Order
 
 **For newcomers:**
-1. Read the [preprint](../preprint/en/C4-PREPRINT-V3-FINAL.md) first.
+1. Start with [c4-deep-dive-en.md](c4-deep-dive-en.md) for the comprehensive introduction.
 2. Then [fractal-c4/](fractal-c4/) for the core extensions.
+3. [c4-awakening-koan-en.md](c4-awakening-koan-en.md) for the phenomenological completeness proof.
 
 **For mathematicians:**
 1. [formal-mathematics/](formal-mathematics/) for category-theoretic foundations.

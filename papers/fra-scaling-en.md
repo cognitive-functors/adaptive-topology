@@ -482,7 +482,7 @@ For practitioners considering FRA:
 
 All code is available at:
 ```
-/experiments/fra_scaling_v2/
+/experiments/fra-scaling/
 ├── run_experiment.py           # Main experiment script
 ├── problems/
 │   ├── synthetic.py           # Synthetic problem generator

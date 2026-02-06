@@ -26,7 +26,7 @@ Each guide presents C4 through the lens of a particular discipline, mapping C4's
 2. Read **integration-guide.md** if you plan to build systems using C4.
 3. Read **for-agda-users.md** if you want to understand or contribute to the formal proofs.
 
-For the full mathematical treatment, see `preprint/en/C4-PREPRINT-V3-FINAL.md`.
+For the full mathematical treatment, see `papers/c4-deep-dive-en.md`.
 
 ---
 

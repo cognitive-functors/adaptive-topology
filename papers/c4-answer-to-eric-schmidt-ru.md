@@ -750,13 +750,13 @@ C4 Framework — это не просто инженерное решение з
 
 Доказательство через **reductio ad absurdum**: попытка помыслить состояние **вне** F⟨T,D,A⟩ неизбежно проваливается.
 
-**Ссылка:** https://github.com/cognitive-functors/adaptive-topology/blob/main/preprint/ru/C4-AWAKENING-KOAN-v3.6.md
+**Ссылка:** https://github.com/cognitive-functors/adaptive-topology/blob/main/papers/c4-awakening-koan-ru.md
 
-**3. Научный препринт (11 теорем)**
+**3. Полное изложение теории (11 теорем)**
 
 Полная формулировка всех теорем модели С4 с доказательствами.
 
-**Ссылка:** https://github.com/cognitive-functors/adaptive-topology/blob/main/preprint/ru/C4-PREPRINT-VIXRA-RU.md
+**Ссылка:** https://github.com/cognitive-functors/adaptive-topology/blob/main/papers/c4-deep-dive-ru.md
 
 **4. 3D-визуализация модели С4**
 
