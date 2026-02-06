@@ -1,0 +1,14 @@
+{
+  "correlation_K_gap": {
+    "r": -0.7745966692414834,
+    "p": 0.22540333075851657
+  },
+  "correlation_d_gap": {
+    "r": -0.9486832980505139,
+    "p": 0.05131670194948612
+  },
+  "avg_win_rate": 0.6690476190476191,
+  "avg_improvement": 27.919422652309095,
+  "hypothesis_confirmed": true,
+  "n_configs": 7
+}

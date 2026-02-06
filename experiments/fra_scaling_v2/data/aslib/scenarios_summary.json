@@ -1,0 +1,197 @@
+{
+  "CSP-2010": {
+    "name": "CSP-2010",
+    "n_instances": 2024,
+    "n_features": 87,
+    "n_algorithms": 2,
+    "algorithms": [
+      "learning",
+      "standard"
+    ],
+    "feature_names": [
+      "repetition",
+      "stats_varcount",
+      "stats_var_bool",
+      "stats_var_discrete",
+      "stats_var_bound",
+      "stats_var_sparsebound",
+      "stats_dom_0",
+      "stats_dom_25",
+      "stats_dom_50",
+      "stats_dom_75"
+    ],
+    "diversity": {
+      "entropy": 0.6262422131559792,
+      "normalized_entropy": 0.9034765353154603,
+      "sbs_idx": 1,
+      "sbs_name": "standard",
+      "sbs_dominance": 0.6808300395256917,
+      "n_unique_best": 2,
+      "diversity_score": 0.31916996047430835,
+      "top_algorithms": [
+        [
+          "standard",
+          1378,
+          0.6808300395256917
+        ],
+        [
+          "learning",
+          646,
+          0.3191699604743083
+        ]
+      ]
+    }
+  },
+  "SAT11-RAND": {
+    "name": "SAT11-RAND",
+    "n_instances": 600,
+    "n_features": 116,
+    "n_algorithms": 9,
+    "algorithms": [
+      "EagleUP_1.565.350",
+      "MPhaseSAT_M_2011-02-16",
+      "SAT09referencesolverTNM_2009-03-22",
+      "SAT09referencesolvergnovelty+2_2009-03-22",
+      "SAT09referencesolvermarch_hi_hi",
+      "adaptg2wsat2011_2011-03-02",
+      "march_rw_2011-03-02",
+      "sattime2011_2011-03-02",
+      "sparrow2011_sparrow2011_ubcsat1.2_2011-03-02"
+    ],
+    "feature_names": [
+      "repetition",
+      "nvarsOrig",
+      "nclausesOrig",
+      "nvars",
+      "nclauses",
+      "reducedVars",
+      "reducedClauses",
+      "vars_clauses_ratio",
+      "POSNEG_RATIO_CLAUSE_mean",
+      "POSNEG_RATIO_CLAUSE_coeff_variation"
+    ],
+    "diversity": {
+      "entropy": 1.8110976554966718,
+      "normalized_entropy": 0.8242660646424844,
+      "sbs_idx": 8,
+      "sbs_name": "sparrow2011_sparrow2011_ubcsat1.2_2011-03-02",
+      "sbs_dominance": 0.22,
+      "n_unique_best": 9,
+      "diversity_score": 0.78,
+      "top_algorithms": [
+        [
+          "EagleUP_1.565.350",
+          205,
+          0.3416666666666667
+        ],
+        [
+          "sparrow2011_sparrow2011_ubcsat1.2_2011-03-02",
+          132,
+          0.22
+        ],
+        [
+          "march_rw_2011-03-02",
+          97,
+          0.16166666666666665
+        ],
+        [
+          "SAT09referencesolvergnovelty+2_2009-03-22",
+          52,
+          0.08666666666666667
+        ],
+        [
+          "SAT09referencesolverTNM_2009-03-22",
+          36,
+          0.06
+        ]
+      ]
+    }
+  },
+  "SAT12-ALL": {
+    "name": "SAT12-ALL",
+    "n_instances": 1614,
+    "n_features": 116,
+    "n_algorithms": 31,
+    "algorithms": [
+      "clasp1",
+      "clasp2",
+      "cryptominisat2011",
+      "eagleup",
+      "ebglucose",
+      "ebminisat",
+      "glucose2",
+      "glueminisat",
+      "gnoveltyp2",
+      "lingeling",
+      "lrglshr",
+      "marchrw",
+      "minisatpsm",
+      "mphaseSAT",
+      "mphaseSAT64",
+      "mphaseSATm",
+      "mxc09",
+      "picosat",
+      "precosat",
+      "qutersat",
+      "rcl",
+      "restartsat",
+      "sapperlot",
+      "satime11",
+      "sattime",
+      "sattimep",
+      "sol",
+      "sparrow",
+      "spear-hw",
+      "spear-sw",
+      "tnm"
+    ],
+    "feature_names": [
+      "repetition",
+      "nvarsOrig",
+      "nclausesOrig",
+      "nvars",
+      "nclauses",
+      "reducedVars",
+      "reducedClauses",
+      "vars_clauses_ratio",
+      "POSNEG_RATIO_CLAUSE_mean",
+      "POSNEG_RATIO_CLAUSE_coeff_variation"
+    ],
+    "diversity": {
+      "entropy": 3.2002373590371658,
+      "normalized_entropy": 0.9319304844401637,
+      "sbs_idx": 15,
+      "sbs_name": "mphaseSATm",
+      "sbs_dominance": 0.011152416356877323,
+      "n_unique_best": 31,
+      "diversity_score": 0.9888475836431226,
+      "top_algorithms": [
+        [
+          "marchrw",
+          152,
+          0.09417596034696406
+        ],
+        [
+          "sparrow",
+          136,
+          0.08426270136307311
+        ],
+        [
+          "eagleup",
+          129,
+          0.07992565055762081
+        ],
+        [
+          "picosat",
+          85,
+          0.052664188351920695
+        ],
+        [
+          "glueminisat",
+          85,
+          0.052664188351920695
+        ]
+      ]
+    }
+  }
+}

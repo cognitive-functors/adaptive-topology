@@ -181,6 +181,25 @@ Key benchmark highlights:
 
 code/README.md -- code directory overview
 
+### 6.4. FRA Scaling Experiment (experiments/fra_scaling_v2/)
+
+FRA routing validation on algorithm selection benchmarks.
+
+Structure:
+- run_experiment.py -- main synthetic experiment
+- problems/synthetic.py -- controlled diversity data generator
+- problems/aslib.py -- ASlib scenario loader
+- fra/router.py -- FRA Router (MLP implementation)
+- experiments/download_aslib.py -- download ASlib scenarios
+- experiments/parse_aslib.py -- parse ARFF format
+- experiments/run_aslib_full.py -- full ASlib experiment
+- data/aslib/ -- downloaded scenarios (SAT11-RAND, SAT12-ALL, CSP-2010)
+- results/synthetic/ -- synthetic experiment results (JSON)
+- results/aslib_real/ -- ASlib experiment results (JSON)
+- PAPER_EN.md -- English paper (full research report)
+- PAPER_RU.md -- Russian paper (полный отчёт)
+- README.md -- reproducibility quick start
+
 ---
 
 ## 7. Visualizations (visualizations/)
@@ -300,6 +319,48 @@ N=5000 convergence  4995   3.07          [2.91, 3.15]    <0.001
 **Stability:** subspace ID = 2.954 ± 0.069 across 5 random seeds.
 
 Full paper: papers/ID3-INTRINSIC-DIMENSIONALITY-en.md
+
+---
+
+## 12.6. FRA Scaling Research: Algorithm Selection Validation (NEW)
+
+FRA (Fingerprint-Route-Adapt) routing has been empirically validated on real algorithm selection benchmarks from ASlib.
+
+**Experiment structure** (experiments/fra_scaling_v2/):
+- Synthetic proof-of-concept with controlled diversity
+- Real ASlib validation (SAT11-RAND, SAT12-ALL, CSP-2010)
+- Bilingual papers (PAPER_EN.md, PAPER_RU.md)
+- Full reproducibility package
+
+**Key results:**
+
+Scenario      Diversity   Best Improvement   Wilcoxon p
+----------------------------------------------------------------------
+SAT11-RAND    78%         +44% (K=8)         0.0002
+SAT12-ALL     99%         +41% (K=8)         0.0002
+CSP-2010      32%         -2% (fails)        —
+Overall                   +17% mean          0.0002 ✓
+
+**Refined hypothesis:**
+Original: K = O(1/ε^d) -- NOT CONFIRMED
+Refined: K_min = n_types (step function)
+
+```
+gap(K) = {
+    decreasing,  if K < n_types
+    plateau,     if K ≥ n_types
+}
+```
+
+**Connection to C4:**
+- FRA strategies ↔ C4 cognitive states (27 types)
+- Router ↔ Attention/routing mechanism
+- K_min = n_types implies: for C4, at most 27 specialized modules needed
+- Challenges "scale is all you need" paradigm
+
+**Practical guideline:** FRA works only when diversity > 50%. Otherwise use Single Best Solver.
+
+Full papers: experiments/fra_scaling_v2/PAPER_EN.md (English), PAPER_RU.md (Russian)
 
 ---
 

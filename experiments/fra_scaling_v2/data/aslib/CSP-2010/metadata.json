@@ -1,0 +1,43 @@
+{
+  "name": "CSP-2010",
+  "n_instances": 2024,
+  "n_features": 87,
+  "n_algorithms": 2,
+  "algorithms": [
+    "learning",
+    "standard"
+  ],
+  "feature_names": [
+    "repetition",
+    "stats_varcount",
+    "stats_var_bool",
+    "stats_var_discrete",
+    "stats_var_bound",
+    "stats_var_sparsebound",
+    "stats_dom_0",
+    "stats_dom_25",
+    "stats_dom_50",
+    "stats_dom_75"
+  ],
+  "diversity": {
+    "entropy": 0.6262422131559792,
+    "normalized_entropy": 0.9034765353154603,
+    "sbs_idx": 1,
+    "sbs_name": "standard",
+    "sbs_dominance": 0.6808300395256917,
+    "n_unique_best": 2,
+    "diversity_score": 0.31916996047430835,
+    "top_algorithms": [
+      [
+        "standard",
+        1378,
+        0.6808300395256917
+      ],
+      [
+        "learning",
+        646,
+        0.3191699604743083
+      ]
+    ]
+  }
+}

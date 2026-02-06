@@ -1,0 +1,7 @@
+{
+  "n_configs": 32,
+  "mean_improvement": 17.05377991365558,
+  "mean_accuracy": 0.6105054268779767,
+  "wilcoxon_statistic": 82.0,
+  "wilcoxon_pvalue": 0.00018249591812491417,
+  "significant": 

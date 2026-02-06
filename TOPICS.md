@@ -42,9 +42,12 @@ AI-agents, multi-agent-systems, functor-agents, cognitive-architecture,
 knowledge-graphs, knowledge-modeling, systems-thinking,
 TRIZ, inventive-problem-solving, organizational-design, AI-alignment
 
-## Algorithmic Topology (MASTm)
+## Algorithmic Topology (MASTm + FRA Scaling)
 
 TSP, traveling-salesman-problem, combinatorial-optimization, meta-solver,
+FRA, fingerprint-route-adapt, algorithm-selection, ASlib, diversity-threshold,
+K-min-equals-n-types, step-function-scaling, Single-Best-Solver, Virtual-Best-Solver,
+PAR10, Wilcoxon-test, portfolio-methods, neural-routing,
 instance-fingerprint, strategy-router, adaptive-routing, spectral-decomposition,
 k-NN-graph, Laplacian, Fiedler-vector, modularity, coefficient-of-variation,
 Lin-Kernighan, LK-DLB, EAX-crossover, iterated-local-search, double-bridge,

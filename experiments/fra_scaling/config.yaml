@@ -1,0 +1,154 @@
+# FRA Scaling Hypothesis (1.4) Experiment Configuration
+# =====================================================
+# Testing: K = O(1/ε^d) scaling law for NP-hard problems
+
+experiment:
+  name: "FRA Hypothesis 1.4 Validation"
+  version: "1.0"
+  budget_usd: 25.0  # Max spend on vast.ai
+
+# Problems to test (3 NP-hard)
+problems:
+  tsp:
+    enabled: true
+    instances:
+      source: "tsplib"  # Use benchmarks with known optima
+      count: 127  # All TSPLIB instances
+    strategies:
+      - nearest_neighbor
+      - nearest_neighbor_2opt
+      - greedy
+      - christofides
+      - savings
+      - sweep
+      - or_opt
+      - two_opt
+      - three_opt
+      - lin_kernighan_light
+      - simulated_annealing_hot
+      - simulated_annealing_medium
+      - simulated_annealing_cold
+      - genetic_algorithm_small
+      - genetic_algorithm_large
+    features:
+      - distance_stats  # mean, std, skew, kurtosis
+      - mst_features    # MST weight, depth, degree stats
+      - nn_tour_stats   # NN tour quality features
+      - cluster_features # k-means clustering stats
+      - hull_features   # convex hull ratio, area
+      - spectral        # eigenvalues of distance matrix
+
+  sat:
+    enabled: true
+    instances:
+      source: "satcomp"  # SAT Competition benchmarks
+      count: 300  # Mix of crafted + random
+    strategies:
+      - minisat
+      - glucose
+      - cadical
+      - cryptominisat
+      - walksat
+      - gsat
+      - probsat
+      - sparrow
+      - lingeling
+      - kissat
+      - random_restart_100
+      - random_restart_1000
+    features:
+      - clause_variable_ratio
+      - clause_length_dist
+      - variable_frequency
+      - vig_features     # Variable Interaction Graph
+      - cvig_features    # Clause-Variable Interaction Graph
+      - community_structure
+      - horn_ratio
+      - positive_negative_ratio
+
+  maxcut:
+    enabled: true
+    instances:
+      source: "gset"  # Gset benchmark (known best solutions)
+      count: 67
+    strategies:
+      - greedy
+      - random_multistart
+      - simulated_annealing
+      - genetic_algorithm
+      - sdp_relaxation
+      - goemans_williamson
+      - local_search_steepest
+      - local_search_first
+      - grasp
+      - tabu_search
+    features:
+      - graph_stats      # nodes, edges, density
+      - degree_dist      # degree distribution moments
+      - spectral         # eigenvalues of Laplacian
+      - clustering       # clustering coefficient
+      - modularity       # community structure
+
+# Experiment grid (OPTIMIZED for speed)
+grid:
+  # Vary K at fixed d=16
+  vary_K:
+    d: 16
+    K: [2, 4, 8, 12]  # Reduced from 7 to 4 values
+
+  # Vary d at fixed K=8
+  vary_d:
+    K: 8
+    d: [4, 16, 32]  # Reduced from 5 to 3 values
+
+# Training config (OPTIMIZED)
+router:
+  model: "mlp"
+  hidden_layers: [64, 32]  # Smaller network
+  dropout: 0.1
+  epochs: 30  # Reduced from 50
+  batch_size: 64  # Larger batches
+  learning_rate: 0.003  # Faster learning
+  early_stopping_patience: 5  # Quicker stopping
+
+# Vast.ai configuration
+vast_ai:
+  # CPU workers for strategy execution
+  cpu_workers:
+    count: 24
+    gpu_ram: 0
+    cpu_cores: 8
+    ram_gb: 16
+    disk_gb: 30
+    max_price_per_hour: 0.08
+    image: "ubuntu:22.04"
+
+  # GPU workers for router training
+  gpu_workers:
+    count: 2
+    gpu_type: "RTX_3090"  # Good price/performance
+    gpu_ram: 24
+    cpu_cores: 8
+    ram_gb: 32
+    disk_gb: 50
+    max_price_per_hour: 0.25
+    image: "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+
+# Success criteria
+criteria:
+  # FRA must beat best single strategy
+  fra_vs_single:
+    min_improvement_percent: 5.0
+    significance_level: 0.01
+
+  # Scaling correlations
+  scaling:
+    min_correlation_K_gap: -0.7  # Negative = gap decreases with K
+    min_correlation_d_gap: -0.6
+    min_fit_r2: 0.7
+
+# Output
+output:
+  results_dir: "results"
+  figures_dir: "figures"
+  save_models: false  # Don't save router models (just metrics)

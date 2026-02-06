@@ -1,0 +1,87 @@
+{
+  "name": "SAT12-ALL",
+  "n_instances": 1614,
+  "n_features": 116,
+  "n_algorithms": 31,
+  "algorithms": [
+    "clasp1",
+    "clasp2",
+    "cryptominisat2011",
+    "eagleup",
+    "ebglucose",
+    "ebminisat",
+    "glucose2",
+    "glueminisat",
+    "gnoveltyp2",
+    "lingeling",
+    "lrglshr",
+    "marchrw",
+    "minisatpsm",
+    "mphaseSAT",
+    "mphaseSAT64",
+    "mphaseSATm",
+    "mxc09",
+    "picosat",
+    "precosat",
+    "qutersat",
+    "rcl",
+    "restartsat",
+    "sapperlot",
+    "satime11",
+    "sattime",
+    "sattimep",
+    "sol",
+    "sparrow",
+    "spear-hw",
+    "spear-sw",
+    "tnm"
+  ],
+  "feature_names": [
+    "repetition",
+    "nvarsOrig",
+    "nclausesOrig",
+    "nvars",
+    "nclauses",
+    "reducedVars",
+    "reducedClauses",
+    "vars_clauses_ratio",
+    "POSNEG_RATIO_CLAUSE_mean",
+    "POSNEG_RATIO_CLAUSE_coeff_variation"
+  ],
+  "diversity": {
+    "entropy": 3.2002373590371658,
+    "normalized_entropy": 0.9319304844401637,
+    "sbs_idx": 15,
+    "sbs_name": "mphaseSATm",
+    "sbs_dominance": 0.011152416356877323,
+    "n_unique_best": 31,
+    "diversity_score": 0.9888475836431226,
+    "top_algorithms": [
+      [
+        "marchrw",
+        152,
+        0.09417596034696406
+      ],
+      [
+        "sparrow",
+        136,
+        0.08426270136307311
+      ],
+      [
+        "eagleup",
+        129,
+        0.07992565055762081
+      ],
+      [
+        "picosat",
+        85,
+        0.052664188351920695
+      ],
+      [
+        "glueminisat",
+        85,
+        0.052664188351920695
+      ]
+    ]
+  }
+}

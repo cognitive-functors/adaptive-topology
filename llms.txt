@@ -36,6 +36,7 @@ Any system that fingerprints its input, routes execution to a matched strategy, 
 - Universal Fingerprint Protocol: domain-independent strategy selection mechanism
 - Cross-domain universality: same pattern across optimization, NLP, decision-making, cognitive science
 - **Hypothesis ID-3 (CONFIRMED)**: intrinsic dimensionality of cognitive text embeddings ≈ 3.0 (95% CI: [2.91, 3.15] at N=5000), validated across 3 models, 2 languages. Hamming distance in Z3^3 predicts confusion (r=-0.489). Axis hierarchy: Scale >> Agency >> Time
+- **FRA Scaling (VALIDATED)**: FRA routing achieves +44% over SBS on SAT11-RAND (diversity 78%). Key finding: K_min = n_types (step function). Wilcoxon p=0.0002. See experiments/fra_scaling_v2/
 
 ## Paper Counts
 

@@ -53,6 +53,7 @@ cognitive science, and decision theory under a shared formal framework.
 | `code/mast/` | solver + 12 benchmarks + results | Run-ready MASTm (Multi-scale Adaptive Spectral TSP meta-solver) |
 | `code/agda/` | 1 file | Agda formal proofs |
 | `code/python/` | demo + ID-3 experiment + examples | C4 classifier, ID-3 validation (10-phase experiment), examples |
+| `experiments/fra_scaling_v2/` | FRA scaling research | FRA routing validation on ASlib, bilingual papers (EN+RU), reproducibility package |
 | `formal-proofs/` | 3 files | Agda proofs + verification guide |
 | `start-here/` | EN + RU | Plain-language introductions (FOR-EVERYONE + popular intros) |
 | `visualizations/` | EN + RU | Interactive 3D hypercube (HTML/JavaScript) |
@@ -86,6 +87,10 @@ Then:
   Robust across 3 embedding models, 2 languages (EN/RU), and multiple datasets.
   Hamming distance in Z3^3 predicts inter-state confusion (r = -0.489).
   See `papers/ID3-INTRINSIC-DIMENSIONALITY-en.md` for the full study.
+- **FRA Scaling validated** -- FRA (Fingerprint-Route-Adapt) routing achieves up to +44%
+  improvement over Single Best Solver on ASlib benchmarks when diversity > 50%.
+  Key finding: K_min = n_types (step function, not power law). Wilcoxon p = 0.0002.
+  See `experiments/fra_scaling_v2/` for reproducibility package.
 - **MASTm solver** -- MASTm (Multi-scale Adaptive Spectral TSP meta-solver):
   algorithmic topology approach to TSP achieving 0.22% optimality gap on fl3795 benchmark.
 - **Cross-domain applicability** -- the same fingerprint-route-adapt pattern yields
